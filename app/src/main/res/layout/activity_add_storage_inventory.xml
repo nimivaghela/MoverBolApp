@@ -1,0 +1,216 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="AddStorageInventoryBinding">
+
+        <variable
+            name="color"
+            type="com.moverbol.model.ColorPojo" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_10sdp">
+
+                <View
+                    android:id="@+id/View_add_inventory"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#edf1f2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+                <!--app:layout_constraintTop_toBottomOf="@+id/toolbar"-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/agents_name"
+                    android:layout_width="@dimen/AgentName_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/add_storage_margin_left"
+                    android:layout_marginStart="@dimen/add_storage_margin_left"
+                    android:layout_marginTop="22dp"
+                    android:theme="@style/TextInputStyleForInventory"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/View_add_inventory">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/agent_s_name" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ref_no"
+                    android:layout_width="@dimen/Layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_top"
+                    android:theme="@style/TextInputStyleForInventory"
+                    app:layout_constraintStart_toStartOf="@id/agents_name"
+                    app:layout_constraintTop_toBottomOf="@+id/agents_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/carrier_s_reference_no" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/contract_no"
+                    android:layout_width="@dimen/Layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/add_storage_margin_right"
+                    android:layout_marginRight="@dimen/add_storage_margin_right"
+                    android:theme="@style/TextInputStyleForInventory"
+                    app:layout_constraintBottom_toBottomOf="@+id/ref_no"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ref_no">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/contract_or_gbl_no" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/order_no"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_top"
+                    android:theme="@style/TextInputStyleForInventory"
+                    app:layout_constraintEnd_toEndOf="@id/ref_no"
+                    app:layout_constraintStart_toStartOf="@id/ref_no"
+                    app:layout_constraintTop_toBottomOf="@id/ref_no">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/govt_service_order_no" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tape_no"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_top"
+                    android:theme="@style/TextInputStyleForInventory"
+                    app:layout_constraintEnd_toEndOf="@id/ref_no"
+                    app:layout_constraintStart_toStartOf="@id/ref_no"
+                    app:layout_constraintTop_toBottomOf="@id/order_no">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/tape_lot_no" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/Margin_top"
+                    android:theme="@style/TextInputStyleForInventory"
+                    app:layout_constraintEnd_toEndOf="@id/ref_no"
+                    app:layout_constraintStart_toStartOf="@id/ref_no"
+                    app:layout_constraintTop_toBottomOf="@id/tape_no">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nos_from" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextInputStyleForInventory"
+                    app:layout_constraintBottom_toBottomOf="@id/order_no"
+                    app:layout_constraintEnd_toEndOf="@id/contract_no"
+                    app:layout_constraintStart_toStartOf="@id/contract_no"
+                    app:layout_constraintTop_toTopOf="@+id/order_no">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/van_no" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="560dp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_marginTop="@dimen/Margin_top"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/submit"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:clickable="true"
+                    android:onClick="openColorDialog"
+                    app:layout_constraintBottom_toBottomOf="@id/tape_no"
+                    app:layout_constraintEnd_toEndOf="@id/contract_no"
+                    app:layout_constraintStart_toStartOf="@id/contract_no"
+                    app:layout_constraintTop_toTopOf="@+id/tape_no">
+
+                    <TextView
+                        android:id="@+id/txt_tape_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tape_color"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/textsize_14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/view_color"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@color/text_red"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_tape_color" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        app:layout_constraintBottom_toBottomOf="@id/view_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/view_color"
+                        app:srcCompat="@drawable/ic_expand_more_black" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:background="@color/grey"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view_color" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

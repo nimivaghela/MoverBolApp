@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/divider_grey"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="2"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/description" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/worker" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/equipment" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/rate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/billed_hrs" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/charges" />
+
+
+    </LinearLayout>
+</layout>

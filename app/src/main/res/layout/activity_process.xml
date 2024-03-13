@@ -1,0 +1,793 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data class="MoveProcessBinding">
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.moveProcess.MoveProcessStatusPojo" />
+
+
+        <variable
+            name="storage"
+            type="boolean" />
+
+        <variable
+            name="clockRequired"
+            type="boolean" />
+
+        <!--<variable
+            name="isWaitingOnApproval"
+            type="boolean"/>-->
+
+        <variable
+            name="isBolStarted"
+            type="boolean" />
+
+        <variable
+            name="isBolNotAllowed"
+            type="boolean" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="com.moverbol.constants.Constants" />
+
+        <import type="com.moverbol.util.Util" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--android:orientation="vertical">-->
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/layout_toolbar" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp">
+
+                <View
+                    android:id="@+id/view_topHeader"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:background="@color/divider_grey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/txt_request"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_32sdp"
+                    android:layout_marginLeft="@dimen/_32sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:text='@{@string/request + " " + (obj.moveInfoPojo.jobSubId ?? "")}'
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/textsize_24sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_topHeader"
+                    tools:text="@string/request" />
+
+                <TextView
+                    android:id="@+id/txt_jobActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/home_light_grey"
+                    android:textSize="@dimen/textsize_16sp"
+                    android:visibility="@{obj.moveInfoPojo.clockRequired ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_startBreak"
+                    app:layout_constraintTop_toTopOf="@+id/txt_name"
+                    tools:text="@string/job_activity" />
+
+                <TextView
+                    android:id="@+id/txt_boxDeliver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/textsize_18sp"
+                    android:visibility="@{obj.moveInfoPojo.clockRequired ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_startBreak"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_jobActivity"
+                    tools:text="@string/box_deliver" />
+
+                <View
+                    android:id="@+id/view_requestHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:background="@color/divider_grey"
+                    android:visibility="invisible"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_32sdp"
+                    android:layout_marginLeft="@dimen/_32sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@{obj.displayCustomerName()}"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/home_text_size"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_requestHorizontal"
+                    tools:text="Adarsh Dattani" />
+
+                <TextView
+                    android:id="@+id/txt_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="@dimen/btnWidth"
+                    android:text="adarsh@netensity.com"
+                    android:textColor="@color/home_light_grey"
+                    android:textSize="@dimen/textsize_16sp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/txt_name"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+
+                <ImageView
+                    android:id="@+id/img_call"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:visibility="@{TextUtils.isEmpty(obj.moveInfoPojo.phoneNumber)  ? View.INVISIBLE : View.VISIBLE}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_name"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_name"
+                    app:srcCompat="@drawable/ic_call"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/txt_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="@{Util.getFormatedPhoneNumber(obj.moveInfoPojo.phoneNumber)}"
+                    android:textColor="@color/home_light_grey"
+                    android:textSize="@dimen/textsize_18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_call"
+                    app:layout_constraintLeft_toRightOf="@+id/img_call"
+                    app:layout_constraintTop_toTopOf="@+id/img_call"
+                    tools:text="0987654321" />
+
+                <TextView
+                    android:id="@+id/txt_headerDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:text="@string/date"
+                    android:textColor="@color/home_light_grey"
+                    android:textSize="@dimen/textsize_16sp"
+                    app:layout_constraintStart_toStartOf="@+id/img_call"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_number" />
+
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{obj.moveInfoPojo.formattedStartDate}"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/textsize_16sp"
+                    app:layout_constraintStart_toStartOf="@+id/txt_headerDate"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_headerDate"
+                    tools:text="April 01,2017" />
+
+                <TextView
+                    android:id="@+id/txt_startTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/home_light_grey"
+                    android:textSize="@dimen/textsize_16sp"
+                    android:visibility="@{obj.moveInfoPojo.clockRequired ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/txt_headerDate"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_startBreak"
+                    tools:text="@string/activity_start_time" />
+
+                <TextView
+                    android:id="@+id/txt_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textsize_16sp"
+                    android:visibility="@{obj.moveInfoPojo.clockRequired ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_startBreak"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_startTime"
+                    tools:text="8:00 AM - 10:00 AM" />
+
+                <TextView
+                    android:id="@+id/txt_movers_arrivel_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movers_arrival_time"
+                    android:textColor="@color/process_light_grey"
+                    android:textSize="@dimen/textsize_14sp"
+                    android:visibility="gone"
+                    app:layout_constraintLeft_toLeftOf="@+id/txt_time"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_time" />
+
+                <LinearLayout
+                    android:id="@+id/btn_clockIn"
+                    android:layout_width="@dimen/btnWidth"
+                    android:layout_height="@dimen/btnHeight"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@{!obj.lastBreakInfo.breakStatus.equals(Constants.START_PROCESS_STATUS) &amp;&amp; !isBolStarted? @color/colorPrimary : @color/text_login_gray}"
+                    android:clickable="@{!obj.lastBreakInfo.breakStatus.equals(Constants.START_PROCESS_STATUS) &amp;&amp; !isBolStarted}"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="@{obj.moveInfoPojo.clockRequired ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_date"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_date"
+                    tools:background="@color/colorPrimary">
+
+                    <!--android:background="@{!obj.lastBreakInfo.breakStatus.equals(Constants.START_PROCESS_STATUS) &amp;&amp; !isWaitingOnApproval &amp;&amp; !isBolStarted? @color/colorPrimary : @color/text_login_gray}"-->
+
+                    <!--<TextView
+                        android:id="@+id/txt_clock_timer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="00 00:00:00"
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_15sdp" />-->
+
+                    <Chronometer
+                        android:id="@+id/chron_clock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:visibility="@{obj.lastClockInfo.status.equals(Constants.START_PROCESS_STATUS) ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:id="@+id/txt_clock_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{obj.lastClockInfo.status.equals(Constants.START_PROCESS_STATUS) ? @string/clock_out : @string/clock_in}'
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_15sdp"
+                        tools:text="@string/clock_in" />
+
+                    <!--<Button
+                        android:id="@+id/btn_clockIn"
+                        android:layout_width="@dimen/btnWidth"
+                        android:layout_height="@dimen/btnHeight"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/colorPrimary"
+                        android:onClick="openClockDialog"
+                        android:text="@string/clock_in"
+                        android:textColor="@android:color/white"
+                        android:visibility="invisible"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintStart_toStartOf="@+id/txt_date"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_movers_arrivel_time" />-->
+
+                    <!--android:id="@+id/btn_clockIn"-->
+
+                </LinearLayout>
+
+                <!--<Button
+                        android:id="@+id/btn_clockIn"
+                        android:layout_width="@dimen/btnWidth"
+                        android:layout_height="@dimen/btnHeight"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/colorPrimary"
+                        android:onClick="openClockDialog"
+                        android:text="@string/clock_in"
+                        android:textColor="@android:color/white"
+                        android:visibility="invisible"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintStart_toStartOf="@+id/txt_date"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_movers_arrivel_time" />
+
+                <Button
+                    android:id="@+id/btn_clockOut"
+                    android:layout_width="@dimen/btnWidth"
+                    android:layout_height="@dimen/btnHeight"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="openClockDialog"
+                    tools:text="@string/clock_out"
+                    bind:formatTimeFromMills="@{obj.clockTimeMils.get()}"
+                    android:textColor="@android:color/white"
+                    android:visibility="invisible"
+                    android:textSize="@dimen/_15sdp"
+                    app:layout_constraintStart_toStartOf="@+id/txt_date"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_movers_arrivel_time" />-->
+
+                <!--bind:formatTimeFromMills="@{obj.clockTimeMils}"-->
+
+                <LinearLayout
+                    android:id="@+id/btn_startBreak"
+                    android:layout_width="@dimen/btnWidth"
+                    android:layout_height="@dimen/btnHeight"
+                    android:layout_marginStart="@dimen/move_process_call"
+                    android:layout_marginLeft="@dimen/move_process_call"
+                    android:background="@{!obj.lastClockInfo.status.equals(Constants.STOP_PROCESS_STATUS) ? @color/colorPrimary : @color/text_login_gray}"
+                    android:clickable="@{!obj.lastClockInfo.status.equals(Constants.STOP_PROCESS_STATUS)}"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="@{obj.moveInfoPojo.clockRequired ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toEndOf="@+id/btn_clockIn"
+                    app:layout_constraintTop_toTopOf="@+id/btn_clockIn"
+                    tools:background="@color/colorPrimary">
+
+
+                    <Chronometer
+                        android:id="@+id/chron_break"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:visibility="@{obj.lastBreakInfo.breakStatus.equals(Constants.START_PROCESS_STATUS) ? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        android:id="@+id/txt_break"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@{obj.lastBreakInfo.breakStatus.equals(Constants.STOP_PROCESS_STATUS) ? @string/start_break : @string/stop_break}'
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_15sdp"
+                        tools:text="@string/stop_break" />
+
+                </LinearLayout>
+
+                <!--<Button
+                    android:id="@+id/btn_startBreak"
+                    android:layout_width="@dimen/btnWidth"
+                    android:layout_height="@dimen/btnHeight"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="onStartBreakClicked"
+                    android:text="@string/start_break"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_15sdp"
+                    app:layout_constraintStart_toStartOf="@+id/txt_movers_arrivel_time"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_movers_arrivel_time" />-->
+
+                <!--android:textOff="@string/start_break"
+                android:textOn="@string/stop_break"-->
+
+                <!--<android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/btn_show_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/show_history"
+                    android:focusable="false"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_clockIn"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_clockIn"
+                    />-->
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btn_show_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/_4sdp"
+                    android:text="@string/activity_details"
+                    android:textColor="@color/colorAccent"
+                    android:visibility="@{obj.moveInfoPojo.clockRequired ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_clockIn"
+                    app:layout_constraintStart_toStartOf="@+id/btn_clockIn"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_clockIn" />
+
+                <View
+                    android:id="@+id/view_bottomRequest"
+                    android:layout_width="0dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@color/divider_grey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_show_history" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_bottomRequest">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraint_summary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/select_background"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="openJobSummary">
+
+
+                        <TextView
+                            android:id="@+id/txt_completed_summary"
+                            style="@style/MoveProcessCompleted"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_summary"
+                            app:layout_constraintEnd_toStartOf="@+id/img_next_summary"
+                            app:layout_constraintTop_toTopOf="@+id/txt_summary"
+                            app:layout_constraintVertical_bias="0.5" />
+
+                        <ImageView
+                            android:id="@+id/img_next_summary"
+                            style="@style/MoveProcessImageNext"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_completed_summary"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_completed_summary"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:srcCompat="@drawable/ic_next" />
+
+                        <ImageView
+                            android:id="@+id/img_summary"
+                            style="@style/MoveProcessImage"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_actionbar_details"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/txt_summary"
+                            style="@style/MoveProcessText"
+                            android:text="@string/job_summary"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_summary"
+                            app:layout_constraintStart_toEndOf="@+id/img_summary"
+                            app:layout_constraintTop_toTopOf="@+id/img_summary" />
+
+                        <View
+                            android:id="@+id/view_summary"
+                            style="@style/MoveProcessDivider"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:layout_editor_absoluteY="54dp" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraint_confirmation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/select_background"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="openWalkThrough">
+
+
+                        <TextView
+                            android:id="@+id/txt_completed_confi"
+                            style="@style/MoveProcessCompleted"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_confirmation"
+                            app:layout_constraintEnd_toStartOf="@+id/img_next"
+                            app:layout_constraintTop_toTopOf="@+id/txt_confirmation"
+                            app:layout_constraintVertical_bias="0.5" />
+
+                        <ImageView
+                            android:id="@+id/img_next"
+                            style="@style/MoveProcessImageNext"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_completed_confi"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_completed_confi"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:srcCompat="@drawable/ic_next" />
+
+                        <ImageView
+                            android:id="@+id/img_confirmation"
+                            style="@style/MoveProcessImage"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_confirmation"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/txt_confirmation"
+                            style="@style/MoveProcessText"
+                            android:text="@string/walk_through"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_confirmation"
+                            app:layout_constraintStart_toEndOf="@+id/img_confirmation"
+                            app:layout_constraintTop_toTopOf="@+id/img_confirmation" />
+
+                        <View
+                            android:id="@+id/view"
+                            style="@style/MoveProcessDivider"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:layout_editor_absoluteY="54dp" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraint_inventory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/select_background"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="openInventoryActivity"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+
+                        <TextView
+                            android:id="@+id/txt_completed_inventory"
+                            style="@style/MoveProcessCompleted"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_inventory"
+                            app:layout_constraintEnd_toStartOf="@+id/img_nextInventory"
+                            app:layout_constraintTop_toTopOf="@+id/txt_inventory"
+                            app:layout_constraintVertical_bias="0.5" />
+
+                        <ImageView
+                            android:id="@+id/img_nextInventory"
+                            style="@style/MoveProcessImageNext"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_completed_inventory"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_completed_inventory"
+                            app:srcCompat="@drawable/ic_next" />
+
+                        <ImageView
+                            android:id="@+id/img_Inventory"
+                            style="@style/MoveProcessImage"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_inventory"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/txt_inventory"
+                            style="@style/MoveProcessText"
+                            android:text="@string/inventory"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_Inventory"
+                            app:layout_constraintStart_toEndOf="@+id/img_Inventory"
+                            app:layout_constraintTop_toTopOf="@+id/img_Inventory" />
+
+
+                        <View
+                            android:id="@+id/view_inventory"
+                            style="@style/MoveProcessDivider"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraint_billOfLading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/select_background"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="openBillOfLadingActivity"
+                        android:visibility="@{obj.getBolMoveTypeFlag() == 0 || isBolNotAllowed ? View.GONE : View.VISIBLE}">
+
+
+                        <TextView
+                            android:id="@+id/txt_completed_bill"
+                            style="@style/MoveProcessCompleted"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_billOfLading"
+                            app:layout_constraintEnd_toStartOf="@+id/img_nextbillOfLadding"
+                            app:layout_constraintTop_toTopOf="@+id/txt_billOfLading"
+                            app:layout_constraintVertical_bias="0.5" />
+
+                        <ImageView
+                            android:id="@+id/img_nextbillOfLadding"
+                            style="@style/MoveProcessImageNext"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_completed_bill"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_completed_bill"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:srcCompat="@drawable/ic_next"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageView
+                            android:id="@+id/img_billOfLading"
+                            style="@style/MoveProcessImage"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_valuation"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/txt_billOfLading"
+                            style="@style/MoveProcessText"
+                            android:text="@string/bill_of_lading"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_billOfLading"
+                            app:layout_constraintStart_toEndOf="@+id/img_billOfLading"
+                            app:layout_constraintTop_toTopOf="@+id/img_billOfLading"
+                            app:layout_constraintVertical_bias="0.5" />
+
+
+                        <View
+                            android:id="@+id/view_billOfLading"
+                            style="@style/MoveProcessDivider"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraint_complete_job"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/select_background"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="onCompleteJob"
+                        android:visibility="@{obj.getBolMoveTypeFlag() == 0 || isBolNotAllowed ? View.VISIBLE : View.GONE}">
+
+                        <ImageView
+                            android:id="@+id/img_next_complete_job"
+                            style="@style/MoveProcessImageNext"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.5"
+                            app:srcCompat="@drawable/ic_next"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageView
+                            android:id="@+id/img_complete_job"
+                            style="@style/MoveProcessImage"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_valuation"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/txt_complete_job"
+                            style="@style/MoveProcessText"
+                            android:text="@string/complete_job"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_complete_job"
+                            app:layout_constraintStart_toEndOf="@+id/img_complete_job"
+                            app:layout_constraintTop_toTopOf="@+id/img_complete_job"
+                            app:layout_constraintVertical_bias="0.5" />
+
+
+                        <View
+                            android:id="@+id/view_complete_job"
+                            style="@style/MoveProcessDivider"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraint_notes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/select_background"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onClick="openNotesActivity">
+
+
+                        <TextView
+                            android:id="@+id/txt_completed_notes"
+                            style="@style/MoveProcessCompleted"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_notes"
+                            app:layout_constraintEnd_toStartOf="@+id/img_nextnotes"
+                            app:layout_constraintTop_toTopOf="@+id/txt_notes" />
+
+                        <ImageView
+                            android:id="@+id/img_nextnotes"
+                            style="@style/MoveProcessImageNext"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_completed_notes"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_completed_notes"
+                            app:layout_constraintVertical_bias="0.375"
+                            app:srcCompat="@drawable/ic_next"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageView
+                            android:id="@+id/img_notes"
+                            style="@style/MoveProcessImage"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_notes"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/txt_notes"
+                            style="@style/MoveProcessText"
+                            android:text="@string/notes"
+                            app:layout_constraintBottom_toBottomOf="@+id/img_notes"
+                            app:layout_constraintStart_toEndOf="@+id/img_notes"
+                            app:layout_constraintTop_toTopOf="@+id/img_notes"
+                            app:layout_constraintVertical_bias="0.5" />
+
+
+                        <View
+                            android:id="@+id/view_notes"
+                            style="@style/MoveProcessDivider"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btn_complete_move"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/complete_move"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/textsize_20sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/surfaceView" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

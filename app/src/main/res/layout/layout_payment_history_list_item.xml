@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data class="PaymentModeListItemBinding">
+
+        <variable
+            name="currencySymbol"
+            type="String"/>
+
+        <variable
+            name="index"
+            type="int"/>
+
+        <variable
+            name="position"
+            type="int"/>
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.billOfLading.payment.PaymentHistoryDetailsModel"/>
+
+        <!--<variable
+            name="obj1"
+            type="com.moverbol.model.billOfLading.payment.PaymentHistoryResponseModel"/>-->
+
+        <import type="com.moverbol.util.Util"/>
+
+    </data>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/_5sdp"
+    android:orientation="horizontal"
+    android:background="@{position%2 == 0 ? @color/item_row : @color/colorAccent }">
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/home_text_black"
+        android:textSize="@dimen/textsize_18sp"
+        android:text='@{index + ""}'
+        tools:text="No." />
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/home_text_black"
+        android:textSize="@dimen/textsize_18sp"
+        android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(obj.displayAmount)}'
+        tools:text="Amount" />
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/home_text_black"
+        android:textSize="@dimen/textsize_18sp"
+        android:text="@{obj.paymentMethod}"
+        tools:text="Method" />
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textColor="@color/home_text_black"
+        android:textSize="@dimen/textsize_18sp"
+        android:text="@{obj.timeStamp}"
+        tools:text="Time" />
+
+</LinearLayout>
+
+    </layout>

@@ -1,0 +1,81 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <!-- Login Main Left Right -->
+    <dimen name="margin_left_right">280dp</dimen>
+
+    <dimen name="nav_text_size">16sp</dimen>
+
+    <dimen name="home_text_size">20sp</dimen>
+    <dimen name="home_card_view_margin">50dp</dimen>
+    <dimen name="home_divider_one">0.104</dimen>
+    <dimen name="home_divider_two">0.267</dimen>
+    <dimen name="home_divider_margin_top">20dp</dimen>
+    <dimen name="home_est_margin_top">24dp</dimen>
+    <dimen name="drop_location_bias">0.48</dimen>
+    <dimen name="time_bias">0.17</dimen>
+    <dimen name="activity_bias">0.663</dimen>
+    <dimen name="service_type_bias">0.50</dimen>
+    <dimen name="box_delivery_left_bias">0.07</dimen>
+    <dimen name="calendar_height">400dp</dimen>
+
+    <dimen name="margin">400dp</dimen>
+
+    <!-- Material_item layout -->
+    <dimen name="quantity_left_margin">220dp</dimen>
+    <dimen name="rate_left_margin">410dp</dimen>
+    <dimen name="total_left_margin">600dp</dimen>
+    <dimen name="title_left_margin">55dp</dimen>
+
+    <!-- Article_item layout -->
+    <dimen name="item_left_margin">32dp</dimen>
+    <dimen name="est_quantity_left_margin">300dp</dimen>
+    <dimen name="act_quantity_left_margin">450dp</dimen>
+    <dimen name="vol_left_margin">600dp</dimen>
+    <dimen name="weight_left_margin">750dp</dimen>
+
+
+    <!-- For inventory-->
+    <dimen name="Margin_top">16dp</dimen>
+    <dimen name="Layout_width">350dp</dimen>
+    <dimen name="AgentName_width">350dp</dimen>
+    <dimen name="add_storage_margin_left">16dp</dimen>
+    <dimen name="add_storage_margin_right">24dp</dimen>
+
+    <dimen name="txt_desc_width">200dp</dimen>
+    <dimen name="txtunit_width">120dp</dimen>
+    <dimen name="txtqty_width">120dp</dimen>
+    <dimen name="txtrate_width">120dp</dimen>
+    <dimen name="txtamt_width">120dp</dimen>
+    <dimen name="deliveryaddr_marLeft">300dp</dimen>
+    <dimen name="btnHeight">70dp</dimen>
+    <dimen name="btnWidth">300dp</dimen>
+    <dimen name="move_process_call">100dp</dimen>
+
+    <dimen name="layout_no_inventory_height">600dp</dimen>
+
+    <dimen name="inventory_id_left">32dp</dimen>
+    <dimen name="inventory_agent_name">300dp</dimen>
+    <dimen name="inventory_contact_no">550dp</dimen>
+    <dimen name="inventory_imageview">860dp</dimen>
+
+    <dimen name="home_local_move">16dp</dimen>
+    <dimen name="home_activity">280dp</dimen>
+
+    <dimen name="packing_cr_no_left">350dp</dimen>
+    <dimen name="packing_contract_no_left">650dp</dimen>
+    <dimen name="packingedit_cr_ref_left">32dp</dimen>
+    <dimen name="packingedit_condtion_left">300dp</dimen>
+
+    <dimen name="bottomsheet_first_button">70dp</dimen>
+    <dimen name="bottomsheet_second_button">270dp</dimen>
+    <dimen name="bottomsheet_third_button">470dp</dimen>
+    <dimen name="bottomsheet_fourth_button">670dp</dimen>
+</resources>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="BolSignatureDialogBinding">
+
+        <variable
+            name="showReschedule"
+            type="int" />
+
+        <variable
+            name="showPolicy"
+            type="int" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="@dimen/_400sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <!--<TextView
+            android:id="@+id/textView140"
+            style="@style/DialogTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="Review Discount"
+            />-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_40sdp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:padding="5dp"
+                android:text="@string/total"
+                android:textSize="@dimen/textsize_22sp"
+                android:textColor="@color/home_light_grey"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_total_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="65dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/textsize_22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_total"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_total"
+                tools:text="@string/total_value" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_close"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_close"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+
+                tools:ignore="VectorDrawableCompat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginTop="12dp"
+            visibleGone="@{showReschedule == 1}"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chk_reschedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/crew_checkbox"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/home_text_black"
+                android:textSize="@dimen/textsize_16sp" />
+
+            <TextView
+                android:id="@+id/txt_reschedule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/home_text_black"
+                android:textSize="@dimen/textsize_16sp"
+                tools:text="@string/Policy_link" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_40sdp"
+            android:layout_marginTop="12dp"
+            visibleGone="@{showPolicy == 1}"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/chk_policies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/crew_checkbox"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textColor="@color/home_text_black"
+                android:textSize="@dimen/textsize_16sp" />
+
+            <TextView
+                android:id="@+id/txt_policies"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/home_text_black"
+                android:textSize="@dimen/textsize_16sp"
+                tools:text="@string/i_agree_wth_company_policies" />
+
+        </LinearLayout>
+
+
+
+        <FrameLayout
+            android:id="@+id/constraint_sinature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:id="@+id/signature"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/signature"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+            <TextView
+                android:id="@+id/txt_clear"
+                style="@style/JobSummaryTextBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/_3sdp"
+                android:text="@string/clear"
+                android:textColor="@color/colorAccent" />
+
+        </FrameLayout>
+
+
+        <com.github.gcacace.signaturepad.views.SignaturePad
+            android:id="@+id/signature_pad"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:background="@drawable/edittext_border"
+            app:penColor="@android:color/black" />
+
+
+        <Button
+            android:id="@+id/btn_done"
+            style="@style/DialogButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@color/colorPrimary"
+            android:text="@string/done"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txt_message"
+            app:layout_constraintStart_toStartOf="@+id/txt_message"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+    </LinearLayout>
+
+</layout>

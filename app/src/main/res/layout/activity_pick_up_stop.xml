@@ -1,0 +1,38 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="PickupStopBinding">
+
+        <!--<variable
+            name="pickupList"
+            type="List&lt;ExtraStopsPojo&lt;"/>-->
+
+        <variable
+            name="jobDetail"
+            type="com.moverbol.model.JobDetailPojo"/>
+
+        <variable
+            name="shouldTakeDeliveryAddresses"
+            type="Boolean"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:pickupStopList="@{shouldTakeDeliveryAddresses ? jobDetail.deliveryExtraStops : jobDetail.pickupExtraStops}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

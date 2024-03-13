@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PackingListItemBinding">
+
+        <variable
+            name="packinglistPojo"
+            type="com.moverbol.model.PackingListPojo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="openPackingListActivity"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/textView99"
+            style="@style/HomeTextLightGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/inventory_id_left"
+            android:layout_marginStart="@dimen/inventory_id_left"
+            android:layout_marginTop="16dp"
+            android:text="@string/inventory_id"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView100"
+            style="@style/HomeTextLightGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/inventory_agent_name"
+            android:layout_marginStart="@dimen/inventory_agent_name"
+            android:text="@string/agent_name"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView99"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView99" />
+
+        <TextView
+            android:id="@+id/textView101"
+            style="@style/HomeTextLightGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/inventory_contact_no"
+            android:layout_marginStart="@dimen/inventory_contact_no"
+            android:text="@string/total_items"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView100"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView100" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/inventory_imageview"
+            android:layout_marginStart="@dimen/inventory_imageview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView101"
+            app:srcCompat="@drawable/ic_chevron_right_grey" />
+
+        <TextView
+            android:id="@+id/textView102"
+            style="@style/JobSummaryTextBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@{packinglistPojo.inventory_id}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView99"
+            app:layout_constraintTop_toBottomOf="@+id/textView99" />
+
+        <TextView
+            android:id="@+id/textView103"
+            style="@style/JobSummaryTextBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{packinglistPojo.agent_name}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView102"
+            app:layout_constraintStart_toStartOf="@+id/textView100"
+            app:layout_constraintTop_toTopOf="@+id/textView102" />
+
+        <TextView
+            android:id="@+id/textView104"
+            style="@style/JobSummaryTextBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{packinglistPojo.total_items}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView103"
+            app:layout_constraintStart_toStartOf="@+id/textView101"
+            app:layout_constraintTop_toTopOf="@+id/textView103"
+            app:layout_constraintVertical_bias="1.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

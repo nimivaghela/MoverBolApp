@@ -1,0 +1,865 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="HomeRvRowItemBinding">
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="obj"
+            type="com.moverbol.network.model.JobPojo" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="currencySymbol"
+            type="String" />
+
+        <import type="com.moverbol.constants.Constants" />
+
+        <import type="android.view.View" />
+
+        <import type="com.moverbol.util.Util" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/home_card_view_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/tv_id"
+                style="@style/HomeTextDarkGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:text='@{"Job Id: " + obj.jobId}'
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteY="16dp"
+                tools:text="Job Id: #4547154" />
+
+            <TextView
+                android:id="@+id/tv_local"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/home_local_move"
+                android:gravity="center_vertical"
+                android:text='@{obj.moveTypeName + " Move"}'
+                app:layout_constraintBottom_toBottomOf="@+id/tv_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_id"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="@string/local_move" />
+            <!--android:drawableRight="@drawable/icons8_more_than_50"-->
+            <!--android:drawableRight="@drawable/ic_chevron_right"-->
+
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/divider_grey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="@dimen/home_divider_one" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_bus"
+                android:layout_width="68dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_bus"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/HomeTextBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{obj.displayCustomerName()}"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_bus"
+                app:layout_constraintStart_toEndOf="@+id/iv_bus"
+                app:layout_constraintTop_toTopOf="@+id/iv_bus"
+                tools:text="Jonathan Lee" />
+
+            <TextView
+                android:id="@+id/tv_number1"
+                style="@style/HomeTextBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:onClick="@{onClick}"
+                android:text="@{Util.getFormatedPhoneNumber(obj.phoneNumber1)}"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_phone1"
+                app:layout_constraintStart_toEndOf="@+id/iv_phone1"
+                app:layout_constraintTop_toTopOf="@+id/iv_phone1"
+                app:layout_constraintVertical_bias="0.857"
+                tools:text="+1-245-7847-45" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_phone1"
+                android:layout_width="18dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:onClick="@{onClick}"
+                android:tint="@color/home_light_grey"
+                app:layout_constraintStart_toEndOf="@+id/iv_bus"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                app:srcCompat="@drawable/ic_phone" />
+
+            <TextView
+                android:id="@+id/tv_number2"
+                style="@style/HomeTextBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:onClick="@{onClick}"
+                android:text="@{Util.getFormatedPhoneNumber(obj.phoneNumber2)}"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_phone2"
+                app:layout_constraintStart_toEndOf="@+id/iv_phone2"
+                app:layout_constraintTop_toTopOf="@+id/iv_phone2"
+                app:layout_constraintVertical_bias="0.857"
+                app:visibleGone="@{!obj.phoneNumber2.empty}"
+                tools:text="+1-245-7847-45" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_phone2"
+                android:layout_width="18dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="16dp"
+                android:onClick="@{onClick}"
+                android:tint="@color/home_light_grey"
+                app:layout_constraintBottom_toBottomOf="@id/iv_phone1"
+                app:layout_constraintStart_toEndOf="@id/tv_number1"
+                app:layout_constraintTop_toTopOf="@id/iv_phone1"
+                app:srcCompat="@drawable/ic_phone"
+                app:visibleGone="@{!obj.phoneNumber2.empty}" />
+
+            <TextView
+                android:id="@+id/tv_number3"
+                style="@style/HomeTextBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:onClick="@{onClick}"
+                android:text="@{Util.getFormatedPhoneNumber(obj.phoneNumber3)}"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_phone3"
+                app:layout_constraintStart_toEndOf="@+id/iv_phone3"
+                app:layout_constraintTop_toTopOf="@+id/iv_phone3"
+                app:layout_constraintVertical_bias="0.857"
+                app:visibleGone="@{!obj.phoneNumber3.empty}"
+                tools:text="+1-245-7847-45" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_phone3"
+                android:layout_width="18dp"
+                android:layout_height="23dp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:onClick="@{onClick}"
+                android:tint="@color/home_light_grey"
+                app:layout_constraintStart_toStartOf="@id/iv_phone1"
+                app:layout_constraintTop_toBottomOf="@id/iv_phone1"
+                app:srcCompat="@drawable/ic_phone"
+                app:visibleGone="@{!obj.phoneNumber3.empty}" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/view_two"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="8dp"
+                android:layerType="software"
+                android:src="@drawable/drawable_dashed_line"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="@dimen/home_divider_two" />
+
+            <TextView
+                android:id="@+id/tv_pick_up"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/pickup_location"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_two" />
+
+            <TextView
+                android:id="@+id/tv_pickup_extra_stops_count"
+                style="@style/HomeTextWhite"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:onClick="@{onClick}"
+                android:text='@{" +" + obj.originAdditional}'
+                android:visibility='@{obj.originAdditional.equals("0") ? View.GONE : View.VISIBLE}'
+                app:layout_constraintBottom_toBottomOf="@+id/tv_pick_up"
+                app:layout_constraintStart_toEndOf="@+id/tv_pick_up"
+                app:layout_constraintTop_toTopOf="@+id/tv_pick_up"
+                tools:layout_editor_absoluteY="211dp"
+                tools:text=" +3" />
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_28sdp"
+                android:layout_marginTop="16dp"
+                android:text="@string/delivery_location"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/view_two" />
+
+            <TextView
+                android:id="@+id/tv_delivery_extra_stops_count"
+                style="@style/HomeTextWhite"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:onClick="@{onClick}"
+                android:text='@{" +" + obj.destinationAdditional}'
+                android:visibility='@{obj.destinationAdditional.equals("0") ? View.GONE : View.VISIBLE}'
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3"
+                tools:layout_editor_absoluteY="211dp"
+                tools:text=" +3" />
+
+            <TextView
+                android:id="@+id/txt_pickup_address"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="@dimen/_28sdp"
+                android:text="@{obj.fullOriginalAddressString}"
+                app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="@+id/tv_pick_up"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pick_up"
+                tools:text="Orlando, FL 32803 Orla ndo, FL 32803 Orlando, FL 32803" />
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView5"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view_two"
+                app:srcCompat="@drawable/ic_arrow_forward" />
+
+            <TextView
+                android:id="@+id/txt_delivery_address"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="@dimen/_28sdp"
+                android:text="@{obj.fullDestinationAddressString}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                tools:text="Orlando, FL 32819 Orlando, FL 32819 Orlando, FL 32819" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView6"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/home_divider_margin_top"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="8dp"
+                android:layerType="software"
+                android:src="@drawable/drawable_dashed_line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_pickup_address"
+                app:srcCompat="@drawable/drawable_dashed_line" />
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6"
+                tools:layout_editor_absoluteY="300dp" />
+
+            <TextView
+                android:id="@+id/txt_date"
+                style="@style/HomeTextBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:text="@{obj.getFormattedDate}"
+                app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView4"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Sat, 27 May, 17" />
+            <!--app:layout_constraintRight_toLeftOf="@+id/imageView5"-->
+            <!--android:drawableRight="@drawable/menu_down"-->
+            <!--android:drawableRight="@drawable/ic_arrow_drop_down"-->
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_dropDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu_down"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_date"
+                app:layout_constraintStart_toEndOf="@+id/txt_date"
+                app:layout_constraintTop_toTopOf="@+id/txt_date" />
+
+            <TextView
+                android:id="@+id/txt_more_dates"
+                style="@style/HomeTextWhite"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:onClick="@{onClick}"
+                android:text='@{" +" + obj.additionalDates.size()}'
+                android:visibility='@{obj.additionalDates.size() &gt; 1 ? View.VISIBLE : View.GONE}'
+                app:layout_constraintBottom_toBottomOf="@+id/txt_date"
+                app:layout_constraintStart_toEndOf="@+id/txt_date"
+                app:layout_constraintTop_toTopOf="@+id/txt_date"
+                tools:text=" +3" />
+
+
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/time"
+                app:layout_constraintEnd_toStartOf="@id/txt_startTime"
+                app:layout_constraintHorizontal_bias="@dimen/time_bias"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+            <TextView
+                android:id="@+id/txt_startTime"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="@dimen/_28sdp"
+                android:text="@{obj.startTimeFrom}"
+                app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintTop_toTopOf="@+id/textView10"
+                tools:layout_editor_absoluteY="306dp"
+                tools:text="09:30 am - 10:45 am" />
+
+            <TextView
+                android:id="@+id/textView12"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="@dimen/home_est_margin_top"
+                android:text="@string/est_vol_wt"
+                app:layout_constraintEnd_toStartOf="@+id/textView14"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/txt_estimated_measures"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:maxWidth="@dimen/_180sdp"
+                android:text="@{obj.estimatedVolumeString + '/' + obj.estimatedWeightString}"
+                app:layout_constraintEnd_toEndOf="@+id/textView12"
+                app:layout_constraintStart_toStartOf="@+id/textView12"
+                app:layout_constraintTop_toBottomOf="@+id/textView12"
+                tools:text="70000 CFT/ 490000 LBS" />
+
+            <TextView
+                android:id="@+id/textView14"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:text="@string/bedroom"
+                app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                app:layout_constraintEnd_toStartOf="@+id/textView16"
+                app:layout_constraintHorizontal_bias="@dimen/service_type_bias"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView12"
+                app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+            <TextView
+                android:id="@+id/textView15"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{obj.numberOfbedrooms}"
+                app:layout_constraintEnd_toEndOf="@+id/textView14"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/textView14"
+                tools:text="2" />
+
+            <TextView
+                android:id="@+id/textView16"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:text="@string/square_feet"
+                app:layout_constraintBottom_toBottomOf="@+id/textView14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="@dimen/activity_bias"
+                app:layout_constraintStart_toEndOf="@id/textView14"
+                app:layout_constraintTop_toTopOf="@+id/textView14"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView17"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@{obj.squareFeet}"
+                app:layout_constraintBottom_toBottomOf="@+id/textView15"
+                app:layout_constraintEnd_toEndOf="@+id/textView16"
+                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintTop_toTopOf="@+id/textView15"
+                tools:text="1600 * 1600" />
+
+            <TextView
+                android:id="@+id/textView18"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/home_est_margin_top"
+                android:text="@string/men_truck"
+                app:layout_constraintEnd_toEndOf="@+id/txt_estimated_measures"
+                app:layout_constraintStart_toStartOf="@+id/txt_estimated_measures"
+                app:layout_constraintTop_toBottomOf="@+id/txt_estimated_measures" />
+
+            <TextView
+                android:id="@+id/textView19"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/rate"
+                visibleInvisible="@{obj.hourlyRateflag == 1}"
+                tools:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                app:layout_constraintEnd_toEndOf="@+id/textView14"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toTopOf="@+id/textView18"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/tv_pickup_extra_stops_count0"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/est_hrs"
+                app:layout_constraintBottom_toBottomOf="@+id/textView19"
+                app:layout_constraintEnd_toEndOf="@+id/textView16"
+                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintTop_toTopOf="@+id/textView19"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/txt_men_truc_counts"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text='@{obj.numberOfMen + "       " + obj.numberOfTrucks}'
+                app:layout_constraintEnd_toEndOf="@+id/textView18"
+                app:layout_constraintStart_toStartOf="@+id/textView12"
+                app:layout_constraintTop_toBottomOf="@+id/textView18"
+                tools:text="3       1" />
+
+            <TextView
+                android:id="@+id/txt_hour_rate"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                visibleInvisible="@{obj.hourlyRateflag == 1}"
+                tools:visibility="visible"
+                android:text="@{obj.estimatedHourRateString}"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_men_truc_counts"
+                app:layout_constraintEnd_toEndOf="@+id/textView19"
+                app:layout_constraintStart_toEndOf="@+id/textView18"
+                app:layout_constraintStart_toStartOf="@+id/textView19"
+                app:layout_constraintTop_toTopOf="@+id/txt_men_truc_counts"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="$100/hr" />
+
+            <TextView
+                android:id="@+id/txt_estimate_hours"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{obj.estimatedHours}"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_hour_rate"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pickup_extra_stops_count0"
+                app:layout_constraintStart_toStartOf="@+id/tv_pickup_extra_stops_count0"
+                app:layout_constraintTop_toTopOf="@+id/txt_hour_rate"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="6" />
+
+            <TextView
+                android:id="@+id/tv_pickup_extra_stops_count4"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/home_est_margin_top"
+                android:text="@string/packing"
+                app:layout_constraintEnd_toEndOf="@+id/txt_men_truc_counts"
+                app:layout_constraintStart_toStartOf="@+id/txt_men_truc_counts"
+                app:layout_constraintTop_toBottomOf="@+id/txt_men_truc_counts" />
+
+            <TextView
+                android:id="@+id/tv_pickup_extra_stops_count5"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/unpacking"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_pickup_extra_stops_count4"
+                app:layout_constraintEnd_toEndOf="@+id/txt_hour_rate"
+                app:layout_constraintStart_toStartOf="@+id/txt_hour_rate"
+                app:layout_constraintTop_toTopOf="@+id/tv_pickup_extra_stops_count4"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/tv_pickup_extra_stops_count6"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/storage"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_pickup_extra_stops_count5"
+                app:layout_constraintEnd_toEndOf="@+id/txt_estimate_hours"
+                app:layout_constraintStart_toStartOf="@+id/txt_estimate_hours"
+                app:layout_constraintTop_toTopOf="@+id/tv_pickup_extra_stops_count5" />
+
+            <TextView
+                android:id="@+id/txt_packing"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text='@{obj.packing.equals("1")  ? "Yes" : "No"}'
+                app:layout_constraintEnd_toEndOf="@+id/tv_pickup_extra_stops_count4"
+                app:layout_constraintStart_toStartOf="@+id/tv_pickup_extra_stops_count4"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pickup_extra_stops_count4"
+                tools:text="Yes/No" />
+
+            <TextView
+                android:id="@+id/tv_pickup_extra_stops_count8"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text='@{obj.unpacking.equals("1") ? "Yes" : "No"}'
+                app:layout_constraintBottom_toBottomOf="@+id/txt_packing"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pickup_extra_stops_count5"
+                app:layout_constraintStart_toStartOf="@+id/tv_pickup_extra_stops_count5"
+                app:layout_constraintTop_toTopOf="@+id/txt_packing"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="Yes/No" />
+
+            <TextView
+                android:id="@+id/tv_pickup_extra_stops_count9"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text='@{obj.storage.equals("1") ? "Yes" : "No"}'
+                app:layout_constraintBottom_toBottomOf="@+id/tv_pickup_extra_stops_count8"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pickup_extra_stops_count6"
+                app:layout_constraintStart_toStartOf="@+id/tv_pickup_extra_stops_count6"
+                app:layout_constraintTop_toTopOf="@+id/tv_pickup_extra_stops_count8"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="Yes/No" />
+
+            <TextView
+                android:id="@+id/txt_head_min_hours"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/home_est_margin_top"
+                android:text="@string/min_hours"
+                app:layout_constraintEnd_toEndOf="@+id/txt_packing"
+                app:layout_constraintStart_toStartOf="@+id/txt_packing"
+                app:layout_constraintTop_toBottomOf="@id/txt_packing" />
+
+            <TextView
+                android:id="@+id/txt_head_min_charges"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/min_charges"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_head_min_hours"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pickup_extra_stops_count5"
+                app:layout_constraintStart_toStartOf="@+id/tv_pickup_extra_stops_count5"
+                app:layout_constraintTop_toTopOf="@+id/txt_head_min_hours" />
+
+            <TextView
+                android:id="@+id/txt_head_total_charges"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                visibleInvisible="@{obj.estimateShowFlag == 1}"
+                android:text="@string/total_est_charges"
+                app:layout_constraintEnd_toEndOf="@+id/tv_pickup_extra_stops_count6"
+                app:layout_constraintStart_toStartOf="@+id/tv_pickup_extra_stops_count6"
+                app:layout_constraintTop_toTopOf="@+id/txt_head_min_charges" />
+
+            <TextView
+                android:id="@+id/txt_min_hours"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@{obj.minHours}"
+                app:layout_constraintEnd_toEndOf="@+id/txt_head_min_hours"
+                app:layout_constraintStart_toStartOf="@id/txt_head_min_hours"
+                app:layout_constraintTop_toBottomOf="@id/txt_head_min_hours"
+                tools:text="1.5" />
+
+            <TextView
+                android:id="@+id/txt_min_charges"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@{currencySymbol+obj.minCharges}"
+                app:layout_constraintEnd_toEndOf="@+id/txt_head_min_charges"
+                app:layout_constraintStart_toStartOf="@id/txt_head_min_charges"
+                app:layout_constraintTop_toBottomOf="@id/txt_head_min_charges"
+                tools:text="$200.0" />
+
+            <TextView
+                android:id="@+id/txt_total_charges"
+                style="@style/HomeTextBlack"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                visibleInvisible="@{obj.estimateShowFlag == 1}"
+                android:text="@{currencySymbol+obj.totalCharges}"
+                app:layout_constraintEnd_toEndOf="@+id/txt_head_total_charges"
+                app:layout_constraintStart_toStartOf="@id/txt_head_total_charges"
+                app:layout_constraintTop_toBottomOf="@id/txt_head_total_charges"
+                tools:text="$200.0" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_32sdp"
+                android:background="@color/divider_grey"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_min_charges" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="@{obj.jobStatus.equals(Constants.JOB_STATUS_ACCEPTED) || obj.jobStatus.equals(Constants.JOB_STATUS_INPROGRESS)? View.VISIBLE : View.GONE}"
+                android:weightSum="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2">
+
+
+                <TextView
+                    android:id="@+id/tv_summary_big"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:onClick="@{onClick}"
+                    android:tag="@{obj.jobId}"
+                    android:text="@string/summary"
+                    android:textAllCaps="true"
+                    android:textColor="@color/home_dark_grey"
+                    android:textSize="@dimen/textsize_22sp" />
+                <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash;android:visibility="@{obj.jobStatus.equals(Constants.JOB_STATUS_ACCEPTED) ? View.VISIBLE : View.GONE}" />&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+
+                <TextView
+                    android:id="@+id/tv_start_move"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:onClick="@{onClick}"
+                    android:tag="@{position}"
+                    android:text="@string/start_move"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_22sp" />
+
+                <!--  &lt;!&ndash;&lt;!&ndash; &lt;!&ndash;android:visibility="@{obj.jobStatus.equals(Constants.JOB_STATUS_ACCEPTED) ? View.VISIBLE : View.GONE}" />&ndash;&gt;
+               &lt;!&ndash;app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/view2" />&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="@{obj.jobStatus.equals(Constants.JOB_STATUS_NEW) ? View.VISIBLE : View.GONE}"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2">
+
+                <TextView
+                    android:id="@+id/tv_summary"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:onClick="@{onClick}"
+                    android:text="@string/summary"
+                    android:textAllCaps="true"
+                    android:textColor="@color/home_dark_grey"
+                    android:textSize="@dimen/textsize_20sp"
+                    android:visibility="@{obj.jobStatus.equals(Constants.JOB_STATUS_NEW) ? View.VISIBLE : View.GONE}" />
+                <!--&lt;!&ndash;&lt;!&ndash; &lt;!&ndash;app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintStart_toStartOf="@+id/guideline"
+                 app:layout_constraintTop_toBottomOf="@+id/view2" />&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+
+
+                <TextView
+                    android:id="@+id/tv_accept"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:onClick="@{onClick}"
+                    android:text="@string/accept"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp" />
+                <!--     &lt;!&ndash;&lt;!&ndash; &lt;!&ndash;android:visibility="@{obj.jobStatus.equals(Constants.JOB_STATUS_NEW) ? View.VISIBLE : View.GONE}" />&ndash;&gt;
+                  &lt;!&ndash;app:layout_constraintBottom_toBottomOf="@+id/tv_reject"
+                  app:layout_constraintEnd_toStartOf="@+id/guideline"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="@+id/tv_reject"
+                  app:layout_constraintVertical_bias="0.0" />&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+
+                <TextView
+                    android:id="@+id/tv_reject"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_weight="1"
+                    android:background="@color/light_green"
+                    android:gravity="center"
+                    android:onClick="@{onClick}"
+                    android:text="@string/reject"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp" />
+                <!--   &lt;!&ndash;   &lt;!&ndash; &lt;!&ndash;android:visibility="@{obj.jobStatus.equals(Constants.JOB_STATUS_NEW) ? View.VISIBLE : View.GONE}" />&ndash;&gt;
+                   &lt;!&ndash;app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintRight_toRightOf="parent"
+                   app:layout_constraintStart_toStartOf="@+id/guideline"
+                   app:layout_constraintTop_toBottomOf="@+id/view2" />&ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+
+
+            </LinearLayout>
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/home_activity"
+                android:gravity="center_vertical"
+                android:text=""
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_id"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="@string/activity" />
+
+            <TextView
+                android:id="@+id/textView30"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:text="@string/service_type"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/textView8"
+                app:layout_constraintRight_toLeftOf="@+id/tv_local"
+                app:layout_constraintTop_toTopOf="@+id/textView8"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

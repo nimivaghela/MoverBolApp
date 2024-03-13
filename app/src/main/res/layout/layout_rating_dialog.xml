@@ -1,0 +1,99 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="RatingDialogBinding" >
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/_400sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/colorAccent">
+
+
+        <TextView
+            android:id="@+id/textView140"
+            style="@style/DialogTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/rating_review"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--<ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close_black" />-->
+
+        <TextView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Skip"
+            android:textSize="@dimen/textsize_20sp"
+            android:textColor="@color/text_black" />
+
+
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
+            android:theme="@style/RatingBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView140" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edittext_border"
+            android:ems="10"
+            android:gravity="start"
+            android:hint="@string/rating_caption"
+            android:padding="@dimen/_5sdp"
+            android:theme="@style/EditextTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+        <Button
+            android:id="@+id/btn_done"
+            style="@style/DialogButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/next_text"
+            android:enabled="false"
+            android:background="@color/text_login_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editText3"
+            app:layout_constraintStart_toStartOf="@+id/editText3"
+            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_worker_details"
+        android:orderInCategory="9"
+        android:title="@string/worker_details"
+        app:showAsAction="ifRoom">
+
+    </item>
+
+    <item
+        android:id="@+id/action_show_total"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="10"
+        android:title="@string/show_totals" />
+
+    <item
+        android:id="@+id/action_activity_details"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="10"
+        android:title="@string/activity_details"
+        android:visible="false" />
+
+</menu>

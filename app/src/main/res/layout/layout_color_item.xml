@@ -1,0 +1,29 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="ColorItemBinding">
+
+        <variable
+            name="color"
+            type="com.moverbol.model.ColorPojo" />
+
+        <variable
+            name="colorListAdapter"
+            type="com.moverbol.adapters.ColorListAdapter" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/linViewColor"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp">
+        <!--android:orientation="vertical"-->
+
+        <View
+            android:id="@+id/viewColor"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_centerInParent="true"
+            android:onClick="@{colorListAdapter::selectedColors}" />
+
+        <!--android:background="@{color.color}"-->
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,392 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PickupStopItemBinding">
+
+        <variable
+            name="pickupStopPojo"
+            type="com.moverbol.model.ExtraStopsPojo" />
+
+        <variable
+            name="position"
+            type="Integer"/>
+
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View" />
+
+        <import type="com.moverbol.util.Util"/>
+
+
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20sdp"
+        app:elevation="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_stop"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_40sdp"
+                    android:text='@{"Stop " + (position + 1)}'
+                    tools:text="@string/stop_1"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="8dp" />
+
+
+                <TextView
+                    android:id="@+id/textView52"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_stop" />
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text='@{pickupStopPojo.fullAddressString}'
+                    tools:text="aasasasas   aasasasas  aasasasas  aasasasas  aasasasas  aasasasas v a a sasasas  "
+                    app:layout_constraintStart_toStartOf="@+id/textView52"
+                    app:layout_constraintTop_toBottomOf="@+id/textView52"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <TextView
+                    android:id="@+id/txt_head_stairs"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/stairs"
+                    app:layout_constraintEnd_toStartOf="@+id/txt_head_flights"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+
+
+                <TextView
+                    android:id="@+id/txt_head_flights"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/flights"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_head_stairs"
+                    app:layout_constraintEnd_toStartOf="@id/tv_lbl_location"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toEndOf="@+id/txt_head_stairs"
+                    app:layout_constraintTop_toTopOf="@+id/txt_head_stairs" />
+
+                <TextView
+                    android:id="@+id/tv_lbl_location"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_50sdp"
+                    android:text="@string/location_type"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_head_flights"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/txt_head_flights"
+                    app:layout_constraintTop_toTopOf="@id/txt_head_flights"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/txt_stairs"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{pickupStopPojo.stairsCarry}"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_head_stairs"
+                    app:layout_constraintStart_toStartOf="@id/txt_head_stairs"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_head_stairs"
+                    tools:text="Yes" />
+
+                <TextView
+                    android:id="@+id/txt_flights"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{pickupStopPojo.flightsOfStrairs}"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_head_flights"
+                    app:layout_constraintStart_toStartOf="@id/txt_head_flights"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_head_flights"
+                    tools:text="Yes" />
+
+                <TextView
+                    android:id="@+id/txt_pickup_location_type"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{pickupStopPojo.locationType}"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_lbl_location"
+                    app:layout_constraintStart_toStartOf="@id/tv_lbl_location"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lbl_location"
+                    tools:text="1st Floor No Stairs" />
+
+                <TextView
+                    android:id="@+id/txt_head_long_carry"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:text="@string/long_carry"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_stairs"
+                    app:layout_constraintStart_toStartOf="@+id/txt_stairs"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_stairs"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/txt_head_distance_long"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/distance"
+                    visibleInvisible="@{pickupStopPojo.longCarry.equalsIgnoreCase(`yes`)}"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_head_long_carry"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_flights"
+                    app:layout_constraintStart_toStartOf="@+id/txt_flights"
+                    app:layout_constraintTop_toTopOf="@+id/txt_head_long_carry"
+                    app:layout_constraintVertical_bias="1.0" />
+
+
+                <TextView
+                    android:id="@+id/tv_gate_code_pick"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/gate_code"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_head_long_carry"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_pickup_location_type"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup_location_type"
+                    app:layout_constraintTop_toTopOf="@+id/txt_head_distance_long"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/txt_long_carry"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{pickupStopPojo.longCarry}"
+                    app:layout_constraintEnd_toEndOf="@id/txt_head_long_carry"
+                    app:layout_constraintStart_toStartOf="@+id/txt_head_long_carry"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_head_long_carry"
+                    tools:text="Yes" />
+
+                <TextView
+                    android:id="@+id/txt_distance_long"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    visibleInvisible="@{pickupStopPojo.longCarry.equalsIgnoreCase(`yes`)}"
+                    android:text="@{pickupStopPojo.longCarryDistance}"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_long_carry"
+                    app:layout_constraintEnd_toEndOf="@id/txt_head_distance_long"
+                    app:layout_constraintStart_toStartOf="@+id/txt_head_distance_long"
+                    app:layout_constraintTop_toTopOf="@id/txt_long_carry"
+                    tools:text="Yes" />
+
+
+                <TextView
+                    android:id="@+id/txt_pickup_gate_code"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{pickupStopPojo.gateCode}"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_distance_long"
+                    app:layout_constraintEnd_toEndOf="@id/tv_gate_code_pick"
+                    app:layout_constraintStart_toStartOf="@+id/tv_gate_code_pick"
+                    app:layout_constraintTop_toTopOf="@+id/txt_distance_long"
+                    tools:text="123" />
+
+                <TextView
+                    android:id="@+id/tv_elevator_pick"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:text="@string/elevator"
+                    app:layout_constraintEnd_toEndOf="@id/txt_long_carry"
+                    app:layout_constraintStart_toStartOf="@id/txt_long_carry"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_long_carry" />
+
+
+                <TextView
+                    android:id="@+id/txt_head_distance_elevator"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/distance"
+                    visibleInvisible="@{pickupStopPojo.isElevatorAvailable.equalsIgnoreCase(`yes`)}"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_elevator_pick"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_distance_long"
+                    app:layout_constraintStart_toStartOf="@+id/txt_distance_long"
+                    app:layout_constraintTop_toTopOf="@+id/tv_elevator_pick"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/tv_parking_pick"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/parking_move_day"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_head_distance_elevator"
+                    app:layout_constraintEnd_toEndOf="@id/txt_pickup_gate_code"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup_gate_code"
+                    app:layout_constraintTop_toTopOf="@+id/txt_head_distance_elevator" />
+
+
+                <TextView
+                    android:id="@+id/txt_pickup_elevator_avilable"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{pickupStopPojo.isElevatorAvailable}"
+                    app:layout_constraintEnd_toEndOf="@id/tv_elevator_pick"
+                    app:layout_constraintStart_toStartOf="@id/tv_elevator_pick"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_elevator_pick"
+                    tools:text="@string/yes" />
+
+                <TextView
+                    android:id="@+id/txt_distance_elevator"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    visibleInvisible="@{pickupStopPojo.isElevatorAvailable.equalsIgnoreCase(`yes`)}"
+                    android:text="@{pickupStopPojo.elevetorDisatnce}"
+                    app:layout_constraintBottom_toBottomOf="@id/txt_pickup_elevator_avilable"
+                    app:layout_constraintEnd_toEndOf="@id/txt_head_distance_elevator"
+                    app:layout_constraintStart_toStartOf="@+id/txt_head_distance_elevator"
+                    app:layout_constraintTop_toTopOf="@id/txt_pickup_elevator_avilable"
+                    tools:text="Yes" />
+
+
+                <TextView
+                    android:id="@+id/txt_pickup_parking_avilable"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{pickupStopPojo.isParkingAvilable}"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_distance_elevator"
+                    app:layout_constraintEnd_toEndOf="@id/tv_parking_pick"
+                    app:layout_constraintStart_toStartOf="@+id/tv_parking_pick"
+                    app:layout_constraintTop_toTopOf="@+id/txt_distance_elevator"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:text="@string/yes" />
+
+
+                <TextView
+                    android:id="@+id/tv_person_name_pick"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:text="@string/person_name"
+                    app:layout_constraintEnd_toEndOf="@id/txt_pickup_elevator_avilable"
+                    app:layout_constraintStart_toStartOf="@id/txt_pickup_elevator_avilable"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_pickup_elevator_avilable" />
+
+                <TextView
+                    android:id="@+id/txt_pickup_contact_person_name"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@{pickupStopPojo.contactName}"
+                    app:layout_constraintEnd_toEndOf="@id/tv_person_name_pick"
+                    app:layout_constraintStart_toStartOf="@id/tv_person_name_pick"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_person_name_pick"
+                    tools:text="Jeff Smith" />
+
+                <TextView
+                    android:id="@+id/tv_contact_pick"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_person_name_pick"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_pickup_parking_avilable"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup_parking_avilable"
+                    app:layout_constraintTop_toTopOf="@+id/tv_person_name_pick"
+                    app:layout_constraintVertical_bias="1.0" />
+
+
+
+                <TextView
+                    android:id="@+id/txt_pickup_contact_phone"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_call"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:text="@{Util.getFormatedPhoneNumber(pickupStopPojo.organisationPhone)}"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_pickup_contact_person_name"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_contact_pick"
+                    app:layout_constraintStart_toStartOf="@id/tv_contact_pick"
+                    app:layout_constraintTop_toTopOf="@+id/txt_pickup_contact_person_name"
+                    tools:text="444-444-4444" />
+
+
+                <TextView
+                    android:id="@+id/tv_notes_pick"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/notes"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_pickup_contact_person_name" />
+
+                <TextView
+                    android:id="@+id/txt_pickup_notes"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:text="@{pickupStopPojo.organisationNotes}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_notes_pick"
+                    tools:text="Pickup Note ABC Pickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup No" />
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

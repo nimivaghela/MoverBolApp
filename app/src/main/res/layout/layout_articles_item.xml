@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ArticleItemBinding">
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.confirmationPage.artialeList.ArticleListItemPojo" />
+
+        <variable
+            name="position"
+            type="int" />
+
+        <!--<variable
+            name="type"
+            type="String" />-->
+
+        <!--<variable
+            name="constants"
+            type="com.moverbol.constants.Constants" />-->
+
+        <!--<import type="com.moverbol.constants.Constants" />-->
+
+        <import type="android.view.View" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{position%2 == 0 ? @color/item_row : @color/colorAccent }"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/txt_item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:gravity="start"
+            android:maxWidth="@dimen/_170sdp"
+            android:text="@{obj.displayItemName()}"
+            android:textColor="@color/home_text_black"
+            android:textSize="@dimen/textsize_18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/txt_item_quantity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--<TextView
+            android:id="@+id/txt_custom_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="@dimen/item_left_margin"
+            android:layout_marginTop="16dp"
+            android:maxWidth="@dimen/_170sdp"
+            android:text="@{obj.customItemName}"
+            android:visibility="@{obj.customItemName == null ? View.INVISIBLE : View.VISIBLE}"
+            android:textColor="@color/home_text_black"
+            android:textSize="@dimen/textsize_18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="@dimen/item_left_margin" />-->
+
+        <TextView
+            android:id="@+id/txt_item_quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:gravity="center"
+            android:text="@{obj.quantity}"
+            android:textColor="@color/home_text_black"
+            android:textSize="@dimen/textsize_18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_item_name"
+            app:layout_constraintEnd_toStartOf="@+id/txt_item_actual_quantity"
+            app:layout_constraintStart_toEndOf="@+id/txt_item_name"
+            app:layout_constraintTop_toTopOf="@+id/txt_item_name" />
+
+        <TextView
+            android:id="@+id/txt_item_actual_quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:gravity="center"
+            android:text="@{obj.actualQty}"
+            android:textColor="@color/home_text_black"
+            android:textSize="@dimen/textsize_18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_item_quantity"
+            app:layout_constraintEnd_toStartOf="@+id/txt_item_volume"
+            app:layout_constraintHorizontal_bias="0.83"
+            app:layout_constraintStart_toEndOf="@id/txt_item_quantity"
+            app:layout_constraintTop_toTopOf="@+id/txt_item_quantity" />
+
+        <TextView
+            android:id="@+id/txt_item_volume"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:gravity="center"
+            android:text="@{obj.bol_volume}"
+            android:textColor="@color/home_text_black"
+            android:textSize="@dimen/textsize_18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_item_actual_quantity"
+            app:layout_constraintEnd_toStartOf="@id/txt_item_weight"
+            app:layout_constraintStart_toEndOf="@id/txt_item_actual_quantity"
+            app:layout_constraintTop_toTopOf="@+id/txt_item_actual_quantity" />
+
+        <TextView
+            android:id="@+id/txt_item_weight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:gravity="center"
+            android:text="@{obj.bol_weight}"
+            android:textColor="@color/home_text_black"
+            android:textSize="@dimen/textsize_18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_item_volume"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_item_volume"
+            app:layout_constraintTop_toTopOf="@+id/txt_item_volume" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

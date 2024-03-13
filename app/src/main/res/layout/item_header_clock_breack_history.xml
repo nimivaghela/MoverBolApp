@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="isShowTotal"
+            type="boolean" />
+
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isShowCharges"
+            type="int" />
+
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_8sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_edit"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8sdp"
+            tools:visibility="gone"
+            app:srcCompat="@drawable/ic_create_grey" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_delete"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8sdp"
+            app:srcCompat="@drawable/ic_delete_white"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/txt_job_activity"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/activity"
+            tools:text="@string/activity" />
+
+        <TextView
+            android:id="@+id/txt_clock_activity"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/type"
+            app:visibleGone="@{!isShowTotal}"
+            tools:text="@string/type" />
+
+        <TextView
+            android:id="@+id/txt_date"
+            style="@style/HeadTextRvClockHistory"
+            visibleGone="@{isShowTotal}"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/date"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_worker"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/worker"
+            tools:text="@string/worker"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_equipment"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/equipment"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_crew_resource"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/crew_resource"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_rate"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/rate"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_startTime"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/start_time"
+            app:visibleGone="@{!isShowTotal}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_endTime"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/end_time"
+            app:visibleGone="@{!isShowTotal}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_break"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/break_head"
+            android:textAllCaps="true"
+            app:visibleGone="@{!isShowTotal}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_total_hours"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/total_hrs"
+            android:textAllCaps="true"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_billable"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/billable"
+            tools:visibility="visible" />
+
+        <!--  <TextView
+              android:id="@+id/txt_itemize"
+              style="@style/HeadTextRvClockHistory"
+              android:layout_width="@dimen/_100sdp"
+              android:layout_height="wrap_content"
+              android:maxLines="1"
+              android:text="@string/itemize"
+              android:textColor="@android:color/darker_gray"
+              tools:visibility="visible" />-->
+
+        <TextView
+            android:id="@+id/txt_charges"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/charges"
+            android:textColor="@android:color/darker_gray"
+            app:visibleGone="@{isShowTotal &amp;&amp; isShowCharges == 1}"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+</layout>

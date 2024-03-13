@@ -1,0 +1,38 @@
+<!--<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left"
+    android:padding="@dimen/activity_vertical_margin"
+    android:text="$"
+    android:textColor="@color/colorPrimary"
+    android:textSize="@dimen/textsize_20sp" />-->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="Spinnerbinding">
+
+        <variable
+            name="string"
+            type="String" />
+
+    </data>
+
+
+    <TextView
+        android:id="@+id/txt_spinner_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{string}"
+        tools:text="$"
+        android:ellipsize="marquee"
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_8sdp"
+        android:singleLine="true"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/textsize_18sp" />
+
+
+</layout>

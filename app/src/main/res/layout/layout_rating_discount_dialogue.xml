@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ReviewDiscountDialogBinding">
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/_400sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@color/colorAccent">
+
+
+        <TextView
+            android:id="@+id/textView140"
+            style="@style/DialogTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/review_discount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--<ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close_black" />-->
+
+        <TextView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/skip_"
+            android:textSize="@dimen/textsize_20sp"
+            android:textColor="@color/text_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+
+        <TextView
+            android:id="@+id/txt_message"
+            style="@style/PackingItem"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginLeft="52dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView140"
+            android:text="@string/enter_discount_amount_you_want_to_give_to_the_customer" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/spinner"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:theme="@style/Rating_discount_Style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_message">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_discount"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_message"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btn_done"
+            style="@style/DialogButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="@dimen/_50sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txt_message"
+            app:layout_constraintStart_toStartOf="@+id/txt_message"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

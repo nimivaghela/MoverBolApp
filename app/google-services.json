@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "646403524422",
+    "firebase_url": "https://movers-bol.firebaseio.com",
+    "project_id": "movers-bol",
+    "storage_bucket": "movers-bol.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646403524422:android:dceeb8a619d0ce8e",
+        "android_client_info": {
+          "package_name": "com.moverbol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "646403524422-mtkjhmor8jh6r7fm8pmb941sjtjsjiqm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCbF9QUOG853OLWqDI9eOi9oo1Ju0lIiQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

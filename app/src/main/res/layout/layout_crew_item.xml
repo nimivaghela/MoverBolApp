@@ -1,0 +1,126 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CrewItemBinding">
+
+        <variable
+            name="crewPojo"
+            type="com.moverbol.model.ManPowerPojo" />
+
+        <variable
+            name="type"
+            type="String" />
+
+        <variable
+            name="position"
+            type="Integer"/>
+
+        <!--<variable
+            name="constants"
+            type="com.moverbol.constants.Constants" />-->
+
+        <import type="com.moverbol.constants.Constants" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text='@{(position + 1) + ""}'
+            tools:text="1"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/textsize_22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:text='@{crewPojo.isTempWorker == null || crewPojo.isTempWorker.equals("") ? (crewPojo.name ?? "") : crewPojo.isTempWorker}'
+            tools:text="Crew Name"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginLeft="60dp" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:text="@{crewPojo.designationName}"
+            tools:text="Driver"
+            android:textColor="@color/home_light_grey"
+            android:textSize="@dimen/textsize_18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="90dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="90dp"
+            android:layout_marginTop="8dp"
+            android:text='@{crewPojo.description ?? ""}'
+            tools:text="Some text of remark or descriptionSome text of remark or description"
+            android:visibility="visible"
+            android:textColor="@color/home_dark_grey"
+            android:textSize="@dimen/textsize_18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView33"
+            />
+
+        <ImageView
+            android:id="@+id/img_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:layout_marginRight="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:tag="@{position}"
+            android:visibility="@{type.equals(Constants.ITEM_SELECTION_AVILABEL) ? View.GONE : View.VISIBLE}"
+            app:srcCompat="@drawable/ic_edit_pencil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:layout_marginRight="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:button="@drawable/crew_checkbox"
+            android:checked="@={crewPojo.selectedForDelete}"
+            android:gravity="center"
+            android:visibility="@{type.equals(Constants.ITEM_SELECTION_AVILABEL) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--android:visibility="@{type.equals(Constants.CREW_CHECKBOX) ? View.VISIBLE : View.GONE}"-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

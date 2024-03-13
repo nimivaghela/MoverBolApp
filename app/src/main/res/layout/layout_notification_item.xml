@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data class="NotificationItemBinding">
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.notification.NotificationModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/notification_icon"
+            android:layout_margin="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/textView96"
+            style="@style/HomeTextBlack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginTop="16dp"
+            android:text="@{obj.title}"
+            android:textColor="@{obj.readStatus.equals(`0`) ? @color/text_black : @color/grey }"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="obj.title" />
+
+        <TextView
+            android:id="@+id/textView97"
+            style="@style/JobSummaryTextBlack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@{obj.message}"
+            android:textColor="@{obj.readStatus.equals(`0`) ? @color/text_black : @color/grey }"
+            android:textSize="@dimen/textsize_18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/textView96"
+            app:layout_constraintTop_toBottomOf="@+id/textView96"
+            tools:text="obj.title" />
+
+        <TextView
+            android:id="@+id/textView98"
+            style="@style/HomeTextLightGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:layout_marginTop="4dp"
+            android:textSize="@dimen/textsize_18sp"
+            tools:text="obj.title"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/textView96"
+            app:layout_constraintTop_toBottomOf="@+id/textView97" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

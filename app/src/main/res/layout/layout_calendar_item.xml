@@ -1,0 +1,100 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data class="CalendarItemBinding">
+
+        <variable
+            name="obj"
+            type="com.moverbol.network.model.JobPojo"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_180sdp">
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:text='@{obj.startTimeHourIn24Format &gt; 11 ? obj.startTimeHourIn24Format + " PM" :  obj.startTimeHourIn24Format + " AM"}'
+            android:textColor="@color/light_orange"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:background="@color/divider_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_time"
+            app:layout_constraintLeft_toRightOf="@id/tv_time"
+            app:layout_constraintTop_toTopOf="@+id/tv_time" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/drawable_rectangle_pink"
+            android:paddingBottom="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="@+id/view4"
+            app:layout_constraintTop_toBottomOf="@+id/view4"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="4dp">
+
+
+            <TextView
+                android:id="@+id/tv_from_to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@{obj.startTimeFrom}"
+                tools:text="09:00AM-10:00AM"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/textsize_18sp" />
+
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_from_to"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                tools:text="Carmack Demo"
+                android:text="@{obj.opportunityName}"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/textsize_18sp" />
+
+            <TextView
+                android:id="@+id/tv_purpose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                tools:text="Kalamazoo, MI To Kalamazoo &lt; MI"
+                android:text='@{obj.originalCity + " To " + obj.destinationCity}'
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/textsize_18sp" />
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

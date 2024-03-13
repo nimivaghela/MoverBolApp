@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="AddMaterialBinding">
+
+        <variable
+            name="currencySymbol"
+            type="String" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            layout="@layout/layout_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/crew_name_right_margin1"
+                android:layout_marginLeft="@dimen/crew_name_right_margin1"
+                android:layout_marginEnd="@dimen/crew_name_right_margin1"
+                android:layout_marginRight="@dimen/crew_name_right_margin1">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_category"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:theme="@style/TextLabel2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdit_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/select_categroy"
+                        android:text=" " />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_category"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:prompt="@string/type"
+                    app:layout_constraintBottom_toBottomOf="@id/txtInput_category"
+                    app:layout_constraintEnd_toEndOf="@id/txtInput_category"
+                    app:layout_constraintStart_toStartOf="@id/txtInput_category"
+                    app:layout_constraintTop_toTopOf="@id/txtInput_category" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_material"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:theme="@style/TextLabel2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtInput_category">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdit_material"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:hint="@string/dashed_select_material_type"
+                        android:text=" " />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spin_material_name"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/txtInput_material"
+                    app:layout_constraintEnd_toEndOf="@id/txtInput_material"
+                    app:layout_constraintStart_toStartOf="@id/txtInput_material"
+                    app:layout_constraintTop_toTopOf="@id/txtInput_material"
+                    tools:entries="@array/spinner_strings_crew_type" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_quantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:theme="@style/TextLabel1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/spin_material_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtxt_material_quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/quantity"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/txt_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginTop="80dp"
+                    android:gravity="center"
+                    android:text="@string/submit"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorAccent"
+                    android:background="@color/colorPrimary"
+                    android:textSize="@dimen/textsize_22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtInput_quantity" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

@@ -1,0 +1,52 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="CalendarBinding">
+
+        <variable
+            name="adapter"
+            type="com.moverbol.adapters.CalendarAdapter" />
+
+    </data>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                    android:id="@+id/materialCalendarView"
+                    android:layout_width="match_parent"
+                    android:focusableInTouchMode="true"
+                    android:layout_height="@dimen/calendar_height"
+                    android:layout_marginTop="16dp"
+                    app:mcv_calendarMode="month"
+                    app:mcv_dateTextAppearance="@style/DateCalendarText"
+                    app:mcv_headerTextAppearance="@style/HeaderTextSize"
+                    app:mcv_leftArrowMask="@drawable/ic_chevron_left"
+                    app:mcv_rightArrowMask="@drawable/ic_chevron_right"
+                    app:mcv_selectionColor="@color/colorPrimary"
+                    app:mcv_showOtherDates="all"
+                    app:mcv_weekDayTextAppearance="@style/WeekDayText" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_calendar"
+                    android:focusableInTouchMode="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="1"
+                    app:calendarList="@{adapter}" />
+
+            </LinearLayout>
+        </ScrollView>
+
+</layout>

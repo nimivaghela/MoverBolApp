@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/add_photo"
+        android:icon="@drawable/ic_add"
+        android:orderInCategory="100"
+        android:title="@string/photos"
+        app:showAsAction="always" />
+
+
+    <item android:id="@+id/tick"
+        android:title="@string/tick"
+        app:showAsAction="always"
+        android:orderInCategory="101"
+        android:icon="@drawable/ic_selection"/>
+
+    <item android:id="@+id/cancel"
+        android:title="@string/tick"
+        app:showAsAction="always"
+        android:orderInCategory="102"
+        android:icon="@drawable/close_circle"/>
+
+    <item android:id="@+id/remove_photo"
+        android:title="@string/remove_from_list"
+        app:showAsAction="always"
+        android:orderInCategory="103"
+        android:icon="@drawable/ic_delete_white"/>
+
+</menu>

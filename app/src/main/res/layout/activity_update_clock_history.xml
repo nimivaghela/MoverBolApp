@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clockHistoryModel"
+            type="com.moverbol.model.billOfLading.ClockHistoryModel" />
+
+        <variable
+            name="isEditable"
+            type="boolean" />
+
+        <variable
+            name="showHourRate"
+            type="boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.activities.moveprocess.UpdateClockHistoryActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_activity_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_32sdp"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:hint="@string/activity_name"
+                    app:endIconMode="dropdown_menu"
+                    app:layout_constraintEnd_toStartOf="@+id/txtInput_type"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/txtEdit_activity_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:padding="@dimen/_16sdp"
+                        android:textSize="@dimen/textsize_20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_type"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_32sdp"
+                    android:hint="@string/activity_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/txtInput_activity_name"
+                    app:layout_constraintTop_toTopOf="@id/txtInput_activity_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdit_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@{isEditable ? clockHistoryModel.eventType : @string/clock}"
+                        android:textSize="@dimen/textsize_20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_worker"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:hint="@string/worker"
+                    android:enabled="false"
+                    app:endIconMode="dropdown_menu"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInput_activity_name"
+                    app:layout_constraintStart_toStartOf="@+id/txtInput_activity_name"
+                    app:layout_constraintTop_toBottomOf="@id/txtInput_type">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/txtEdit_worker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:padding="@dimen/_16sdp"
+                        android:textSize="@dimen/textsize_20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_equipment"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/equipment"
+                    app:endIconMode="dropdown_menu"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtInput_worker"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInput_type"
+                    app:layout_constraintStart_toStartOf="@+id/txtInput_type"
+                    app:layout_constraintTop_toTopOf="@+id/txtInput_worker">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/txtEdit_Equipment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:padding="@dimen/_16sdp"
+                        android:textSize="@dimen/textsize_20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_rate"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:hint="@string/rate"
+                    visibleInvisible="@{showHourRate}"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInput_worker"
+                    app:layout_constraintStart_toStartOf="@+id/txtInput_worker"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInput_worker">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdit_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="@dimen/textsize_20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_date"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/date"
+                    app:layout_constraintBottom_toBottomOf="@id/txtInput_rate"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInput_equipment"
+                    app:layout_constraintStart_toStartOf="@+id/txtInput_equipment"
+                    app:layout_constraintTop_toTopOf="@id/txtInput_rate">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdit_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:text="@{clockHistoryModel.displayStartDate}"
+                        android:textSize="@dimen/textsize_20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_resource_type"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    app:endIconMode="dropdown_menu"
+                    app:layout_constraintEnd_toStartOf="@id/txtInput_supervisor"
+                    app:hintTextAppearance="@style/TextInputHintTextAppearance"
+                    app:layout_constraintStart_toStartOf="@id/txtInput_rate"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInput_rate"
+                    tools:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/txtEdit_resource_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:hint="@string/resource_type"
+                        android:inputType="none"
+                        android:padding="@dimen/_16sdp"
+                        android:textSize="@dimen/textsize_20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_supervisor"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    app:endIconMode="dropdown_menu"
+                    app:layout_constraintStart_toEndOf="@+id/txtInput_resource_type"
+                    app:hintTextAppearance="@style/TextInputHintTextAppearance"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInput_date"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInput_date"
+                    app:layout_goneMarginStart="0dp">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/txtEdit_supervisor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:hint="@string/add_worker"
+                        android:inputType="none"
+                        android:padding="@dimen/_16sdp"
+                        android:textSize="@dimen/textsize_20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_temporary_worker"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_32sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:visibility="gone"
+                    app:hintTextAppearance="@style/TextInputHintTextAppearance"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtInput_supervisor"
+                    tools:visibility="visible">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdit_temporary_worker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/temporary_worker_name"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPersonName"
+                        android:textSize="@dimen/textsize_20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cg_supervisor_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_32sdp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    app:chipSpacingHorizontal="@dimen/_16sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInput_supervisor"
+                    app:layout_constraintStart_toStartOf="@+id/txtInput_resource_type"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInput_temporary_worker">
+
+                </com.google.android.material.chip.ChipGroup>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_start_time"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:layout_marginEnd="24dp"
+                    android:hint="@string/start_time"
+
+                    app:layout_constraintEnd_toStartOf="@+id/txtInput_end_time"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cg_supervisor_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdit_start_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:text="@{clockHistoryModel.displayStartTime}"
+                        android:textSize="@dimen/textsize_20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_end_time"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/end_time"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInput_supervisor"
+                    app:layout_constraintStart_toEndOf="@+id/txtInput_start_time"
+                    app:layout_constraintTop_toTopOf="@+id/txtInput_start_time">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdit_end_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:text="@{clockHistoryModel.displayEndTime}"
+                        android:textSize="@dimen/textsize_20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_break_time"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:hint="@string/break_time"
+                    app:helperText="In Minutes"
+                    app:endIconMode="dropdown_menu"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInput_start_time"
+                    app:layout_constraintStart_toStartOf="@+id/txtInput_start_time"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInput_start_time">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/txtEdit_break_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:padding="@dimen/_16sdp"
+                        android:textSize="@dimen/textsize_20sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_total_time"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/total_time"
+                    app:layout_constraintBottom_toBottomOf="@id/txtInput_break_time"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInput_end_time"
+                    app:layout_constraintStart_toStartOf="@+id/txtInput_end_time"
+                    app:layout_constraintTop_toTopOf="@id/txtInput_break_time"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEdit_total_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:textSize="@dimen/textsize_20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/chk_billable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:checked="@{clockHistoryModel.isBillable.equals(`1`) ? true : false}"
+                    android:text="@string/billable"
+                    android:textSize="@dimen/textsize_20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@+id/txtInput_break_time"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInput_break_time" />
+
+                <!--  <androidx.appcompat.widget.AppCompatCheckBox
+                      android:id="@+id/chk_itemize"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginStart="@dimen/_24sdp"
+                      android:checked="@{clockHistoryModel.itemize.equals(`1`) ? true : false}"
+                      android:text="@string/itemize"
+                      android:textSize="@dimen/textsize_20sp"
+                      android:enabled="false"
+                      app:layout_constraintBottom_toBottomOf="@id/chk_billable"
+                      app:layout_constraintEnd_toEndOf="@+id/txtInput_total_time"
+                      app:layout_constraintStart_toEndOf="@id/chk_billable"
+                      app:layout_constraintTop_toTopOf="@id/chk_billable" />-->
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_update"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_50sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="@{isEditable ? @string/save : @string/add }"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/textsize_24sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="@dimen/_8sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/chk_billable"
+                    app:layout_constraintVertical_bias="0.19999999"
+                    app:layout_constraintWidth_percent="0.8"
+                    tools:text="@string/save" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

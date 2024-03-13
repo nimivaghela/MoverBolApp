@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CratingChargesBinding">
+
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+
+        <variable
+            name="isBolStarted"
+            type="boolean" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        tools:context="com.moverbol.views.activities.AdditionalChargesActivity">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include android:id="@+id/rv_hrader"
+            layout="@layout/layout_rvheader_movecharges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:additionalChargesAdapter="@{adapter}"
+            app:layout_constraintBottom_toTopOf="@+id/layout_bottom_total"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_hrader" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_bottom_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_head_sub_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:text="@string/sub_total"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textsize_18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/txt_sub_total"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textsize_18sp"
+                app:layout_constraintBottom_toBottomOf="@id/txt_head_sub_total"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_head_sub_total"
+                tools:text="$1254.0" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_head_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/discount"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textsize_18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_head_sub_total" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@id/txt_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textsize_18sp"
+                app:layout_goneMarginEnd="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="@id/txt_head_discount"
+                app:layout_constraintEnd_toStartOf="@id/img_edit_discount"
+                app:layout_constraintTop_toTopOf="@id/txt_head_discount"
+                tools:text="10.00 %" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_edit_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
+                visibleGone="@{isBolStarted}"
+                app:layout_constraintBottom_toBottomOf="@id/txt_head_discount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_head_discount"
+                app:srcCompat="@drawable/ic_edit_pencil" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_head_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/total"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textsize_18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txt_head_discount" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_total"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/textsize_18sp"
+                app:layout_constraintBottom_toBottomOf="@id/txt_head_total"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/txt_head_total"
+                tools:text="$200.00" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

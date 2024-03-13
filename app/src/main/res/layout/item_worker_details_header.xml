@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/divider_grey"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_8sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_worker_name"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:gravity="start"
+            android:text="@string/worker_name"
+            android:textAllCaps="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_activity"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/activity"
+            android:textAllCaps="true" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_startTime"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/start_time"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_endTime"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/end_time"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_break"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/break_head"
+            android:textAllCaps="true"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_total_hours"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:text="@string/total_hrs"
+            android:textAllCaps="true"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_billable"
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/billable"
+            tools:visibility="visible" />
+
+
+    </LinearLayout>
+</layout>

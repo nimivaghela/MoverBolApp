@@ -1,0 +1,638 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="BoxDeliveryBinding">
+
+        <variable
+            name="boxDeliveryFragment"
+            type="com.moverbol.views.fragments.jobsummary.BoxDeliveryFragment" />
+
+        <variable
+            name="moveInfoDetails"
+            type="com.moverbol.model.MoveStageDetailsPojo" />
+
+        <!--<variable
+            name="crewDetailsSize"
+            type="Integer"/>
+        
+        <variable
+            name="truckDetailsSize"
+            type="Integer"/>
+        
+        <variable
+            name="materialDetailsSize"
+            type="Integer"/>
+
+        <variable
+            name="commentsSize"
+            type="Integer"/>-->
+        <variable
+            name="isUserAContractor"
+            type="boolean" />
+
+        <import type="android.view.View" />
+
+        <import type="com.moverbol.util.Util" />
+
+        <import type="com.moverbol.util.MoversPreferences" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--<android.support.v4.widget.SwipeRefreshLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">-->
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_20sdp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_1sdp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+                        <TextView
+                            android:id="@+id/tv_move_info"
+                            style="@style/CustomerInfoHeading"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:text="@string/move_info"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/textView36"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <View
+                            android:id="@+id/view3"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/divider_grey"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_move_info" />
+
+                        <TextView
+                            android:id="@+id/textView36"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="24dp"
+                            android:text="@string/job_id"
+                            app:layout_constraintEnd_toStartOf="@+id/textView37"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+                        <TextView
+                            android:id="@+id/textView37"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="@string/status"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView36"
+                            app:layout_constraintEnd_toStartOf="@+id/textView51"
+                            app:layout_constraintStart_toEndOf="@+id/textView36"
+                            app:layout_constraintTop_toTopOf="@+id/textView36" />
+
+                        <TextView
+                            android:id="@+id/textView51"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="24dp"
+                            android:text="@string/date"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView37"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/textView37"
+                            app:layout_constraintTop_toTopOf="@+id/textView37" />
+
+                        <TextView
+                            android:id="@+id/txt_job_id"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{moveInfoDetails.workOrderName}"
+                            app:layout_constraintEnd_toEndOf="@+id/textView36"
+                            app:layout_constraintStart_toStartOf="@+id/textView36"
+                            app:layout_constraintTop_toBottomOf="@+id/textView36"
+                            tools:text="RLE2861" />
+
+                        <TextView
+                            android:id="@+id/txt_job_status"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@{moveInfoDetails.status}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_job_id"
+                            app:layout_constraintEnd_toEndOf="@+id/textView37"
+                            app:layout_constraintStart_toStartOf="@+id/textView37"
+                            app:layout_constraintTop_toTopOf="@+id/txt_job_id"
+                            tools:text="Adasrh Dattani" />
+
+                        <TextView
+                            android:id="@+id/txt_job_date"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@{moveInfoDetails.formattedDate}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_job_status"
+                            app:layout_constraintEnd_toEndOf="@+id/textView51"
+                            app:layout_constraintStart_toStartOf="@+id/textView51"
+                            app:layout_constraintTop_toTopOf="@+id/txt_job_status"
+                            tools:text="Sat 27 May, 17" />
+
+
+                        <TextView
+                            android:id="@+id/tv_start_time"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:text="@string/start_time"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_job_id"
+                            app:layout_constraintStart_toStartOf="@+id/txt_job_id"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_job_id" />
+
+                        <TextView
+                            android:id="@+id/tv_men"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/men"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_start_time"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_job_status"
+                            app:layout_constraintStart_toStartOf="@+id/txt_job_status"
+                            app:layout_constraintTop_toTopOf="@+id/tv_start_time" />
+
+                        <TextView
+                            android:id="@+id/tv_trucks"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/trucks"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_men"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_job_date"
+                            app:layout_constraintStart_toStartOf="@+id/txt_job_date"
+                            app:layout_constraintTop_toTopOf="@+id/tv_men" />
+
+                        <TextView
+                            android:id="@+id/txt_job_start_time"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{moveInfoDetails.startTime}"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_start_time"
+                            app:layout_constraintStart_toStartOf="@+id/tv_start_time"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_start_time"
+                            tools:text="08:00 AM-09:00 AM" />
+
+                        <TextView
+                            android:id="@+id/txt_number_of_men"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@{moveInfoDetails.numberOfMen}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_job_start_time"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_men"
+                            app:layout_constraintStart_toStartOf="@+id/tv_men"
+                            app:layout_constraintTop_toTopOf="@+id/txt_job_start_time"
+                            tools:text="1" />
+
+                        <TextView
+                            android:id="@+id/tv_trucks_value"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@{moveInfoDetails.numberOfTrucks}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_job_start_time"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_trucks"
+                            app:layout_constraintStart_toStartOf="@+id/tv_trucks"
+                            app:layout_constraintTop_toTopOf="@+id/txt_job_start_time"
+                            tools:text="1" />
+
+
+                        <TextView
+                            android:id="@+id/tv_estimate_hours"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:text="@string/est_hrs"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_job_start_time"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/txt_job_start_time"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_job_start_time" />
+
+                        <TextView
+                            android:id="@+id/tv_hourly_rate"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hourly_rate"
+                            visibleInvisible="@{moveInfoDetails.hourlyRateFlag == 1}"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_estimate_hours"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_number_of_men"
+                            app:layout_constraintStart_toStartOf="@+id/txt_number_of_men"
+                            app:layout_constraintTop_toTopOf="@+id/tv_estimate_hours"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                        <TextView
+                            android:id="@+id/tv_est_vol_wt"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/est_vol_wt"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_estimate_hours"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_trucks_value"
+                            app:layout_constraintStart_toStartOf="@+id/tv_trucks_value"
+                            app:layout_constraintTop_toTopOf="@+id/tv_estimate_hours"
+                            app:layout_constraintVertical_bias="0.0" />
+
+
+                        <TextView
+                            android:id="@+id/txt_estimate_hours"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{moveInfoDetails.estimatedHours}"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_estimate_hours"
+                            app:layout_constraintStart_toStartOf="@+id/tv_estimate_hours"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_estimate_hours"
+                            tools:text="2" />
+
+                        <TextView
+                            android:id="@+id/txt_hourly_rate"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            visibleInvisible="@{moveInfoDetails.hourlyRateFlag == 1}"
+                            android:text="@{moveInfoDetails.hourlyRate}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_estimate_hours"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_hourly_rate"
+                            app:layout_constraintStart_toStartOf="@+id/tv_hourly_rate"
+                            app:layout_constraintTop_toTopOf="@+id/txt_estimate_hours"
+                            tools:text="105.00" />
+
+                        <TextView
+                            android:id="@+id/txt_estimate_value"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text='@{moveInfoDetails.estimateVolume + "\n" + moveInfoDetails.estimateWeight}'
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_estimate_hours"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_est_vol_wt"
+                            app:layout_constraintStart_toStartOf="@+id/tv_est_vol_wt"
+                            app:layout_constraintTop_toTopOf="@+id/txt_estimate_hours"
+                            tools:text="700 CFT/4900 LBS" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_head_min_hours"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/min_hours"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_estimate_hours"
+                            app:layout_constraintStart_toStartOf="@id/txt_estimate_hours"
+                            app:layout_constraintTop_toBottomOf="@id/txt_estimate_hours" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_min_hours"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginBottom="@dimen/_24sdp"
+                            android:text="@{moveInfoDetails.minHours}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_head_min_hours"
+                            app:layout_constraintStart_toStartOf="@id/txt_head_min_hours"
+                            app:layout_constraintTop_toBottomOf="@id/txt_head_min_hours"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_head_min_charges"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/min_charges"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_hourly_rate"
+                            app:layout_constraintStart_toStartOf="@id/txt_hourly_rate"
+                            app:layout_constraintTop_toBottomOf="@id/txt_hourly_rate" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_min_charges"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginBottom="@dimen/_24sdp"
+                            android:text="@{MoversPreferences.getInstance(context).getCurrencySymbol()+moveInfoDetails.minCharges}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_head_min_charges"
+                            app:layout_constraintStart_toStartOf="@id/txt_head_min_charges"
+                            app:layout_constraintTop_toBottomOf="@id/txt_head_min_charges"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:text="$75" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_head_total_est_charges"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/total_est_charges"
+                            visibleInvisible="@{moveInfoDetails.estimateShowFlag == 1}"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_estimate_value"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@id/txt_estimate_value"
+                            app:layout_constraintTop_toBottomOf="@id/txt_estimate_value" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_total_est_charges"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginBottom="@dimen/_24sdp"
+                            visibleInvisible="@{moveInfoDetails.estimateShowFlag == 1}"
+                            android:text="@{MoversPreferences.getInstance(context).getCurrencySymbol()+Util.getGeneralFormattedDecimalString(moveInfoDetails.getTotalCharges)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_head_total_est_charges"
+                            app:layout_constraintStart_toStartOf="@id/txt_head_total_est_charges"
+                            app:layout_constraintTop_toBottomOf="@id/txt_head_total_est_charges"
+                            tools:text="$75" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/BoxDeliverySections"
+                    android:onClick="@{boxDeliveryFragment::openCrewDetail}"
+                    android:visibility="@{isUserAContractor ? View.GONE : View.VISIBLE}"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="430dp">
+
+
+                    <TextView
+                        android:id="@+id/textView58"
+                        style="@style/CustomerInfoHeading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/crew"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="@dimen/box_delivery_left_bias"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView59"
+                        style="@style/JobSummaryTextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text='@{"(" + moveInfoDetails.crews.size() + ")"}'
+                        android:textSize="@dimen/textsize_20sp"
+                        android:visibility="@{moveInfoDetails.crews.size() == 0 ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView58"
+                        app:layout_constraintStart_toEndOf="@+id/textView58"
+                        app:layout_constraintTop_toTopOf="@+id/textView58"
+                        app:layout_constraintVertical_bias="0.506"
+                        tools:layout_editor_absoluteY="41dp"
+                        tools:text="(3)" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="48dp"
+                        android:layout_marginRight="48dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView59"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView59"
+                        app:srcCompat="@drawable/ic_chevron_right"
+                        tools:layout_editor_absoluteY="38dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/BoxDeliverySections"
+                    android:onClick="@{boxDeliveryFragment::openTruckDetail}"
+                    android:visibility="@{isUserAContractor ? View.GONE : View.VISIBLE}"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="430dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_trucks_lbl"
+                        style="@style/CustomerInfoHeading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/trucks"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="@dimen/box_delivery_left_bias"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        style="@style/JobSummaryTextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text='@{"(" + moveInfoDetails.trucks.size() + ")"}'
+                        android:textSize="@dimen/textsize_20sp"
+                        android:visibility="@{moveInfoDetails.trucks.size() == 0 ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_trucks_lbl"
+                        app:layout_constraintStart_toEndOf="@+id/tv_trucks_lbl"
+                        app:layout_constraintTop_toTopOf="@+id/tv_trucks_lbl"
+                        app:layout_constraintVertical_bias="0.506"
+                        tools:layout_editor_absoluteY="41dp"
+                        tools:text="(3)" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="48dp"
+                        android:layout_marginRight="48dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_trucks_lbl"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_trucks_lbl"
+                        app:srcCompat="@drawable/ic_chevron_right"
+                        tools:layout_editor_absoluteY="38dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/BoxDeliverySections"
+                    android:onClick="@{boxDeliveryFragment::openMaterialDetail}"
+                    android:visibility="@{isUserAContractor ? View.GONE : View.VISIBLE}"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="430dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_material_lbl"
+                        style="@style/CustomerInfoHeading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/materials"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="@dimen/box_delivery_left_bias"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_materials_count"
+                        style="@style/JobSummaryTextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text='@{"(" + moveInfoDetails.materials.size() + ")"}'
+                        android:textSize="@dimen/textsize_20sp"
+                        android:visibility="@{moveInfoDetails.materials.size() == 0 ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_material_lbl"
+                        app:layout_constraintStart_toEndOf="@+id/tv_material_lbl"
+                        app:layout_constraintTop_toTopOf="@+id/tv_material_lbl"
+                        app:layout_constraintVertical_bias="0.506"
+                        tools:layout_editor_absoluteY="41dp"
+                        tools:text="(3)" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="48dp"
+                        android:layout_marginRight="48dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_material_lbl"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_material_lbl"
+                        app:srcCompat="@drawable/ic_chevron_right"
+                        tools:layout_editor_absoluteY="38dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/BoxDeliverySections"
+                    android:onClick="@{boxDeliveryFragment::openCommentDetail}"
+                    android:visibility="@{moveInfoDetails.comments.size() == 0 ? View.GONE : View.VISIBLE}"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="430dp">
+
+
+                    <TextView
+                        android:id="@+id/tv_comment_lbl"
+                        style="@style/CustomerInfoHeading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/comments"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="@dimen/box_delivery_left_bias"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_comment_count"
+                        style="@style/JobSummaryTextBlack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text='@{"(" + moveInfoDetails.comments.size() + ")"}'
+                        android:textSize="@dimen/textsize_20sp"
+                        android:visibility="@{moveInfoDetails.comments.size() == 0 ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_comment_lbl"
+                        app:layout_constraintStart_toEndOf="@+id/tv_comment_lbl"
+                        app:layout_constraintTop_toTopOf="@+id/tv_comment_lbl"
+                        app:layout_constraintVertical_bias="0.506"
+                        tools:layout_editor_absoluteY="41dp"
+                        tools:text="(3)" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="48dp"
+                        android:layout_marginRight="48dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_comment_lbl"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_comment_lbl"
+                        app:srcCompat="@drawable/ic_chevron_right"
+                        tools:layout_editor_absoluteY="38dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <!--</android.support.v4.widget.SwipeRefreshLayout>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

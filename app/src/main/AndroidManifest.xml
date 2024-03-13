@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--
+        android:requiresSmallestWidthDp="600" -> is for tablets with 7" or more.
+        android:requiresSmallestWidthDp="720" -> is for tablets with 9" or larger,
+
+        <supports-screens android:compatibleWidthLimitDp="320" />
+        This indicates that the maximum "smallest screen width" for which your application is designed is 320dp.
+        This way, any devices with their smallest side being larger than this value will offer screen compatibility mode as a user-optional feature
+
+        Please check this link also :
+        https://stackoverflow.com/questions/32860815/how-to-define-dimens-xml-for-every-different-screen-size-in-android
+
+
+        Only in one Tab (7" which was made in 2012), is creating bit layout issue as its width is only 800 Dp only so its merging texts.
+        So for that we have taken specific layout dimens as values-w800dp-land/port, also for height also we can take values-h1000dp-land, etc.
+
+        Not Sure : I think so, for going more ahead we should make for w820dp of resources (layout and dimens).
+
+
+
+        //For tablet size greater than 10 inches like 1536x1152, 2560x1600 etc.
+        VIP -> So this link has the formula of how to calculate of which size folder should be made like swXXXdp-land/port.
+        https://stackoverflow.com/questions/14151121/android-supporting-all-tablets-categorize-drawables-and-layouts
+    -->
+    <!--
+        Tablet icons folder.
+        //for 7 inch tablets
+        drawable-large-mdpi
+        drawable-large-hdpi(for Nexus 7)
+
+        // for 10 inch tablets
+        drawable-xlarge-mdpi
+
+        https://stackoverflow.com/questions/16079588/setting-drawable-folder-to-use-for-different-resolutions
+
+        We should use 100*100 images in drawable-large-mdpi, I am not sure exactly. But something around.
+
+        //VIP -> now we have started using svg files (converting into xml also), so that it can get stretch up to any level
+        and we do not have to maintain for any specific folder till now.
+
+        If we take any image in xxxhdpi then its accessible by all devices.
+        But if we have to be specific for only tablets then store in drawable-large/xlarge-mdpi.
+    -->
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="false"
+        android:requiresSmallestWidthDp="600"
+        android:smallScreens="false"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- Only Required for Version 4.1.2 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:name=".custom.App"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:allowBackup">
+        <activity
+            android:name=".views.activities.BackgroundLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.CarryForwardDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.ShowTotalActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".views.activities.moveprocess.WorkerDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".views.activities.cardreaderpayment.BluetoothConnectionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.BillingSummaryActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".views.activities.moveprocess.photos.PhotoItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.photos.PhotosRoomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.photos.ImagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.UpdateClockHistoryActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".views.activities.jobsummary.ClockInActivity"
+            android:exported="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+        <activity
+            android:name=".views.activities.SplashActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--
+            <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        -->
+        <activity
+            android:name=".views.activities.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activities.ForgotPasswordActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".views.activities.SetPasswordActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <!--
+            <activity
+            android:name=".views.activities.ConfirmationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        -->
+        <activity
+            android:name=".views.activities.AddCrewActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".views.activities.AddTruckActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".views.activities.AddMaterialActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".views.activities.JobSummaryActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".views.activities.PickupExtraStopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.jobsummary.CrewListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.jobsummary.TrucksListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.jobsummary.CommentListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.WalkThroughActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.jobsummary.MaterialsListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.confirmation_detail.ArticlesListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.confirmation_detail.ArticlesListEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.confirmation_detail.StorageChargesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.confirmation_detail.ValuationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.confirmation_detail.AdditionalChargesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.confirmation_detail.PackingChargesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.confirmation_detail.ValuationChargesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.confirmation_detail.MoveChargesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.confirmation_detail.EstimateConfirmationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.storageinventory.AddStorageInventoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.InventoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.jobsummary.MoveProcessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.storageinventory.AddRiderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.storageinventory.PackingListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.storageinventory.RiderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.storageinventory.AddItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.NotesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.ClockBreakHistoryActivity"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.BillOfLadingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".views.activities.moveprocess.PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.StorageAgreementActivity"
+            android:exported="false" /> <!-- <activity android:name=".views.activities.moveprocess.ReleaseFormActivity" /> -->
+        <activity
+            android:name=".views.activities.moveprocess.ReleaseFormNewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.photos.PhotosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.photos.PhotoDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.photos.AddPhotoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.MoveChargesBolActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.AdditionalChargesBolActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.PackingChargesBolActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.StorageChargesBolActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.ValuationChargesBolActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="${enableCrashReporting}" />
+        <!--
+     Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_bus_green" />
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+
+        <activity
+            android:name=".views.activities.moveprocess.SpreedlyExpressInWebviewActivity"
+            android:exported="false" />
+        <!--
+<service android:name=".services.FirebaseIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        -->
+        <service
+            android:name=".services.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".views.activities.confirmation_detail.CratingChargesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.CratingChargesBolActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.bill_of_lading.StorageRecurringChargesBolActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.activities.moveprocess.PaymentHistoryActivity"
+            android:exported="false" />
+        <!--
+        <receiver android:name=".custom.MyCustomBroadcastReceiver"  android:exported="true">
+            <intent-filter>
+                <action android:name="com.moverbol.MOVER_BOL_JOB_DELETED_BROAD_CAST"/>
+            </intent-filter>
+        </receiver>
+        -->
+        <activity
+            android:name=".views.activities.moveprocess.ReleaseFormDetailActivity"
+            android:exported="false" /> <!-- registering the receiver -->
+        <activity
+            android:name="com.canhub.cropper.CropImageActivity"
+            android:exported="true"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <receiver
+            android:name=".services.AlarmBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="net.authorize.aim.emv.SignatureReviewActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

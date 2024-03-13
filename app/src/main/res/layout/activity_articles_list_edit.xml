@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data class = "ArticlesListEditBinding">
+        <variable
+            name="adapter"
+            type="com.moverbol.adapters.ArticleEditAdapter" />
+
+        <import type="com.moverbol.constants.Constants" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:onClick="updateArticleList"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_check_white"
+            android:layout_marginRight="16dp" />
+
+        <View
+            android:id="@+id/view10"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/view_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView69" />
+
+
+        <TextView
+            android:id="@+id/textView69"
+            style="@style/HomeTextLightGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_left_margin"
+            android:layout_marginTop="16dp"
+            android:text="@string/items"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            android:layout_marginLeft="@dimen/item_left_margin" />
+
+        <TextView
+            android:id="@+id/textView70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            style="@style/HomeTextLightGrey"
+            android:text="@string/actual_qty"
+            app:layout_constraintBottom_toBottomOf="@+id/textView69"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView69"
+            />
+        <!--android:layout_marginStart="@dimen/act_quantity_edit_left_margin"-->
+
+        <TextView
+            android:id="@+id/textView71"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_28sdp"
+            android:layout_marginEnd="@dimen/_28sdp"
+            android:text="@string/vol"
+            style="@style/HomeTextLightGrey"
+            app:layout_constraintBottom_toBottomOf="@+id/textView70"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView70"
+            />
+        <!--android:layout_marginStart="@dimen/weight_edit_left_margin"-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_article_edit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view10"
+            app:articleListEditAdapter="@{adapter}"
+           />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

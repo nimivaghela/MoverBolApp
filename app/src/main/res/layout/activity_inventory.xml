@@ -1,0 +1,265 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="InventoryActivityBinding">
+
+        <import type="android.view.View" />
+
+        <variable
+            name="packinglistVM"
+            type="com.moverbol.viewmodels.inventory.PackingListVM" />
+
+        <variable
+            name="riderlistVM"
+            type="com.moverbol.viewmodels.inventory.InventoryRiderVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ScrollView
+            android:id="@+id/sv_inventory"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/divider_grey"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@color/colorAccent"
+                    android:elevation="2dp"
+                    android:focusableInTouchMode="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <View
+                        android:id="@+id/view_header_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_10sdp"
+                        android:background="@color/divider_grey"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/txt_headOwnerName"
+                        style="@style/HomeTextLightGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_32sdp"
+                        android:layout_marginStart="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_24sdp"
+                        android:text="@string/head_owner_name"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view_header_line" />
+
+                    <TextView
+                        android:id="@+id/txt_ownerName"
+                        style="@style/HomeTextSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/uiop_poui"
+                        android:textColor="@color/home_text_black"
+                        app:layout_constraintStart_toStartOf="@+id/txt_headOwnerName"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_headOwnerName" />
+
+                    <TextView
+                        android:id="@+id/txt_headPickupAddr"
+                        style="@style/HomeTextLightGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_24sdp"
+                        android:text="@string/pickup_address"
+                        app:layout_constraintStart_toStartOf="@+id/txt_ownerName"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_ownerName" />
+
+                    <TextView
+                        android:id="@+id/txt_headDeliveryAddr"
+                        style="@style/HomeTextLightGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/deliveryaddr_marLeft"
+                        android:layout_marginStart="@dimen/deliveryaddr_marLeft"
+                        android:text="@string/delivery_address"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_headPickupAddr"
+                        app:layout_constraintStart_toEndOf="@+id/txt_headPickupAddr"
+                        app:layout_constraintTop_toTopOf="@+id/txt_headPickupAddr" />
+
+                    <TextView
+                        android:id="@+id/txt_pickupAddr"
+                        style="@style/HomeTextSize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_24sdp"
+                        android:layout_marginRight="@dimen/_24sdp"
+                        android:text="401 Street way,Cambridge,MA"
+                        android:textColor="@color/home_text_black"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_headDeliveryAddr"
+                        app:layout_constraintStart_toStartOf="@+id/txt_headPickupAddr"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_headPickupAddr" />
+
+                    <TextView
+                        android:id="@+id/txt_DeliveryAddr"
+                        style="@style/HomeTextSize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        android:text="401 Street way,Cambridge,MA"
+                        android:textColor="@color/home_text_black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/txt_headDeliveryAddr"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_headDeliveryAddr" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include
+                    android:id="@+id/include_view"
+                    layout="@layout/layout_no_invenory"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/layout_no_inventory_height"
+                    android:visibility="@{packinglistVM.packingListPojos.size > 0 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="197dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_packing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginStart="0dp"
+                    android:background="@color/colorAccent"
+                    android:focusableInTouchMode="false"
+                    android:visibility="@{packinglistVM.packingListPojos.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guideline"
+
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="239dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+                        <TextView
+                            android:id="@+id/txt_packinglist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/packing_list"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/home_text_size"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_packinglist"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_packinglist"
+                            app:packinglistitems="@{packinglistVM.packingListPojos}"
+                            tools:layout_editor_absoluteX="8dp"
+                            tools:layout_editor_absoluteY="49dp" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorAccent"
+                    android:visibility="@{cvPacking.visibility}"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_packing">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+                        <TextView
+                            android:id="@+id/txt_rider"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/rider"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/home_text_size"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_rider"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="0dp"
+                            app:inventoryrideritems="@{riderlistVM.inventoryRiderPojos}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_rider" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            android:onClick="openAddRiderActivity"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_add"
+            tools:layout_editor_absoluteX="453dp"
+            tools:layout_editor_absoluteY="771dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+
+
+

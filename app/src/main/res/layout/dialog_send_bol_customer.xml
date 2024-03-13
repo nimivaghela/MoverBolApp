@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/dialog_txt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_24sdp"
+            android:text="@string/please_enter_email"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtInput_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:hintTextAppearance="@style/TextInputHintTextAppearance"
+            app:layout_constraintEnd_toEndOf="@id/dialog_txt_email"
+            app:layout_constraintStart_toStartOf="@id/dialog_txt_email"
+            app:layout_constraintTop_toBottomOf="@id/dialog_txt_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEdit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email_address"
+                android:inputType="textEmailAddress"
+                android:textSize="@dimen/textsize_16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_24sdp"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/send"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textsize_18sp"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/txtInput_email"
+            app:layout_constraintStart_toStartOf="@id/txtInput_email"
+            app:layout_constraintTop_toBottomOf="@id/txtInput_email"
+            app:layout_constraintWidth_percent="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

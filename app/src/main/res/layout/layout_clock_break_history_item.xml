@@ -1,0 +1,235 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ClockBreakHistoryItemBinding">
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.billOfLading.ClockHistoryModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isShowTotal"
+            type="boolean" />
+
+        <variable
+            name="activityFlag"
+            type="String" />
+
+        <variable
+            name="isShowCharges"
+            type="int" />
+
+        <import type="com.moverbol.util.Util" />
+
+        <import type="com.moverbol.util.MoversPreferences" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="@dimen/_8sdp"
+        android:background="@{obj.activityType.equals(`1`) ? @color/divider_grey : @color/colorAccent}"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_edit"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8sdp"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            tools:visibility="gone"
+            app:srcCompat="@drawable/ic_create_grey" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_delete"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_8sdp"
+            android:tint="@android:color/darker_gray"
+            app:srcCompat="@drawable/ic_delete_white"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/txt_job_activity"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@{obj.activityName}"
+            tools:text="@string/job_activity" />
+
+        <TextView
+            android:id="@+id/txt_job_clock_in"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            app:visibleGone="@{!isShowTotal}"
+            android:text="@{obj.eventType}"
+            tools:text="@string/clock_in" />
+
+        <TextView
+            android:id="@+id/txt_date"
+            style="@style/PackingItem"
+            visibleGone="@{isShowTotal}"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@{obj.fullStartTime()}"
+            tools:text="30 Nov, 2019 17:55:00" />
+
+
+        <TextView
+            android:id="@+id/txt_worker"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@{obj.men}"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/txt_equipment"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@{obj.truck}"
+            tools:text="5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_crew_resource"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            app:htmlText="@{obj.displayCrewName()}"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/txt_rate"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@{MoversPreferences.getInstance(context).getCurrencySymbol()+Util.getFormatAmount(obj.rate_hour)}"
+            tools:text="$5.00" />
+
+        <TextView
+            android:id="@+id/txt_startTime"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            app:visibleGone="@{!isShowTotal}"
+            android:gravity="center"
+            android:text="@{obj.fullStartTime()}"
+            tools:text="30 Nov, 2019 17:55:00" />
+
+        <TextView
+            android:id="@+id/txt_endTime"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            app:visibleGone="@{!isShowTotal}"
+            android:text="@{obj.fullEndTime()}"
+            tools:text="30 Nov, 2019 17:55:00" />
+
+        <TextView
+            android:id="@+id/txt_break"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@{obj.displayTotalBreakTime()}"
+            android:textAllCaps="true"
+            app:visibleGone="@{!isShowTotal}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/txt_total_hours"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@{obj.totalHour(context)}"
+            tools:text="15.00" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:checked="@{obj.isBillable.equals(`1`)}"
+            android:clickable="false"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:text="@null"
+            android:textSize="0sp"
+            android:translationX="@dimen/_50sdp"
+
+            />
+
+        <!--       <androidx.appcompat.widget.AppCompatCheckBox
+                   android:layout_width="@dimen/_100sdp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:layout_marginStart="@dimen/_3sdp"
+                   android:layout_marginEnd="@dimen/_3sdp"
+                   android:checked="@{obj.itemize.equals(`1`)}"
+                   android:clickable="false"
+                   android:gravity="center"
+                   android:scaleX="1.5"
+                   android:scaleY="1.5"
+                   android:text="@null"
+                   android:textSize="0sp"
+                   android:translationX="@dimen/_50sdp" />-->
+
+        <TextView
+            android:id="@+id/txt_charges"
+            style="@style/PackingItem"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:gravity="center"
+            android:text="@{MoversPreferences.getInstance(context).getCurrencySymbol()+Util.getFormatAmount(obj.displayCharge(context,activityFlag))}"
+            app:visibleGone="@{isShowTotal &amp;&amp; isShowCharges == 1}"
+            tools:text="15.00" />
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PackingListEditBinding">
+
+        <variable
+            name="packinglisteditVM"
+            type="com.moverbol.viewmodels.inventory.PackingListEditVM" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:onClick="openSignatureDialog"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="@+id/toolbar"
+            app:srcCompat="@drawable/edit2" />
+
+        <ScrollView
+            android:id="@+id/sv_packinglist"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/divider_grey"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+                        <TextView
+                            android:id="@+id/textView112"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/agent_name"
+                            android:textColor="@color/home_light_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView113"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/packing_cr_no_left"
+                            android:layout_marginLeft="@dimen/packing_cr_no_left"
+                            android:text="@string/carrier_s_reference_no"
+                            android:textColor="@color/home_light_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView112"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/textView112" />
+
+                        <TextView
+                            android:id="@+id/textView114"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/packing_contract_no_left"
+                            android:layout_marginLeft="@dimen/packing_contract_no_left"
+                            android:text="@string/contract_or_gbl_no"
+                            android:textColor="@color/home_light_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView113"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/textView113" />
+
+                        <TextView
+                            android:id="@+id/textView115"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="John Smith"
+                            app:layout_constraintStart_toStartOf="@+id/textView112"
+                            app:layout_constraintTop_toBottomOf="@+id/textView112" />
+
+                        <TextView
+                            android:id="@+id/textView116"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="65954"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView115"
+                            app:layout_constraintStart_toStartOf="@+id/textView113"
+                            app:layout_constraintTop_toTopOf="@+id/textView115" />
+
+                        <TextView
+                            android:id="@+id/textView117"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8564554"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView116"
+                            app:layout_constraintStart_toStartOf="@+id/textView114"
+                            app:layout_constraintTop_toTopOf="@+id/textView116" />
+
+                        <TextView
+                            android:id="@+id/textView118"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/govt_service_order_no"
+                            android:textColor="@color/home_light_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="@+id/textView112"
+                            app:layout_constraintTop_toBottomOf="@+id/textView115" />
+
+                        <TextView
+                            android:id="@+id/textView119"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/van_no"
+                            android:textColor="@color/home_light_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView118"
+                            app:layout_constraintStart_toStartOf="@+id/textView113"
+                            app:layout_constraintTop_toTopOf="@+id/textView118" />
+
+                        <TextView
+                            android:id="@+id/textView120"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tape_lot_no"
+                            android:textColor="@color/home_light_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView119"
+                            app:layout_constraintStart_toStartOf="@+id/textView114"
+                            app:layout_constraintTop_toTopOf="@+id/textView119" />
+
+                        <TextView
+                            android:id="@+id/textView121"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="4011154"
+                            app:layout_constraintStart_toStartOf="@+id/textView118"
+                            app:layout_constraintTop_toBottomOf="@+id/textView118" />
+
+                        <TextView
+                            android:id="@+id/textView122"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4011154"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView121"
+                            app:layout_constraintStart_toStartOf="@+id/textView119"
+                            app:layout_constraintTop_toTopOf="@+id/textView121" />
+
+                        <TextView
+                            android:id="@+id/textView123"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8564554"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView122"
+                            app:layout_constraintStart_toStartOf="@+id/textView120"
+                            app:layout_constraintTop_toTopOf="@+id/textView122" />
+
+                        <TextView
+                            android:id="@+id/textView124"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/tape_color"
+                            android:textColor="@color/home_light_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="@+id/textView112"
+                            app:layout_constraintTop_toBottomOf="@+id/textView121" />
+
+                        <TextView
+                            android:id="@+id/textView126"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nos_from"
+                            android:textColor="@color/home_light_grey"
+                            android:textSize="16sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView124"
+                            app:layout_constraintStart_toStartOf="@+id/textView113"
+                            app:layout_constraintTop_toTopOf="@+id/textView124" />
+
+                        <View
+                            android:id="@+id/View_color"
+                            android:layout_width="0dp"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@color/text_red"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/textView124"
+                            app:layout_constraintStart_toStartOf="@+id/textView124"
+                            app:layout_constraintTop_toBottomOf="@+id/textView124" />
+
+                        <TextView
+                            android:id="@+id/textView127"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="18dp"
+                            android:text="51"
+                            app:layout_constraintBottom_toBottomOf="@+id/View_color"
+                            app:layout_constraintStart_toStartOf="@+id/textView126"
+                            app:layout_constraintTop_toTopOf="@+id/View_color" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_packingedit"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView"
+                    app:packinglistedititems="@{packinglisteditVM.packingListEditPojos}"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="223dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16sdp"
+            android:onClick="openAddItemActivity"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_add"
+            tools:layout_editor_absoluteX="453dp"
+            tools:layout_editor_absoluteY="771dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

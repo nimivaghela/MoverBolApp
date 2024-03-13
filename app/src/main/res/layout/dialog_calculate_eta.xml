@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CalculateETABinding">
+
+        <variable
+            name="shouldShowSendETA"
+            type="boolean" />
+
+        <variable
+            name="shouldShowError"
+            type="boolean" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        tools:context="com.moverbol.custom.dialogs.CalculateETADialog">
+
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="@dimen/_500sdp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:padding="20dp"
+            android:text="@string/calculate_eta"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:contentDescription="TODO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close_black" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_24sdp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title">
+
+
+            <!--<LinearLayout
+                android:id="@+id/lil_billing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                tools:visibility="visible">-->
+
+            <!--<TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/destination"
+                android:textSize="@dimen/textsize_20sp"
+                android:gravity="center_vertical|start"
+                android:layout_weight="1"
+                android:textColor="@color/text_gray"
+                />-->
+
+            <Spinner
+                android:id="@+id/spin_destination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:entries="@array/spinner_strings_demo_units"
+                android:scrollbars="vertical"
+                android:visibility="@{shouldShowSendETA || shouldShowError? View.GONE : View.VISIBLE}" />
+                />
+
+            <!--</LinearLayout>-->
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_destination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:theme="@style/TextLabel1"
+                android:visibility="@{shouldShowSendETA || shouldShowError? View.VISIBLE : View.GONE}"
+                tools:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtxt_destination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lines="3"
+                    android:maxLines="4"
+                    android:background="@null"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:text="2225 N Shoreline Blvd, Mountain View, CA 94043, USA"
+                    android:hint="@string/destination"
+                    android:inputType="textMultiLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_24sdp"
+                android:textColorHint="@color/text_red"
+                android:theme="@style/TextLabel1"
+                android:visibility="@{shouldShowError ? View.VISIBLE : View.GONE}"
+                tools:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtxt_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:hint="@string/error"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!--android:visibility="@{shouldShowSendETA ? View.VISIBLE : View.GONE}"-->
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_eta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:theme="@style/TextLabel1"
+                android:visibility="@{shouldShowSendETA &amp;&amp; !shouldShowError ? View.VISIBLE : View.GONE}"
+                tools:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtxt_eta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:hint="@string/eta"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/_24sdp"
+                android:background="@color/text_login_gray"
+                android:gravity="center"
+                android:text="@string/calculate"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/textsize_22sp"
+                android:visibility="@{shouldShowSendETA || shouldShowError? View.GONE : View.VISIBLE}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/btn_change_destination"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="@dimen/_24sdp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="@string/change_destination"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_22sp"
+                    android:visibility="@{shouldShowSendETA || shouldShowError ? View.VISIBLE : View.GONE}"
+                    tools:visibility="visible" />
+
+                <Button
+                    android:id="@+id/btn_send"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="@dimen/_24sdp"
+                    android:layout_weight="1"
+                    android:background="@color/colorAccent"
+                    android:gravity="center"
+                    android:text="@string/send_eta"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/textsize_22sp"
+                    android:visibility="@{shouldShowSendETA &amp;&amp; !shouldShowError ? View.VISIBLE : View.GONE}"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+            <!--<Button
+                android:id="@+id/btn_send"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/_24sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="@string/send_eta"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/textsize_22sp"
+                android:visibility="@{shouldShowSendETA &amp;&amp; !shouldShowError ? View.VISIBLE : View.GONE}"
+                tools:visibility="gone" />-->
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,281 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PackingtItemBinding">
+
+        <variable
+            name="chargesPojo"
+            type="com.moverbol.model.confirmationPage.PackingChargesPojo" />
+
+        <variable
+            name="position"
+            type="int" />
+
+        <variable
+            name="editValues"
+            type="Boolean"/>
+
+        <import type="android.view.View"/>
+
+        <import type="com.moverbol.util.Util"/>
+
+    </data>
+
+
+    <!--<android.support.constraint.ConstraintLayout
+        android:id="@+id/constraint_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{position%2 == 0 ? @color/item_row : @color/colorAccent }">
+
+        <TextView
+            android:id="@+id/txt_desc"
+            style="@style/PackingItem"
+            android:layout_marginBottom="@dimen/_24sdp"
+            android:layout_marginLeft="@dimen/txtdesc_mleft"
+            android:layout_marginStart="@dimen/txtdesc_mleft"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:ellipsize="end"
+            android:maxWidth="@dimen/txt_desc_width"
+            android:singleLine="false"
+            tools:text="description description description description "
+            android:text="@{chargesPojo.packDescription}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+
+        <TextView
+            android:id="@+id/txt_unit"
+            style="@style/PackingItem"
+            android:layout_marginLeft="@dimen/txtunit_mleft"
+            android:layout_marginStart="@dimen/txtunit_mleft"
+            android:maxLines="2"
+            android:maxWidth="@dimen/txtunit_width"
+            android:text="@{Util.getGeneralFormattedDecimalString(chargesPojo.rateTypeName)}"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_desc"
+            app:layout_constraintVertical_bias="0.5" />
+
+
+        <TextView
+            android:id="@+id/txt_qty"
+            style="@style/PackingItem"
+            android:layout_marginLeft="@dimen/txtqty_margin_left"
+            android:layout_marginStart="@dimen/txtqty_margin_left"
+            android:maxLines="2"
+            android:maxWidth="@dimen/txtqty_width"
+            android:text="@{chargesPojo.packQuantity}"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_unit"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_unit"
+            app:layout_constraintVertical_bias="0.5" />
+
+
+        <TextView
+            android:id="@+id/txt_rate"
+            style="@style/PackingItem"
+            android:layout_marginLeft="@dimen/txtrate_mleft"
+            android:layout_marginStart="@dimen/txtrate_mleft"
+            android:maxLines="2"
+            android:maxWidth="@dimen/txtrate_width"
+            android:text='@{Util.getGeneralFormattedDecimalString(chargesPojo.quoteRate)}'
+            app:layout_constraintBottom_toBottomOf="@+id/txt_qty"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_qty"
+            app:layout_constraintVertical_bias="0.5" />
+
+
+        <TextView
+            android:id="@+id/txt_amt"
+            style="@style/PackingItem"
+            android:layout_marginLeft="@dimen/txtamt_mleft"
+            android:layout_marginStart="@dimen/txtamt_mleft"
+            android:maxLines="2"
+            android:maxWidth="@dimen/txtamt_width"
+            android:text='@{Util.getGeneralFormattedDecimalString(chargesPojo.packTotal)}'
+            app:layout_constraintBottom_toBottomOf="@+id/txt_rate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_rate"
+            app:layout_constraintVertical_bias="0.5" />
+
+
+        <TextView
+            android:id="@+id/txt_info"
+            style="@style/packingItemInfo"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{chargesPojo.stockMatrialName}"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txt_desc"
+            app:layout_constraintStart_toStartOf="@+id/txt_desc"
+            app:layout_constraintTop_toBottomOf="@+id/txt_desc"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{chargesPojo.showEditOption ? View.VISIBLE : View.GONE}"
+            android:background="@color/transparentAccentLight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/img_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_edit_pencil"/>
+
+        </FrameLayout>
+
+    </android.support.constraint.ConstraintLayout>-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@{position%2 == 0 ? @color/item_row : @color/colorAccent }">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_desc"
+                style="@style/PackingItem"
+                android:layout_width="0dp"
+                android:layout_marginBottom="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_weight="2"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:maxWidth="@dimen/txt_desc_width"
+                android:singleLine="false"
+                android:text="@{chargesPojo.packDescription}"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="description description description description " />
+
+            <!--android:layout_marginLeft="@dimen/txtdesc_mleft"
+            android:layout_marginStart="@dimen/txtdesc_mleft"-->
+
+            <TextView
+                android:id="@+id/txt_unit"
+                style="@style/PackingItem"
+                android:layout_width="0dp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_marginStart="0dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:maxLines="2"
+                android:maxWidth="@dimen/txtunit_width"
+                android:text="@{chargesPojo.rateTypeName}"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_desc"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_desc"
+                app:layout_constraintVertical_bias="0.5"
+                tools:text="unitName" />
+
+            <!--android:layout_marginLeft="@dimen/move_txtunit_mleft"
+            android:layout_marginStart="@dimen/move_txtunit_mleft"-->
+
+            <TextView
+                android:id="@+id/txt_qty"
+                style="@style/PackingItem"
+                android:layout_width="0dp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_marginStart="0dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:maxLines="2"
+                android:maxWidth="@dimen/txtqty_width"
+                android:text="@{chargesPojo.packQuantity}"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_unit"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_unit"
+                app:layout_constraintVertical_bias="0.5"
+                tools:text="quantity" />
+
+            <!--android:layout_marginLeft="@dimen/move_txtqty_mleft"
+            android:layout_marginStart="@dimen/move_txtqty_mleft"-->
+
+            <TextView
+                android:id="@+id/txt_rate"
+                style="@style/PackingItem"
+                android:layout_width="0dp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_marginStart="0dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:maxLines="2"
+                android:maxWidth="@dimen/txtrate_width"
+                android:text='@{Util.getGeneralFormattedDecimalString(chargesPojo.quoteRate)}'
+                app:layout_constraintBottom_toBottomOf="@+id/txt_qty"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_qty"
+                app:layout_constraintVertical_bias="0.5"
+                tools:text="rate" />
+
+            <!--android:layout_marginLeft="@dimen/txtrate_mleft"
+            android:layout_marginStart="@dimen/txtrate_mleft"-->
+
+            <TextView
+                android:id="@+id/txt_amt"
+                style="@style/PackingItem"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:maxLines="2"
+                android:layout_marginStart="0dp"
+                android:maxWidth="@dimen/txtamt_width"
+                android:text="@{Util.getGeneralFormattedDecimalString(chargesPojo.packTotal)}"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_rate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_rate"
+                app:layout_constraintVertical_bias="0.5"
+                tools:text="Total Amount" />
+
+            <!--android:layout_marginLeft="@dimen/txtamt_mleft"
+            android:layout_marginStart="@dimen/txtamt_mleft"-->
+
+            <!--android:text='@{chargesPojo.totalAmount}'-->
+
+            <!--<TextView
+                android:id="@+id/txt_info"
+                style="@style/packingItemInfo"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txt_desc"
+                app:layout_constraintStart_toStartOf="@+id/txt_desc"
+                app:layout_constraintTop_toBottomOf="@+id/txt_desc"
+                app:layout_constraintVertical_bias="0.0" />-->
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

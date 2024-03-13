@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="AddChargesItemBinding">
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.billOfLading.AddChargesModel"/>
+
+        <import type="android.view.View"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorAccent"
+        tools:context="com.moverbol.custom.dialogs.AddArticleDialog">
+
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="@dimen/_400sdp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:padding="20dp"
+            android:text="@string/add_new_item"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_title"
+            app:layout_constraintEnd_toEndOf="@id/txt_title"
+            app:layout_constraintTop_toTopOf="@id/txt_title"
+            app:tint="@android:color/white"
+            app:srcCompat="@drawable/ic_close_black" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtInput_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_24sdp"
+            android:theme="@style/TextLabel2"
+            android:visibility="@{obj.isEdit ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEdit_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/select_categroy"
+                android:text=" " />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_category"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:prompt="@string/type"
+            app:layout_constraintBottom_toBottomOf="@id/txtInput_category"
+            app:layout_constraintEnd_toEndOf="@id/txtInput_category"
+            app:layout_constraintStart_toStartOf="@id/txtInput_category"
+            app:layout_constraintTop_toTopOf="@id/txtInput_category" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtInput_rateType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_24sdp"
+            android:theme="@style/TextLabel2"
+            android:visibility="@{obj.isEdit ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtInput_category">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEdit_rateType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/rate_type"
+                android:text=" " />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_rate_type"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:prompt="@string/type"
+            app:layout_constraintBottom_toBottomOf="@id/txtInput_rateType"
+            app:layout_constraintEnd_toEndOf="@id/txtInput_rateType"
+            app:layout_constraintStart_toStartOf="@id/txtInput_rateType"
+            app:layout_constraintTop_toTopOf="@id/txtInput_rateType" />
+
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:theme="@style/TextLabel1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtInput_rateType"
+            app:layout_goneMarginTop="@dimen/_24sdp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/quantity"
+                android:inputType="numberDecimal"
+                android:text="@={obj.quantity}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_unit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_quantity">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|start"
+                android:text="@string/unit"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/textsize_20sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spin_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_weight="3"
+                android:entries="@array/spinner_strings_demo_units"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lil_billing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_unit"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|start"
+                android:text="@string/billing"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/textsize_20sp" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spin_billing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_weight="3"
+                android:entries="@array/spinner_strings_demo_units"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
+
+
+        <!--<android.support.design.widget.TextInputLayout
+            android:id="@+id/til_unit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/TextLabel1">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtxt_unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:hint="@string/unit"/>
+
+        </android.support.design.widget.TextInputLayout>-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:theme="@style/TextLabel1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lil_billing">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/rate"
+                android:inputType="numberDecimal"
+                android:text="@={obj.rate}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:theme="@style/TextLabel2"
+            android:visibility="@{obj.isEdit ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_rate">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/description"
+                android:text="@={obj.description}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:theme="@style/TextLabel1"
+            android:visibility='@{obj.showDays ? View.VISIBLE : View.GONE}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_description">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_days"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/days"
+                android:inputType="number"
+                android:text="@={obj.days}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_amount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:theme="@style/TextLabel1"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_days">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtxt_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/amount_text"
+                android:inputType="numberDecimal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/check_taxable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="@string/taxable"
+            android:textSize="@dimen/textsize_18sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_amount"
+            tools:visibility="visible"
+
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/txt_submit"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_margin="@dimen/_24sdp"
+            app:backgroundTint="@color/colorPrimary"
+            android:gravity="center"
+            android:text="@string/submit"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/textsize_22sp"
+            android:visibility="@{obj.isEdit &amp;&amp; obj.shouldShowDeleteButton ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/check_taxable" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_margin="@dimen/_24sdp"
+            android:orientation="horizontal"
+            android:visibility="@{obj.isEdit &amp;&amp; obj.shouldShowDeleteButton ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/check_taxable">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/txt_delete"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:backgroundTint="@color/colorAccent"
+                android:gravity="center"
+                android:text="@string/delete"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/textsize_22sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/txt_submit_edit"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:text="@string/submit"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/textsize_22sp" />
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

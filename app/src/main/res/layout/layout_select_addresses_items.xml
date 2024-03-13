@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="SelectAddressItemBinding">
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.releaseForm.AddressSelectionListItemModel"/>
+
+        <!--<variable
+            name="isLastItem"
+            type="boolean"/>-->
+
+        <import type="android.view.View"/>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/img_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:scaleType="fitStart"
+            android:layout_gravity="start|center_vertical"
+            app:srcCompat="@drawable/ic_place" />
+
+
+        <EditText
+            android:id="@+id/edtxt_adddress"
+            style="@style/ReleaseFormEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.85"
+            android:focusable="false"
+            android:layout_gravity="center"
+            android:hint="@string/select_address"
+            android:text="@={obj.address}"
+            app:layout_constraintStart_toEndOf="@+id/img_location"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!--<ImageView
+            android:id="@+id/img_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_weight="0.1"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="@{isLastItem &amp;&amp; obj.shouldShowAddRemoveImage? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toEndOf="@+id/edtxt_adddress"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icons8_add" />
+
+        <ImageView
+            android:id="@+id/img_minus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_weight="0.1"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="@{!isLastItem  &amp;&amp; obj.shouldShowAddRemoveImage? View.VISIBLE : View.GONE}"
+            tools:visibility="gone"
+            app:layout_constraintStart_toEndOf="@+id/edtxt_adddress"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/icons8_minus" />-->
+
+        <!--android:clickable="@{!obj.selected &amp;&amp; !bolStarted}"-->
+
+
+    </LinearLayout>
+
+
+</layout>

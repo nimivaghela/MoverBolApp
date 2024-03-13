@@ -1,0 +1,176 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+
+android {
+
+    compileSdkVersion 33
+
+    defaultConfig {
+        applicationId "com.moverbol"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 44
+        versionName "2.4.2"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            manifestPlaceholders = [enableCrashReporting: "true"]
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'boolean', 'showLog', 'false'
+            buildConfigField 'boolean', 'usePlayServicesForLoction', 'true'
+            buildConfigField 'boolean', 'shouldShowLocationUpdateNotification', 'false'
+            buildConfigField "String", "GOOGLE_KEY_FOR_DIRECTION_API", getProperty("GOOGLE_KEY_FOR_DIRECTION_API")
+            buildConfigField "String", "BASE_URL", "\"https://moverbol.movegistics.com/REST/v3/\""
+        }
+
+        staging {
+            minifyEnabled true
+            shrinkResources true
+            manifestPlaceholders = [enableCrashReporting: "true"]
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'boolean', 'showLog', 'true'
+            buildConfigField 'boolean', 'usePlayServicesForLoction', 'true'
+            buildConfigField 'boolean', 'shouldShowLocationUpdateNotification', 'false'
+            buildConfigField "String", "GOOGLE_KEY_FOR_DIRECTION_API", getProperty("GOOGLE_KEY_FOR_DIRECTION_API")
+            //buildConfigField "String", "BASE_URL", "\"https://mappdev.movegistics.com/REST/\""
+            buildConfigField "String", "BASE_URL", "\"https://moverbol.movegistics.com/REST/v3/\""
+        }
+
+
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            manifestPlaceholders = [enableCrashReporting: "false"]
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'boolean', 'showLog', 'true'
+            buildConfigField 'boolean', 'usePlayServicesForLoction', 'true'
+            buildConfigField 'boolean', 'shouldShowLocationUpdateNotification', 'false'
+            buildConfigField "String", "GOOGLE_KEY_FOR_DIRECTION_API", getProperty("GOOGLE_KEY_FOR_DIRECTION_API")
+            //buildConfigField "String", "BASE_URL", "\"https://mappdev.movegistics.com/REST/\""
+            buildConfigField "String", "BASE_URL", "\"https://moverbol.movegistics.com/REST/v3/\""
+        }
+
+    }
+
+
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+    namespace 'com.moverbol'
+
+    applicationVariants.all { variant -> renameArtifact(variant, defaultConfig) }
+}
+
+def renameArtifact(variant, defaultConfig) {
+    variant.outputs.all {
+        def appName
+        if (project.hasProperty("applicationName")) {
+            appName = applicationName
+        } else {
+            appName = parent.name
+        }
+        def formattedDate = new Date().format('yyyy_MM_dd')
+        outputFileName = "${appName}_${variant.buildType.name}_${defaultConfig.versionName} (Date ${formattedDate}).apk"
+    }
+}
+
+ext {
+    supportVersion = '1.5.0'
+    gsonVersion = '2.7'
+    playServiceVersion = '21.0.0'
+    constraintVersion = '1.1.2'
+    arch_version = '2.4.3'
+    lifecycle_version = '2.5.1'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation "androidx.annotation:annotation:${supportVersion}"
+
+
+    //FireBase
+    implementation 'com.google.firebase:firebase-messaging:23.1.0'
+    implementation 'com.google.firebase:firebase-analytics:21.2.0'
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.6'
+    implementation 'com.google.firebase:firebase-crashlytics:18.3.1'
+
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+    implementation 'com.github.gcacace:signature-pad:1.3.1'
+    implementation 'com.github.clans:fab:1.6.4'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7'
+    implementation "com.github.bumptech.glide:glide:4.13.2"
+
+    //For Room
+    implementation "androidx.room:room-runtime:$arch_version"
+    annotationProcessor "androidx.room:room-compiler:$arch_version"
+
+    //imageCommpressor
+    implementation 'com.iceteck.silicompressorr:silicompressor:2.2.4'
+
+    // support Exifinterface for compress image
+    //implementation 'androidx.exifinterface:exifinterface:1.3.3'
+
+    //For Google maps
+    implementation "com.google.android.gms:play-services-maps:18.1.0"
+    implementation "com.google.android.gms:play-services-location:$playServiceVersion"
+
+    //For Lyfecycle
+//    implementation "android.arch.lifecycle:runtime:$arch_version"
+//    implementation "android.arch.lifecycle:extensions:$arch_version"
+
+    // ViewModel and LiveData
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+    //Bug reporting library
+    implementation 'com.instabug.library:instabug:11.5.1'
+
+    //For Multi Dex
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    //WorkManager
+    implementation 'androidx.work:work-runtime:2.7.1'
+
+    implementation 'com.github.Quivr:Android-Week-View:2.3.3'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    //Image Crop and Picker
+    implementation 'com.github.CanHub:Android-Image-Cropper:4.3.2'
+
+    // Payment Sdk implement for card reader
+    implementation project(':emv-anet-sdk')
+    implementation 'com.madgag.spongycastle:prov:1.58.0.0'
+
+    testImplementation 'junit:junit:4.13.2'
+}
+

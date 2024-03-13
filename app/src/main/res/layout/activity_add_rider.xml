@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class = "AddRiderBinding"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <View
+            android:id="@+id/View_add_rider"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#edf1f2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/rider_agents_name"
+            android:layout_width="@dimen/Layout_width"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/add_storage_margin_left"
+            android:layout_marginTop="16dp"
+            android:theme="@style/TextInputStyleForInventory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/View_add_rider"
+            tools:layout_editor_absoluteY="129dp"
+            android:layout_marginLeft="@dimen/add_storage_margin_left">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/agent_s_name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/agents_contact_no"
+            android:layout_width="@dimen/Layout_width"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/add_storage_margin_right"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/View_add_rider"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="113dp"
+            android:layout_marginRight="@dimen/add_storage_margin_right">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/agent_s_contact_no" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/rider_ref_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/Margin_top"
+            app:layout_constraintEnd_toEndOf="@id/rider_agents_name"
+            app:layout_constraintStart_toStartOf="@id/rider_agents_name"
+            app:layout_constraintTop_toBottomOf="@id/rider_agents_name"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="192dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/carrier_s_reference_no" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/rider_contract_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/rider_ref_no"
+            app:layout_constraintEnd_toEndOf="@id/agents_contact_no"
+            app:layout_constraintStart_toStartOf="@id/agents_contact_no"
+            app:layout_constraintTop_toTopOf="@+id/rider_ref_no"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="192dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contract_or_gbl_no" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/rider_order_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/Margin_top"
+            app:layout_constraintEnd_toEndOf="@id/rider_agents_name"
+            app:layout_constraintStart_toStartOf="@id/rider_agents_name"
+            app:layout_constraintTop_toBottomOf="@id/rider_ref_no"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="273dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/govt_service_order_no" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/rider_van_no"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/rider_order_no"
+            app:layout_constraintEnd_toEndOf="@id/agents_contact_no"
+            app:layout_constraintStart_toStartOf="@id/agents_contact_no"
+            app:layout_constraintTop_toTopOf="@+id/rider_order_no"
+            tools:layout_editor_absoluteX="274dp"
+            tools:layout_editor_absoluteY="273dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/van_no" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="550dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/Margin_top"
+            android:background="@color/colorPrimary"
+            android:text="@string/submit"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/textsize_20sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rider_order_no" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

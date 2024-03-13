@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.moverbol.model.CarryForwardModel" />
+
+        <import type="com.moverbol.util.Util" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_8sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{model.displayDate()}"
+            android:textColor="@color/light_black"
+            tools:text="@string/date"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{model.getWoid()}"
+            android:textColor="@color/light_black"
+            tools:text="@string/wo_id" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HeadTextRvClockHistory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{Util.getGeneralFormattedDecimalString(model.getAmount())}"
+            android:textColor="@color/light_black"
+            tools:text="@string/amount" />
+
+
+    </LinearLayout>
+</layout>

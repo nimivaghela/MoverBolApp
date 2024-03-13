@@ -1,0 +1,158 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <!-- Login Main Left Right -->
+    <dimen name="margin_left_right">90dp</dimen>
+
+    <!-- Default text size of navigation drawer item text -->
+    <dimen name="nav_text_size">14sp</dimen>
+
+    <dimen name="home_text_size">14sp</dimen>
+    <dimen name="home_card_view_margin">15dp</dimen>
+    <dimen name="home_divider_one">0.069</dimen>
+    <dimen name="home_divider_two">0.19999999</dimen>
+
+    <dimen name="drop_location_bias">0.48</dimen>
+    <dimen name="time_bias">0.17</dimen>
+    <dimen name="activity_bias">0.663</dimen>
+    <dimen name="service_type_bias">0.52</dimen>
+
+    <dimen name="crew_name_right_margin1">82dp</dimen>
+    <dimen name="box_delivery_left_bias">0.09</dimen>
+
+    <dimen name="home_local_move">16dp</dimen>
+    <dimen name="home_activity">280dp</dimen>
+    <dimen name="btnWidth">300dp</dimen>
+    <dimen name="move_process_call">100dp</dimen>
+    <dimen name="btnHeight">70dp</dimen>
+
+
+    <dimen name="margin">400dp</dimen>
+
+    <dimen name="_1sdp">1.00dp</dimen>
+    <dimen name="_2sdp">2.00dp</dimen>
+    <dimen name="_3sdp">3.00dp</dimen>
+    <dimen name="_4sdp">4.00dp</dimen>
+    <dimen name="_5sdp">5.00dp</dimen>
+    <dimen name="_8sdp">8.00dp</dimen>
+    <dimen name="_10sdp">10.00dp</dimen>
+    <dimen name="_12sdp">12.00dp</dimen>
+    <dimen name="_14sdp">14.00dp</dimen>
+    <dimen name="_15sdp">15.00dp</dimen>
+    <dimen name="_16sdp">16.00dp</dimen>
+    <dimen name="_18sdp">18.00dp</dimen>
+    <dimen name="_20sdp">20.00dp</dimen>
+    <dimen name="_21sdp">21.00dp</dimen>
+    <dimen name="_22sdp">22.00dp</dimen>
+    <dimen name="_24sdp">24.00dp</dimen>
+    <dimen name="_25sdp">25.00dp</dimen>
+    <dimen name="_28sdp">28.00dp</dimen>
+    <dimen name="_30sdp">30.00dp</dimen>
+    <dimen name="_32sdp">32.00dp</dimen>
+    <dimen name="_34sdp">34.00dp</dimen>
+    <dimen name="_40sdp">40.00dp</dimen>
+    <dimen name="_50sdp">50.00dp</dimen>
+    <dimen name="_56sdp">56.00dp</dimen>
+    <dimen name="_60sdp">60.00dp</dimen>
+    <dimen name="_64sdp">64.00dp</dimen>
+    <dimen name="_70sdp">70.00dp</dimen>
+    <dimen name="_78sdp">78.00dp</dimen>
+    <dimen name="_80sdp">80.00dp</dimen>
+    <dimen name="_82sdp">82.00dp</dimen>
+    <dimen name="_90sdp">90.00dp</dimen>
+    <dimen name="_100sdp">100.00dp</dimen>
+    <dimen name="_120sdp">120.00dp</dimen>
+    <dimen name="_150sdp">150.00dp</dimen>
+    <dimen name="_170sdp">170.00dp</dimen>
+    <dimen name="_180sdp">180.00dp</dimen>
+    <dimen name="_200sdp">200.00dp</dimen>
+    <dimen name="_240sdp">240.00dp</dimen>
+    <dimen name="_250sdp">250.00dp</dimen>
+    <dimen name="_300sdp">300.00dp</dimen>
+    <dimen name="_320sdp">320.00dp</dimen>
+    <dimen name="_350sdp">350.00dp</dimen>
+    <dimen name="_400sdp">400.00dp</dimen>
+    <dimen name="_450sdp">450.00dp</dimen>
+    <dimen name="_500sdp">500.00dp</dimen>
+    <dimen name="_550sdp">550.00dp</dimen>
+
+    <dimen name="textsize_10sp">10sp</dimen>
+    <dimen name="textsize_14sp">14sp</dimen>
+    <dimen name="textsize_16sp">16sp</dimen>
+    <dimen name="textsize_18sp">18sp</dimen>
+    <dimen name="textsize_20sp">20sp</dimen>
+    <dimen name="textsize_21sp">21sp</dimen>
+    <dimen name="textsize_24sp">24sp</dimen>
+    <dimen name="textsize_25sp">25sp</dimen>
+    <dimen name="textsize_28sp">28sp</dimen>
+    <dimen name="textsize_30sp">30sp</dimen>
+    <dimen name="textsize_22sp">22sp</dimen>
+
+
+    <dimen name="home_divider_margin_top">20dp</dimen>
+    <dimen name="home_est_margin_top">24dp</dimen>
+    <!--<dimen name="activity_marging_left">228dp</dimen>-->
+
+    <dimen name="img_size">40dp</dimen>
+    <dimen name="item_offset">2dp</dimen>
+
+    <dimen name="txt_desc_width">150dp</dimen>
+    <dimen name="txtunit_width">100dp</dimen>
+    <dimen name="txtqty_width">70dp</dimen>
+    <dimen name="txtrate_width">80dp</dimen>
+    <dimen name="txtamt_width">80dp</dimen>
+    <dimen name="textsize_42sp">42sp</dimen>
+
+
+    <!-- Article_item layout -->
+    <dimen name="item_left_margin">24dp</dimen>
+    <dimen name="est_quantity_left_margin">200dp</dimen>
+    <dimen name="act_quantity_left_margin">300dp</dimen>
+    <dimen name="vol_left_margin">400dp</dimen>
+    <dimen name="weight_left_margin">500dp</dimen>
+
+    <!-- Add for base value from sw600dp-port-->
+    <dimen name="calendar_height">500dp</dimen>
+
+    <!-- Material_item layout -->
+    <dimen name="quantity_left_margin">200dp</dimen>
+    <dimen name="rate_left_margin">350dp</dimen>
+    <dimen name="total_left_margin">450dp</dimen>
+    <dimen name="title_left_margin">55dp</dimen>
+
+    <!-- For inventory-->
+    <dimen name="Margin_top">32dp</dimen>
+    <dimen name="Layout_width">250dp</dimen>
+    <dimen name="AgentName_width">550dp</dimen>
+    <dimen name="add_storage_margin_left">16dp</dimen>
+    <dimen name="add_storage_margin_right">24dp</dimen>
+    <dimen name="deliveryaddr_marLeft">180dp</dimen>
+    <dimen name="layout_no_inventory_height">650dp</dimen>
+
+    <dimen name="inventory_id_left">32dp</dimen>
+    <dimen name="inventory_agent_name">190dp</dimen>
+    <dimen name="inventory_contact_no">390dp</dimen>
+    <dimen name="inventory_imageview">530dp</dimen>
+
+    <dimen name="packing_cr_no_left">220dp</dimen>
+    <dimen name="packing_contract_no_left">440dp</dimen>
+    <dimen name="packingedit_cr_ref_left">16dp</dimen>
+    <dimen name="packingedit_condtion_left">160dp</dimen>
+
+    <dimen name="bottomsheet_first_button">32dp</dimen>
+    <dimen name="bottomsheet_second_button">180dp</dimen>
+    <dimen name="bottomsheet_third_button">330dp</dimen>
+    <dimen name="bottomsheet_fourth_button">490dp</dimen>
+    <dimen name="_230sdp">230dp</dimen>
+    <dimen name="_246sdp">246dp</dimen>
+
+
+</resources>
+

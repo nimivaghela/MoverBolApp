@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="MaterialItemBinding">
+
+        <variable
+            name="materialPojo"
+            type="com.moverbol.model.MaterialPojo" />
+
+        <variable
+            name="adapterPosition"
+            type="Integer" />
+
+        <variable
+            name="type"
+            type="String" />
+
+        <variable
+            name="currencySymbol"
+            type="String" />
+
+        <import type="com.moverbol.constants.Constants" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_8sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <TextView
+                android:id="@+id/txt_category_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/title_left_margin"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_32sdp"
+                android:text="@{materialPojo.categoryName}"
+                android:textSize="@dimen/textsize_18sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Category name" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_material_name"
+                android:layout_width="0dp"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textColor="@color/home_text_black"
+                android:text="@{materialPojo.displayMaterialName()}"
+                android:textSize="@dimen/textsize_18sp"
+                app:layout_constraintEnd_toStartOf="@id/img_edit"
+                app:layout_constraintStart_toStartOf="@id/txt_category_name"
+                app:layout_constraintTop_toBottomOf="@id/txt_category_name"
+                tools:text="5 Man Packing" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="23dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:text='@{(adapterPosition + 1) + ""}'
+                android:textColor="@color/home_text_black"
+                android:textSize="@dimen/textsize_18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_category_name"
+                app:layout_constraintEnd_toStartOf="@+id/txt_category_name"
+                app:layout_constraintHorizontal_bias="0.75"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_category_name"
+                tools:text="1" />
+
+
+            <TextView
+                android:id="@+id/txt_head_quantity"
+                style="@style/HomeTextLightGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:maxWidth="@dimen/_78sdp"
+                android:text='@{@string/quantity + ":"}'
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txt_material_name"
+                app:layout_constraintTop_toBottomOf="@+id/txt_material_name"
+                tools:text='@string/quantity' />
+
+
+            <TextView
+                android:id="@+id/txt_quantity_new"
+                style="@style/JobSummaryTextBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@{materialPojo.displayQuantity()}"
+                android:textColor="@color/home_text_black"
+                app:layout_constraintBottom_toBottomOf="@id/txt_head_quantity"
+                app:layout_constraintStart_toEndOf="@id/txt_head_quantity"
+                app:layout_constraintTop_toTopOf="@+id/txt_head_quantity"
+                tools:text="10" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:tag="@{adapterPosition}"
+                android:visibility="@{type.equals(Constants.ITEM_SELECTION_AVILABEL) ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_head_quantity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_category_name"
+                app:srcCompat="@drawable/ic_edit_pencil" />
+
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:button="@drawable/crew_checkbox"
+                android:checked="@={materialPojo.selectedForDelete}"
+                android:gravity="center"
+                android:visibility="@{type.equals(Constants.ITEM_SELECTION_AVILABEL) ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_head_quantity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_category_name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

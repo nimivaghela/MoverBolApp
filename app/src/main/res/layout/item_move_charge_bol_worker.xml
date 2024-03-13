@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="chargesPojo"
+            type="com.moverbol.model.billOfLading.newRequestChargesMoleds.CommonChargesRequestModel" />
+
+        <import type="com.moverbol.util.Util" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/PackingItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="@{chargesPojo.description}"
+            tools:text="@string/description" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/PackingItem"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="@{chargesPojo.worker}"
+            tools:text="5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/PackingItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="@{chargesPojo.truck}"
+            tools:text="5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/PackingItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="@{Util.getGeneralFormattedDecimalString(chargesPojo.rate)}"
+            tools:text="129.00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/PackingItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="@{Util.getGeneralFormattedDecimalString(chargesPojo.quantity)}"
+            tools:text="466.00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/PackingItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="@{Util.getGeneralFormattedDecimalString(chargesPojo.amount)}" />
+    </LinearLayout>
+</layout>

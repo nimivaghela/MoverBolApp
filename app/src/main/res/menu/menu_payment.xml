@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+   <!-- <item
+        android:id="@+id/carry_forward"
+        android:orderInCategory="1"
+        android:title="@string/carry_forward"
+        android:visible="false"
+        app:showAsAction="ifRoom" />-->
+
+    <item
+        android:id="@+id/skip_payment"
+        android:orderInCategory="3"
+        android:title="@string/skip_payment"
+        app:showAsAction="ifRoom" />
+
+</menu>

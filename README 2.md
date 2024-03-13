@@ -1,0 +1,16 @@
+Website URLs:-  https://crm.movegistics.com/
+				(production)     
+
+			 https://rmd.movegistics.com/
+				(mappdev)
+
+Credentials:-   akash.mehta@openxcelltechnolabs.com
+		     pass:- 123456
+
+		     subdomain(only for app):-  crm(production)
+							 rmd(mappdev)
+
+
+Ask for credentials or ask to add to Adarsh or Manoj :-
+
+Playstore Account, Instabug Account, Shared Google Drive Account

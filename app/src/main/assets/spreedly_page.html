@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=300px, width=300px, user-scalable=no"/>
+    <!-- height=300px, width=300px,  -->
+    <script src="https://core.spreedly.com/iframe/express-2.min.js" id="express-script"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+
+  <!--var environmentKey= "TbWAYgG7qaagGBh7hPjXQxS4DM4"-->
+  var environmentKey= Android.getEnvironmentKey()
+
+  var today = new Date();
+
+  var dayOfMonth = today.getDate();
+  var dayOfMonthString = dayOfMonth + "";
+
+  if(dayOfMonth<10){
+      dayOfMonthString = "0" + dayOfMonth;
+    }
+
+    var month = today.getMonth();
+  var monthString = month + "";
+  if(month<10){
+      monthString = "0" + month;
+    }
+
+  var year = today.getFullYear();
+
+    var options = {
+    company_name: Android.getCompanyName(),
+    // sidebar_top_description: "This is where you can buy all your food and most of your stuff",
+    
+
+    sidebar_bottom_description: "Amount to be paid <br><br> Date: " + dayOfMonthString + "/" + monthString + "/" + year,
+    number_label: "Credit / Debit Card Number.",
+   
+    amount: Android.getPayableAmmount()
+	}
+
+    var handlePaymentToken = function(token, formData) {
+
+      /*document.getElementById('full_name').value = formData["full_name"]
+      document.getElementById('month').value = formData["month"]
+      document.getElementById('year').value = formData["year"]
+      document.getElementById('token').value = token
+
+      document.getElementById('payment-form').submit();*/
+
+
+      calledFromAndroid(formData["full_name"], formData["month"], formData["year"], token);
+      // debugger;
+    }
+
+    SpreedlyExpress.onPaymentMethod(handlePaymentToken);
+
+
+    function justLoad(){
+		SpreedlyExpress.init(environmentKey,options);
+
+		SpreedlyExpress.onInit(function (){
+
+    	SpreedlyExpress.openView();
+    	Android.onSpreedlyLoad();
+    });
+
+		<!--SpreedlyExpress.onInit(SpreedlyExpress.openView());-->
+    }
+
+    function calledFromAndroid(full_name, month, year, token){
+      Android.onSpreedlyPamentMethod(full_name, month, year, token);
+    }
+
+   
+    // SpreedlyExpress.openView();
+
+    SpreedlyExpress.onViewClose(function (){
+    	Android.onSpreedlyExoressClosed();
+    	// debugger;
+    });
+
+
+
+
+    </script>
+
+</head>
+
+<body onload="justLoad();">
+
+</body>
+
+</html>

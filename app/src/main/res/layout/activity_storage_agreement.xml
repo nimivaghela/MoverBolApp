@@ -1,0 +1,703 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="StorageAgreementBinding" >
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.rentalAgreement.RentalAgreementPojo"/>
+
+        <variable
+            name="isBolStarted"
+            type="boolean"/>
+
+        <variable
+            name="storageChargeModel"
+            type="com.moverbol.model.rentalAgreement.StorageChargeModel" />
+
+        <import type="android.view.View" />
+
+        <import type="com.moverbol.util.Util" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar" />
+
+
+        <TextView
+            android:id="@+id/tv_storage_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="@dimen/_2sdp"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="false"
+            android:maxHeight="200dp"
+            tools:text="This page contains the terms conditions.Please read these terms conditions carefully before ordering any products from us.You should understand that by ordering any of our products,you agree to be bound by these terms conditions.By placing an order at dymmymount.com,you warrant that you are at least 18 years old\r\n(or have parents permission to buy from us) and accept these terms conditions which shall apply to all orders placed or to be placed at dummymymount.com for the sale and supply of any products.\r\n"
+            android:text="@{obj.description}"
+            android:textColor="@color/home_dark_grey"
+            android:textSize="@dimen/textsize_16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scroll_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--<TextView
+                    android:id="@+id/tv_storage_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:maxHeight="200dp"
+                    tools:text="This page contains the terms conditions.Please read these terms conditions carefully before ordering any products from us.You should understand that by ordering any of our products,you agree to be bound by these terms conditions.By placing an order at dymmymount.com,you warrant that you are at least 18 years old\r\n(or have parents permission to buy from us) and accept these terms conditions which shall apply to all orders placed or to be placed at dummymymount.com for the sale and supply of any products.\r\n"
+                    android:text="@{obj.description}"
+                    android:textColor="@color/home_dark_grey"
+                    android:textSize="@dimen/textsize_16sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />-->
+
+
+                <TextView
+                    android:id="@+id/txt_lease_information"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_24sdp"
+                    android:layout_marginLeft="@dimen/_24sdp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/lease_information"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/textsize_18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_lease_date_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/date_of_lease"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/textsize_16sp"
+                    app:layout_constraintStart_toStartOf="@+id/txt_lease_information"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lease_information" />
+
+                <TextView
+                    android:id="@+id/txt_lease_date_value"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:text="March 28,2017"
+                    android:text="@{obj.dateOfLease}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_lease_information"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lease_date_title" />
+
+                <TextView
+                    android:id="@+id/txt_administration_fee_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/packing_cr_no_left"
+                    android:layout_marginStart="@dimen/packing_cr_no_left"
+                    android:text="@string/administration_fee"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/textsize_16sp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_lease_date_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_lease_date_title" />
+
+                <TextView
+                    android:id="@+id/txt_administration_fee_value"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    tools:text="$20"
+                    android:text="@{obj.administrationFees}"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_lease_date_value"
+                    app:layout_constraintStart_toStartOf="@+id/txt_administration_fee_title"
+                    app:layout_constraintTop_toTopOf="@+id/txt_lease_date_value" />
+
+                <TextView
+                    android:id="@+id/txt_unit_size_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/packing_contract_no_left"
+                    android:layout_marginStart="@dimen/packing_contract_no_left"
+                    android:text="Approx, Unit Size"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/textsize_16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_administration_fee_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_administration_fee_title" />
+
+                <TextView
+                    android:id="@+id/txt_unit_size_value"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="250 Cuft"
+                    android:text="@{obj.estimateVolume}"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_administration_fee_value"
+                    app:layout_constraintStart_toStartOf="@+id/txt_unit_size_title"
+                    app:layout_constraintTop_toTopOf="@+id/txt_administration_fee_value" />
+
+
+                <TextView
+                    android:id="@+id/txt_unit_weight_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/packing_cr_no_left"
+                    android:layout_marginStart="@dimen/packing_cr_no_left"
+
+                    android:text="Approx, Unit Weight"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/textsize_16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_lease_date_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_lease_date_title"/>
+                    <!--app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lease_date_value" />-->
+                <!--android:layout_marginTop="@dimen/_16sdp"-->
+
+
+                <TextView
+                    android:id="@+id/txt_unit_weight_value"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    tools:text="250 kg"
+                    android:text="@{obj.estimateWeight}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_unit_weight_title"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_unit_weight_title" />
+
+                <!--<TextView
+                    android:id="@+id/txt_rental_rate_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/rental_rate_per_month"
+                    android:textColor="@color/header_charges_grey"
+                    android:textSize="@dimen/textsize_16sp"
+                    app:layout_constraintStart_toStartOf="@+id/txt_administration_fee_title"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lease_date_value" />
+
+                <TextView
+                    android:id="@+id/txt_rental_rate_value"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="$150"
+                    app:layout_constraintStart_toStartOf="@+id/txt_rental_rate_title"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_rental_rate_title" />-->
+
+                <LinearLayout
+                    android:id="@+id/linrl_rental_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_24sdp"
+                    android:layout_marginLeft="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_24sdp"
+                    android:layout_marginRight="@dimen/_24sdp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_unit_weight_value">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_rental_rate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/_25sdp"
+                        android:visibility="gone"
+                        android:theme="@style/Storage_Agreement_Style"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_unit_weight_value">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtxt_rental_rate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:text="@={obj.rentalRatePerMonth}"
+                            android:hint="@string/rental_rate_per_month" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:theme="@style/Storage_Agreement_Style"
+                        app:layout_constraintEnd_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_unit_weight_value">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtxt_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:text="@={obj.occupantsName}"
+                            android:hint="@string/occupant_s_name" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_head_storage_information"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:text="@string/storage_information"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/textsize_18sp"
+                    visibleGone="@{obj.storageShowFlag == 1}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt_lease_information"
+                    app:layout_constraintTop_toBottomOf="@+id/linrl_rental_rate" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_storage_charges"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    visibleGone="@{obj.storageShowFlag == 1}"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/txt_head_storage_information"
+                    app:layout_constraintTop_toBottomOf="@id/txt_head_storage_information">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txt_storage_charges"
+                        android:text="@string/storage_charges"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textsize_18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--<TextView
+                        android:id="@+id/txt_storage_charges_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(obj.jobConfirmationDetailsPojo.storageCharges) + ""}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/_24sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_storage_charges"
+                        app:layout_constraintEnd_toStartOf="@+id/img_storage_charges"
+                        app:layout_constraintTop_toTopOf="@+id/txt_storage_charges"
+                        tools:text="@string/packingcharges_value" />-->
+
+                    <TextView
+                        android:id="@+id/txt_storage_charges_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_24sdp"
+                        android:textSize="@dimen/textsize_18sp"
+                        android:text='@{`$`+Util.getGeneralFormattedDecimalString(storageChargeModel.storageCharges)}'
+                        android:textColor="@color/home_text_black"
+                        android:visibility="@{(storageChargeModel.storageChargeDiscountValue == 0.00) ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        tools:text="@string/movecharges_value" />
+
+                    <TextView
+                        android:id="@+id/txt_storage_charges_value1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_24sdp"
+                        android:text='@{`$`+Util.getGeneralFormattedDecimalString(storageChargeModel.storageCharges)}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:visibility="@{(storageChargeModel.storageChargeDiscountValue == 0.00) ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_storage_charges"
+                        tools:text="@string/movecharges_value"
+                        tools:visibility="gone"
+                        app:layout_constraintTop_toTopOf="@+id/txt_storage_charges" />
+
+                    <TextView
+                        android:id="@+id/txt_storage_charges_discount_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_24sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="@{storageChargeModel.displayDiscountString(storageChargeModel.storageChargeDiscountValue,storageChargeModel.storageChargeDiscountType)}"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_16sp"
+
+                        android:visibility="@{(storageChargeModel.storageChargeDiscountValue == 0.00) ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_storage_charges_value"
+                        tools:text="@string/movecharges_value" />
+
+                    <!-- <androidx.appcompat.widget.AppCompatImageView
+                         android:id="@+id/img_storage_charges"
+                         android:layout_width="@dimen/_30sdp"
+                         android:layout_height="@dimen/_30sdp"
+                         android:layout_marginEnd="24dp"
+                         android:tint="@color/colorPrimary"
+                         app:layout_constraintBottom_toBottomOf="@+id/txt_storage_charges"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintTop_toTopOf="@+id/txt_storage_charges"
+                         app:srcCompat="@drawable/ic_chevron_right"
+                         tools:layout_editor_absoluteY="636dp" />-->
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/divider_storage_one"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    visibleGone="@{obj.storageShowFlag == 1}"
+                    android:layout_marginEnd="@dimen/_24sdp"
+                    android:background="@color/view_color"
+                    app:layout_constraintEnd_toEndOf="@id/constraint_storage_charges"
+                    app:layout_constraintStart_toStartOf="@id/constraint_storage_charges"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_storage_charges" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_storage_recurring_charges"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    visibleGone="@{obj.storageShowFlag == 1}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/divider_storage_one"
+                    app:layout_constraintTop_toBottomOf="@id/divider_storage_one">
+
+
+                    <TextView
+                        android:id="@+id/txt_storage_recurring_charges"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textsize_18sp"
+                        android:text="@string/storage_recurring_charges"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--<TextView
+                        android:id="@+id/txt_storage_recurring_charges_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(obj.jobConfirmationDetailsPojo.storageChargesRecurring) + ""}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/_24sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_storage_recurring_charges"
+                        app:layout_constraintEnd_toStartOf="@+id/img_storage_recurring_charges"
+                        app:layout_constraintTop_toTopOf="@+id/txt_storage_recurring_charges"
+                        tools:text="@string/packingcharges_value" />-->
+
+                    <TextView
+                        android:id="@+id/txt_storage_recurring_charges_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_24sdp"
+                        android:text='@{`$`+Util.getGeneralFormattedDecimalString(storageChargeModel.storageChargesRecurring)}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_18sp"
+                        android:visibility="@{(storageChargeModel.storageRecurringChargeDiscountValue == 0.00) ? View.GONE : View.VISIBLE}"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+                    <!--app:layout_constraintBottom_toBottomOf="@+id/txt_movecharges"-->
+
+                    <TextView
+                        android:id="@+id/txt_storage_recurring_charges_value1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_24sdp"
+                        android:text='@{`$`+Util.getGeneralFormattedDecimalString(storageChargeModel.storageChargesRecurring)}'
+                        android:textColor="@color/home_text_black"
+                        tools:visibility="gone"
+                        android:textSize="@dimen/textsize_18sp"
+                        android:visibility="@{(storageChargeModel.storageRecurringChargeDiscountValue== 0.00) ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_storage_recurring_charges"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_storage_recurring_charges"
+                        tools:text="@string/movecharges_value" />
+
+                    <TextView
+                        android:id="@+id/txt_storage_recurring_charges_discount_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_24sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="@{storageChargeModel.displayDiscountString(storageChargeModel.storageRecurringChargeDiscountValue,storageChargeModel.storageRecurringChargeDiscountType)}"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:visibility="@{(storageChargeModel.storageRecurringChargeDiscountValue == 0.00) ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_storage_recurring_charges_value"
+                        tools:text="@string/movecharges_value" />
+
+                    <!--  <androidx.appcompat.widget.AppCompatImageView
+                          android:id="@+id/img_storage_recurring_charges"
+                          android:layout_width="@dimen/_30sdp"
+                          android:layout_height="@dimen/_30sdp"
+                          android:layout_marginEnd="24dp"
+                          android:tint="@color/colorPrimary"
+                          app:layout_constraintBottom_toBottomOf="@+id/txt_storage_recurring_charges"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          app:layout_constraintTop_toTopOf="@+id/txt_storage_recurring_charges"
+                          app:srcCompat="@drawable/ic_chevron_right"
+                          tools:layout_editor_absoluteY="636dp" />-->
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/textView156"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/please_complete_contact_information"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/textsize_18sp"
+                    app:layout_constraintStart_toStartOf="@+id/txt_lease_information"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_storage_recurring_charges" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtinput_phone"
+                    android:layout_width="@dimen/AgentName_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:textColor="@color/header_charges_grey"
+                    android:theme="@style/Storage_Agreement_Style"
+                    app:layout_constraintStart_toStartOf="@+id/txt_lease_information"
+                    app:layout_constraintTop_toBottomOf="@+id/textView156">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtxt_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:maxLength="14"
+                        android:text="@={obj.phoneNumber}"
+                        android:hint="@string/phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtinput_address"
+                    android:layout_width="@dimen/Layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:theme="@style/Storage_Agreement_Style"
+                    app:layout_constraintStart_toStartOf="@+id/txtinput_phone"
+                    app:layout_constraintTop_toBottomOf="@+id/txtinput_phone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtxt_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={obj.address}"
+                        android:hint="@string/address" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_zip"
+                    android:layout_width="@dimen/Layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/add_storage_margin_right"
+                    android:layout_marginRight="@dimen/add_storage_margin_right"
+                    android:theme="@style/Storage_Agreement_Style"
+                    app:layout_constraintBottom_toBottomOf="@id/txtinput_address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtinput_phone"
+                    app:layout_constraintTop_toTopOf="@id/txtinput_address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtxt_zip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="@={obj.zipCode}"
+                        android:hint="ZIP" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtinput_city"
+                    android:layout_width="@dimen/Layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:theme="@style/Storage_Agreement_Style"
+                    app:layout_constraintStart_toStartOf="@id/txtinput_phone"
+                    app:layout_constraintTop_toBottomOf="@id/txtinput_address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtxt_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={obj.city}"
+                        android:hint="@string/city" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_state"
+                    android:layout_width="@dimen/Layout_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/add_storage_margin_right"
+                    android:layout_marginRight="@dimen/add_storage_margin_right"
+                    android:theme="@style/Storage_Agreement_Style"
+                    app:layout_constraintBottom_toBottomOf="@id/txtinput_city"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/txtinput_city"
+                    tools:layout_editor_absoluteX="282dp"
+                    tools:layout_editor_absoluteY="553dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtxt_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={obj.state}"
+                        android:hint="@string/state" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/txt_signature"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/signature"
+                    app:layout_constraintStart_toStartOf="@+id/txtinput_city"
+                    app:layout_constraintTop_toBottomOf="@+id/txtinput_city" />
+                <!--app:layout_constraintTop_toBottomOf="@+id/scrl_valuation_items" />-->
+
+                <TextView
+                    android:id="@+id/txt_clear"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/clear"
+                    android:padding="@dimen/_3sdp"
+                    android:layout_marginRight="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_24sdp"
+                    app:elevation="@dimen/_1sdp"
+                    android:textColor="@color/colorAccent"
+                    android:background="@color/colorPrimary"
+                    android:onClick="clearSignature"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_state" />
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_180sdp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:background="@drawable/edittext_border"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_signature"
+                    app:penColor="@android:color/black" />
+
+
+
+
+                <!--<Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="560dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/home_light_grey"
+                    android:onClick="openAgreementSignatureDialog"
+                    android:padding="10dp"
+                    android:text="@string/customer_signature"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txtinput_phone"
+                    app:layout_constraintTop_toBottomOf="@+id/signature_pad" />-->
+
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="560dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@{!isBolStarted ? @color/colorPrimary : @color/text_login_gray}"
+                    android:clickable="@{!isBolStarted}"
+                    android:onClick="submitAgreement"
+                    android:padding="10dp"
+                    android:text="@string/confirm"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txtinput_phone"
+                    app:layout_constraintTop_toBottomOf="@+id/signature_pad" />
+                
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,2 @@
+include ':emv-anet-sdk'
+include ':app'

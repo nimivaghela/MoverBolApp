@@ -1,0 +1,14 @@
+<vector android:height="24dp" android:viewportHeight="100.0"
+    android:viewportWidth="100.0" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M80.36,9.2v5.75h-10.5v-5.75h-37.25v5.75h-10.5v-5.75H9.86v83.25h80V9.2H80.36zM84.36,87.45h-69v-57.5h69V87.45z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M37.24,41.36h10.25v10.25h-10.25z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M52.24,41.36h10.25v10.25h-10.25z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M67.24,41.36h10.25v10.25h-10.25z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M37.24,56.36h10.25v10.25h-10.25z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M52.24,56.36h10.25v10.25h-10.25z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M67.24,56.36h10.25v10.25h-10.25z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M37.24,71.36h10.25v10.25h-10.25z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M22.24,56.36h10.25v10.25h-10.25z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M22.24,71.36h10.25v10.25h-10.25z"/>
+    <path android:fillColor="@color/colorAccent" android:fillType="evenOdd" android:pathData="M52.24,71.36h10.25v10.25h-10.25z"/>
+</vector>

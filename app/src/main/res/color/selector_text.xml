@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+     <!--This is used when the Navigation Item is checked-->
+    <item android:color="@color/colorPrimary" android:state_checked="true" />
+     <!--This is the default text color
+     "@color/imgGrey"-->
+    <item android:color="@color/home_light_grey" />
+
+
+    <!--<item android:state_pressed="true"
+        android:color="#ffff0000"/> &lt;!&ndash; pressed &ndash;&gt;
+    <item android:state_focused="true"
+        android:color="#ff0000ff"/> &lt;!&ndash; focused &ndash;&gt;
+    <item android:color="#ff000000"/> &lt;!&ndash; default &ndash;&gt;-->
+</selector>

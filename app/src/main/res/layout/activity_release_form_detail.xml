@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ReleaseFormDetailsBinding">
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.releaseForm.ReleaseFormMetadataPojo" />
+
+        <variable
+            name="bolStarted"
+            type="boolean" />
+
+        <variable
+            name="adapter"
+            type="com.moverbol.adapters.AddressSelectionListAdapter" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <TextView
+            android:id="@+id/txt_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:text="@{obj.label}"
+            android:textColor="@color/home_text_black"
+            android:textSize="@dimen/textsize_22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="RIGGING, HOISTING AND LOWERING SERVICE" />
+
+        <EditText
+            android:id="@+id/txt_large_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:fadeScrollbars="false"
+            android:focusable="false"
+            android:lineSpacingExtra="@dimen/_2sdp"
+            android:maxHeight="200dp"
+            android:paddingStart="@dimen/_24sdp"
+            android:paddingEnd="@dimen/_24sdp"
+            android:scrollbars="vertical"
+            android:text="@{obj.largeDescription}"
+            android:textColor="@color/home_light_grey"
+            android:textSize="@dimen/textsize_16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_label"
+            tools:text="@string/release_form_dummy_text" />
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:background="@color/divider_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_large_description"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".views.activities.moveprocess.ReleaseFormDetailActivity">
+
+                <!--   <androidx.appcompat.widget.AppCompatEditText
+                       android:id="@+id/edtxt_small_description"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="24dp"
+                       android:layout_marginTop="16dp"
+                       android:layout_marginEnd="@dimen/_24sdp"
+                       android:focusable="true"
+                       android:hint="@string/description"
+                       android:text="@={obj.description}"
+                       android:textColor="@color/home_text_black"
+                       android:textCursorDrawable="@null"
+                       android:textSize="@dimen/textsize_16sp"
+                       tools:visibility="visible"
+                       android:visibility="@{!obj.selected &amp;&amp; !bolStarted ? View.VISIBLE : View.INVISIBLE}"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintHorizontal_bias="0.0"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       tools:text="@string/description" />
+
+
+                   <androidx.appcompat.widget.AppCompatEditText
+                       android:id="@+id/edtxt_small_description_not_edit"
+                       android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="@dimen/_24sdp"
+                       android:layout_marginTop="@dimen/_16sdp"
+                       android:layout_marginEnd="@dimen/_24sdp"
+                       android:hint="@string/description"
+                       android:text="@={obj.description}"
+                       android:textColor="@color/home_text_black"
+                       android:textCursorDrawable="@null"
+                       android:textSize="@dimen/textsize_16sp"
+                       android:focusable="false"
+                       tools:visibility="visible"
+                       android:visibility="@{!obj.selected &amp;&amp; !bolStarted ? View.INVISIBLE : View.VISIBLE}"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintHorizontal_bias="0.0"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       tools:text="@string/description" />-->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInput_exception"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_24sdp"
+                    app:hintTextAppearance="@style/ReleaseFormHintTextAppearance"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_exception_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="@{!bolStarted}"
+                        android:hint="@string/exceptions_description"
+                        android:textSize="@dimen/textsize_20sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtxt_adddress"
+                    style="@style/ReleaseFormEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:focusable="false"
+                    android:hint="@string/select_address"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toEndOf="@+id/img_location"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInput_exception" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="@+id/txtInput_exception"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInput_exception"
+                    app:srcCompat="@drawable/ic_place" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/_24sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInput_exception"
+                    bind:addressSelectionListAdapter="@{adapter}"
+                    tools:listitem="@layout/layout_select_addresses_items" />
+
+
+                <TextView
+                    android:id="@+id/txt_signature"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_24sdp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/signature"
+                    android:visibility="@{!obj.selected  &amp;&amp; !bolStarted ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                <!--app:layout_constraintTop_toBottomOf="@+id/scrl_valuation_items" />-->
+
+                <TextView
+                    android:id="@+id/txt_clear"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_24sdp"
+                    android:background="@color/colorPrimary"
+                    android:padding="@dimen/_3sdp"
+                    android:text="@string/clear"
+                    android:textColor="@color/colorAccent"
+                    android:visibility="@{!obj.selected  &amp;&amp; !bolStarted ? View.VISIBLE : View.GONE}"
+                    app:elevation="@dimen/_1sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_signature"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_signature" />
+
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_180sdp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@drawable/edittext_border"
+                    android:visibility="@{!obj.selected  &amp;&amp; !bolStarted ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_signature"
+                    app:penColor="@android:color/black" />
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginStart="@dimen/_24sdp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    android:text="@string/confirm"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp"
+                    android:visibility="@{!obj.selected  &amp;&amp; !bolStarted ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/signature_pad" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:orientation="horizontal"
+                    android:visibility="@{obj.selected &amp;&amp; !bolStarted ? View.VISIBLE : View.GONE}"
+                    android:weightSum="2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+                    tools:visibility="gone">
+
+
+                    <Button
+                        android:id="@+id/btn_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_marginStart="@dimen/_24sdp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimary"
+                        android:padding="10dp"
+                        android:text="@string/update"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/textsize_20sp" />
+
+                    <Button
+                        android:id="@+id/btn_cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorAccent"
+                        android:padding="10dp"
+                        android:text="@string/cancel"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textsize_20sp" />
+
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,67 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="WeekCalendarBinding" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.alamkanak.weekview.WeekView
+            android:id="@+id/weekView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:columnGap="2dp"
+            app:dayBackgroundColor="#05000000"
+            app:dayNameLength="length_long"
+            app:eventTextColor="#FFF"
+            app:headerColumnPadding="8dp"
+            app:headerColumnTextColor="#8f000000"
+            app:headerRowBackgroundColor="#ffefefef"
+            app:headerRowPadding="12dp"
+            app:hourHeight="80dp"
+            app:noOfVisibleDays="3"
+            app:textSize="14sp"
+            app:todayBackgroundColor="#1848adff"
+            app:allDayEventHeight="@dimen/_40sdp" />
+
+
+        <!--
+
+   allDayEventHeight
+   columnGap
+   dayBackgroundColor
+   dayNameLength
+   eventMarginVertical
+   eventPadding
+   eventTextColor
+   eventTextSize
+   firstDayOfWeek
+   headerColumnBackground
+   headerColumnPadding
+   headerColumnTextColor
+   headerRowBackgroundColor
+   headerRowPadding
+   hourHeight
+   hourSeparatorColor
+   hourSeparatorHeight
+   noOfVisibleDays
+   overlappingEventGap
+   textSize
+   todayBackgroundColor
+   todayHeaderTextColor
+   showDistinctPastFutureColor
+   futureBackgroundColor
+   pastBackgroundColor
+   showDistinctWeekendColor
+   futureWeekendBackgroundColor
+   pastWeekendBackgroundColor
+   showNowLine
+   nowLineColor
+   nowLineThickness
+   scrollDuration
+
+   -->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

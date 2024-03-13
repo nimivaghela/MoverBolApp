@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_add_new_item"
+        android:icon="@drawable/ic_add"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="10"
+        android:title="@string/add_new_item" />
+
+    <item android:id="@+id/action_edit_items"
+        android:icon="@drawable/ic_create_new"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="1"
+        android:title="@string/edit_items" />
+
+    <item android:id="@+id/action_cancel_edit"
+        android:title="@string/cancel"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="2"
+        android:icon="@drawable/close_circle"/>
+
+    <!--<item android:id="@+id/action_submit_all"
+        android:title="@string/submit"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_check_white"/>-->
+
+</menu>

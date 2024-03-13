@@ -1,0 +1,1238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="WalkThroughActivityBinding">
+
+        <variable
+            name="obj"
+            type="com.moverbol.model.confirmationPage.JobConfirmationDetailsPojo" />
+
+        <variable
+            name="currencySymbol"
+            type="String" />
+
+        <import type="android.view.View" />
+
+        <import type="com.moverbol.constants.Constants" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF"
+                android:paddingBottom="@dimen/_50sdp">
+
+                <View
+                    android:id="@+id/surfaceView"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:background="#edf1f2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_move_info"
+                    style="@style/CustomerInfoHeading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/move_info"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/surfaceView" />
+
+                <TextView
+                    android:id="@+id/txt_pickup"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/pickup_location"
+                    app:layout_constraintStart_toStartOf="@+id/txt_move_info"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_move_info" />
+
+                <TextView
+                    android:id="@+id/pickup_dropdown"
+                    style="@style/HomeTextWhite"
+                    android:layout_marginStart="8dp"
+                    android:onClick="openExtraStops"
+                    android:text='@{" +" +  obj.picKupExtraStopListSize}'
+                    android:visibility="@{(obj.picKupExtraStopListSize &gt; 0) ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toEndOf="@+id/txt_pickup"
+                    app:layout_constraintTop_toTopOf="@+id/txt_pickup"
+                    tools:layout_editor_absoluteY="141dp"
+                    tools:text=" +3" />
+
+                <!--<TextView
+                    android:id="@+id/tv_pickup_extra_stops_count"
+                    style="@style/HomeTextWhite"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:onClick="@{onClick}"
+                    android:text='@{" +" + obj.originAdditional}'
+                    android:visibility='@{obj.originAdditional.equals("0") ? View.GONE : View.VISIBLE}'
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_pick_up"
+                    app:layout_constraintStart_toEndOf="@+id/tv_pick_up"
+                    app:layout_constraintTop_toTopOf="@+id/tv_pick_up"
+                    tools:layout_editor_absoluteY="211dp"
+                    tools:text=" +3" />-->
+
+                <TextView
+                    android:id="@+id/txt_drop"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin"
+                    android:text="@string/delivery_location"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_pickup"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_pickup" />
+
+                <TextView
+                    android:id="@+id/drop_dropdown"
+                    style="@style/HomeTextWhite"
+                    android:layout_marginStart="8dp"
+                    android:onClick="openExtraStops"
+                    android:text='@{" +" + obj.deliveryExtraStopListSize}'
+                    android:visibility="@{(obj.deliveryExtraStopListSize &gt; 0) ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toEndOf="@+id/txt_drop"
+                    app:layout_constraintTop_toTopOf="@+id/txt_drop"
+                    tools:layout_editor_absoluteY="141dp"
+                    tools:text=" +3" />
+
+                <TextView
+                    android:id="@+id/txt_pickup_address"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="@dimen/_240sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{obj.fullOriginalAddressString}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_drop"
+                    tools:text="@string/pickup_address_detail" />
+                <!--android:text='@{(obj.originalAddress ?? "") + ", " + (obj.originalCity ?? "" )+ ", " + (obj.originalStateName ?? "" ) + ", " + (obj.originalCountryName ?? "") + ", " + (obj.originalZipCode ?? "")}'-->
+
+                <TextView
+                    android:id="@+id/txt_drop_address"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="@dimen/_250sdp"
+                    android:layout_height="wrap_content"
+                    android:text="@{obj.fullDestinationAddressString}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_drop"
+                    app:layout_constraintTop_toTopOf="@+id/txt_pickup_address"
+                    tools:text="@string/drop_address" />
+
+                <!--android:text='@{(obj.destinationAddress ?? "") + ", " + (obj.destinationCity ?? "") + ", " + (obj.destinationStateName ?? "") + ", " + (obj.destinationCountryName ?? "") + ", " + (obj.destinationZipCode ?? "")}'-->
+
+                <TextView
+                    android:id="@+id/txt_move_size"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/move_size"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_pickup_address" />
+
+                <TextView
+                    android:id="@+id/txt_crewsize"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/crew_size"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_move_size"
+                    app:layout_constraintStart_toStartOf="@+id/txt_drop"
+                    app:layout_constraintTop_toTopOf="@+id/txt_move_size" />
+
+                <TextView
+                    android:id="@+id/txt_movesize_value"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text='@{(obj.bedroom ?? "0") + " Bedroom / " + (obj.squareFeet ?? "0")+" SF"}'
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_move_size"
+                    tools:text="@string/movesize_value" />
+
+                <TextView
+                    android:id="@+id/txt_crewsize_value"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text='@{(obj.numberOfMen ?? "0") + " Men / " + (obj.numberOfTrucks ?? "0") + " Trucks"}'
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_movesize_value"
+                    app:layout_constraintStart_toStartOf="@+id/txt_drop"
+                    app:layout_constraintTop_toTopOf="@+id/txt_movesize_value"
+                    tools:text="@string/crewsize_value" />
+
+                <TextView
+                    android:id="@+id/txt_rate"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/rate"
+                    visibleInvisible="@{obj.hourlyRateFlag == 1}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_drop"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_movesize_value" />
+
+                <TextView
+                    android:id="@+id/txt_head_total_charges"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/total_est_charges"
+                    visibleInvisible="@{obj.estimateShowFlag == 1}"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_estimate_hours"
+                    app:layout_constraintStart_toStartOf="@+id/txt_drop"
+                    app:layout_constraintTop_toTopOf="@+id/txt_estimate_hours"
+                    tools:layout_editor_absoluteY="365dp" />
+
+                <TextView
+                    android:id="@+id/txt_ratevalue"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{obj.hourlyRate}"
+                    visibleInvisible="@{obj.hourlyRateFlag == 1}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_rate"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_rate"
+                    tools:text="@string/rate_value" />
+
+                <TextView
+                    android:id="@+id/txt_total_charges"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    visibleInvisible="@{obj.estimateShowFlag == 1}"
+                    android:text="@{currencySymbol+obj.totalAmount}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_head_total_charges"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_head_total_charges"
+                    tools:text="$100.00" />
+
+                <TextView
+                    android:id="@+id/txt_head_min_hours"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/min_hours"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_estimatevol_value"
+                    tools:layout_editor_absoluteY="365dp" />
+
+                <TextView
+                    android:id="@+id/txt_head_min_charges"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/min_charges"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_head_min_hours"
+                    app:layout_constraintStart_toStartOf="@+id/txt_drop"
+                    app:layout_constraintTop_toTopOf="@+id/txt_head_min_hours"
+                    tools:layout_editor_absoluteY="365dp" />
+
+                <TextView
+                    android:id="@+id/txt_min_charges"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{currencySymbol+obj.minCharges}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_head_min_charges"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_head_min_charges"
+                    tools:text="$100.00" />
+
+                <TextView
+                    android:id="@+id/txt_min_hours"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{obj.minHours}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_head_min_hours"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_head_min_hours"
+                    tools:text="1.5" />
+
+                <TextView
+                    android:id="@+id/txt_estimate_hours"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/estimate_hours"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_min_hours"
+                    tools:layout_editor_absoluteY="365dp" />
+
+                <TextView
+                    android:id="@+id/txt_estimate_vol"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:text="@string/est_vol_wt"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_crewsize_value" />
+
+                <TextView
+                    android:id="@+id/txt_estimatehour_value"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{obj.estimatedHours}"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_estimate_hours"
+                    tools:text="@string/est_hour_value" />
+
+                <TextView
+                    android:id="@+id/txt_estimatevol_value"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:text='@{(obj.estimatVolumeString ?? "") + "\n" + (obj.estimatweightString?? "" )}'
+                    app:layout_constraintStart_toStartOf="@+id/txt_estimate_vol"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_estimate_vol"
+                    tools:layout_editor_absoluteY="386dp"
+                    tools:text="@string/est_vol_wt_value" />
+                <!--  <ScrollView
+                      android:id="@+id/scrollView"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      android:layout_marginEnd="32dp"
+                      android:layout_marginRight="32dp"
+                      android:layout_marginTop="16dp"
+                      app:layout_constraintStart_toStartOf="@+id/textView2"
+                      app:layout_constraintTop_toBottomOf="@+id/textView16"
+                      >-->
+
+                <TextView
+                    android:id="@+id/text"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="32dp"
+                    android:lineSpacingExtra="5dp"
+                    android:maxLines="4"
+                    android:scrollbars="vertical"
+                    android:text="@{obj.customerComments}"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/txt_pickup"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_estimatehour_value"
+                    tools:text="@string/dummytext" />
+
+                <!--style="@style/HomeTextLightGrey"-->
+
+
+                <View
+                    android:id="@+id/view_estimate_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/divider_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text"
+                    app:layout_goneMarginTop="@dimen/_32sdp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_estimate"
+                    visibleGone="@{obj.ofsMoveTypeFlag == 1}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="openEstimateActivity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_estimate_top">
+
+                    <TextView
+                        android:id="@+id/txt_estimate"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/estimate_order_for_service"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_completed_confi"
+                        style="@style/MoveProcessCompleted"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_estimate"
+                        app:layout_constraintEnd_toStartOf="@+id/img_estimate"
+                        app:layout_constraintTop_toTopOf="@+id/txt_estimate" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_estimate"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_estimate"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_estimate"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <View
+                    android:id="@+id/view_articles_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/divider_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_estimate" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_list_of_articles"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="openArticlesList"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_articles_top">
+
+                    <TextView
+                        android:id="@+id/txt_articles"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/list_of_articles"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_completed_articles"
+                        style="@style/MoveProcessCompleted"
+                        android:visibility="@{obj.articlesFlag ? View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_articles"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView"
+                        app:layout_constraintTop_toTopOf="@+id/txt_articles"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_articles"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_articles"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_photos_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/divider_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_list_of_articles" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_photos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="openPhotos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_photos_top">
+
+                    <TextView
+                        android:id="@+id/txt_photos"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/photos"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_completed_photos"
+                        style="@style/MoveProcessCompleted"
+                        android:text="@{obj.photoUploadStatus()}"
+                        android:visibility="@{obj.photoFlag ? View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_photos"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView_photos"
+                        app:layout_constraintTop_toTopOf="@+id/txt_photos"
+                        app:layout_constraintVertical_bias="0.5"
+                        tools:text="2 Photos Uploaded" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView_photos"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_photos"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_photos"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_valuation_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/divider_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_photos" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_valuation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="openValuationActivity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_valuation_top">
+
+                    <TextView
+                        android:id="@+id/txt_valuation"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/valuation"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_completed_valuation"
+                        style="@style/MoveProcessCompleted"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_valuation"
+                        app:layout_constraintEnd_toStartOf="@+id/img_article"
+                        app:layout_constraintTop_toTopOf="@+id/txt_valuation"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_article"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_valuation"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_valuation"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_release_form_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/divider_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_valuation" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_release_form"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="openReleaseFormActivity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_release_form_top">
+
+                    <TextView
+                        android:id="@+id/txt_release_form"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/release_form"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_completed_release_form"
+                        style="@style/MoveProcessCompleted"
+                        android:text="@{obj.formsCompletedStatus()}"
+                        android:visibility="@{obj.releaseFormFlag ? View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_release_form"
+                        app:layout_constraintEnd_toStartOf="@+id/img_release_form"
+                        app:layout_constraintTop_toTopOf="@+id/txt_release_form"
+                        app:layout_constraintVertical_bias="0.5" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_release_form"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_release_form"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_release_form"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_rental_agreement_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/divider_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_release_form" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_rental_agreement"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="openStorageAgreementActivity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view_rental_agreement_top">
+
+                    <TextView
+                        android:id="@+id/txt_rental_agreement"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/storage_agreement"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/txt_completed_rental_agreement"
+                        style="@style/MoveProcessCompleted"
+                        android:visibility="@{obj.storageFlag ? View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_rental_agreement"
+                        app:layout_constraintEnd_toStartOf="@+id/img_rental_agreement"
+                        app:layout_constraintTop_toTopOf="@+id/txt_rental_agreement"
+                        app:layout_constraintVertical_bias="0.5" />
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_rental_agreement"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_rental_agreement"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_rental_agreement"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view_rental_agreement_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/divider_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_rental_agreement" />
+
+                <!--<android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_move_charges"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:clickable="true"
+                    android:onClick="openMoveChargesActivity"
+                    app:layout_constraintStart_toStartOf="@id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/view_articles_bottom">
+
+                    <TextView
+                        android:id="@+id/txt_movecharges"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/move_charges"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_movecharges_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text='@{currencySymbol + obj.moveCharges + ""}'
+                        tools:text="@string/movecharges_value"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/_24sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_movecharges"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView1"
+                        app:layout_constraintTop_toTopOf="@+id/txt_movecharges"
+                        android:layout_marginRight="10dp" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:visibility="@{obj.moveCharges==0.00 ? View.INVISIBLE : View.VISIBLE}"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_movecharges_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_movecharges_value"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </android.support.constraint.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/view_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_move_charges" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_packing_charges"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:clickable="true"
+                    android:onClick="openPackingChargesActivity"
+                    app:layout_constraintStart_toStartOf="@id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/view2">
+
+
+                    <TextView
+                        android:id="@+id/txt_packingcharges"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/packing_material_charges"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_packingchrges_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text='@{currencySymbol + obj.packingMaterialCharges + ""}'
+                        tools:text="@string/packingcharges_value"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/_24sdp"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_packingcharges"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                        app:layout_constraintTop_toTopOf="@+id/txt_packingcharges" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="@{obj.packingMaterialCharges==0.00 ? View.INVISIBLE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_packingchrges_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_packingchrges_value"
+                        app:srcCompat="@drawable/ic_chevron_right"
+                        tools:layout_editor_absoluteY="636dp" />
+                </android.support.constraint.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/view_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_packing_charges" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_storage_charges"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:clickable="true"
+                    android:onClick="openStorageChargesList"
+                    app:layout_constraintStart_toStartOf="@id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/view3">
+
+                    <TextView
+                        android:id="@+id/txt_storagecharges"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/storage_charges"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_storagecharges_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text='@{currencySymbol + obj.storageCharges + ""}'
+                        tools:text="@string/storagecharges_value"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/_24sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_storagecharges"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                        app:layout_constraintTop_toTopOf="@+id/txt_storagecharges"
+                        app:layout_constraintVertical_bias="1.0"
+                        android:layout_marginRight="10dp" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:visibility="@{obj.storageCharges==0.00 ? View.INVISIBLE : View.VISIBLE}"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_storagecharges_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_storagecharges_value"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </android.support.constraint.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/view_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_storage_charges" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_additional_charges"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:clickable="true"
+                    android:onClick="openAdditionalChargesActivity"
+                    app:layout_constraintStart_toStartOf="@id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/view4">
+
+                    <TextView
+                        android:id="@+id/txt_additionalcharges"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/additional_charges"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_additionalcharges_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text='@{currencySymbol + obj.additionalCharges + ""}'
+                        tools:text="@string/additionalcharges_value"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/_24sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_additionalcharges"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="@+id/txt_additionalcharges"
+                        app:layout_constraintVertical_bias="0.0"
+                        android:layout_marginRight="10dp" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="@{obj.additionalCharges==0.00 ? View.INVISIBLE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_additionalcharges_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_additionalcharges_value"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </android.support.constraint.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/view_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_additional_charges" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/constraint_valuation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:clickable="true"
+                    android:onClick="openValuationActivity"
+                    app:layout_constraintStart_toStartOf="@id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/view5">
+
+                    <TextView
+                        android:id="@+id/txt_valuation"
+                        style="@style/ConfirmationInfoHeading"
+                        android:text="@string/valuation"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_valuation_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text='@{currencySymbol + obj.valuation + ""}'
+                        tools:text="@string/valuation_value"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/_24sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_valuation"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                        app:layout_constraintTop_toTopOf="@+id/txt_valuation"
+                        android:layout_marginRight="10dp" />
+
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="@{obj.valuation==0.00 ? View.INVISIBLE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_valuation_value"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_valuation_value"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+                </android.support.constraint.ConstraintLayout>
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/view_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_valuation" />
+
+                &lt;!&ndash;<TextView
+                    android:id="@+id/txt_fuelsurcharge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="5dp"
+                    android:visibility="invisible"
+                    android:text="@string/fuel_surcharge"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/_24sdp"
+                    app:layout_constraintStart_toStartOf="@id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+                <TextView
+                    android:id="@+id/txt_fuelsurcharge_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="65dp"
+                    android:text="@string/fuel_surcharge_value"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/_24sdp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_fuelsurcharge"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_fuelsurcharge"
+                    android:layout_marginRight="65dp" />
+
+                <View
+                    android:id="@+id/view7"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#f0f0f0"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_fuelsurcharge" />&ndash;&gt;
+
+                <TextView
+                    android:id="@+id/txt_subtotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="5dp"
+                    android:text="@string/sub_total"
+                    android:textColor="@color/home_light_grey"
+                    android:textSize="@dimen/_22sdp"
+                    app:layout_constraintStart_toStartOf="@+id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+                <TextView
+                    android:id="@+id/subtotal_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="65dp"
+                    android:text='@{obj.subTotal == null ? "" : currencySymbol + obj.subTotal}'
+                    tools:text="@string/subtotal_value"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/_24sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_subtotal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_subtotal"
+                    android:layout_marginRight="65dp" />
+
+                <TextView
+                    android:id="@+id/txt_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:padding="5dp"
+                    android:text="@string/discount"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/_22sdp"
+                    app:layout_constraintStart_toStartOf="@+id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_subtotal" />
+
+                <TextView
+                    android:id="@+id/discount_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="65dp"
+                    android:text='@{currencySymbol + obj.discount + ""}'
+                    tools:text="@string/discount_value"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/_20sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_discount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_discount"
+                    android:layout_marginRight="65dp" />
+
+                <View
+                    android:id="@+id/view8"
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#f0f0f0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_discount" />
+
+                <TextView
+                    android:id="@+id/txt_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:padding="5dp"
+                    android:text="@string/total"
+                    android:textColor="@color/home_light_grey"
+                    android:textSize="@dimen/_22sdp"
+                    app:layout_constraintStart_toStartOf="@+id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+                <TextView
+                    android:id="@+id/total_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="65dp"
+                    android:text='@{currencySymbol + obj.totalAmount + ""}'
+                    tools:text="@string/total_value"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_22sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_total"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_total"
+                    android:layout_marginRight="65dp" />
+
+                <RadioGroup
+                    android:id="@+id/radiogroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_total">
+
+                    <RadioButton
+                        android:id="@+id/radio_reschedule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:autoLink="web"
+                        android:button="@drawable/crew_checkbox"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/Policy_link" />
+
+                    <RadioButton
+                        android:id="@+id/radio_policies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:button="@drawable/crew_checkbox"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="@string/i_agree_wth_company_policies"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/_16sdp"
+                        app:layout_constraintStart_toStartOf="@+id/textView19"
+                        app:layout_constraintTop_toBottomOf="@+id/radiobutton" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/imp_notes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:autoLink="web"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/textsize_16sp"
+                    app:layout_constraintStart_toStartOf="@+id/constraint_list_of_articles"
+                    app:layout_constraintTop_toBottomOf="@+id/radiogroup"
+                    android:text="@string/Important_notes" />
+
+                <TextView
+                    android:id="@+id/deposited"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/deposited_collected"
+                    android:textColor="@color/home_dark_grey"
+                    android:textSize="@dimen/_22sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias=".5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imp_notes" />
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text='@{currencySymbol + obj.totalAmount + ""}'
+                    tools:text="@string/amount"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_22sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias=".5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/deposited" />
+
+                <TextView
+                    android:id="@+id/signature"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/signature_optional"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias=".5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+                <TextView
+                    android:id="@+id/txt_clear"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="@string/clear"
+                    android:padding="@dimen/_3sdp"
+                    app:elevation="@dimen/_1sdp"
+                    android:textColor="@color/colorAccent"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="@+id/signature_pad"
+                    app:layout_constraintBottom_toTopOf="@+id/signature_pad"
+                    app:layout_constraintTop_toBottomOf="@+id/guideline1" />
+
+
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signature_pad"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edittext_border"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias=".5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/signature"
+                    app:penColor="@android:color/black" />
+                &lt;!&ndash;android:layout_width="300dp"&ndash;&gt;
+
+                <View
+                    android:id="@+id/view10"
+                    android:layout_width="300dp"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone"
+                    android:background="#f0f0f0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias=".5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/signature_pad" />
+
+                <Button
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginLeft="@dimen/_40sdp"
+                    android:layout_marginRight="@dimen/_40sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:padding="@dimen/_21sdp"
+                    android:text="@string/submit"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/textsize_25sp"
+                    app:layout_constraintTop_toBottomOf="@+id/signature_pad" />-->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

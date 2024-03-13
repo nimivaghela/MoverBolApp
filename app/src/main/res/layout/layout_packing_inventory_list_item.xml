@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PackingListEditItemBinding">
+
+        <variable
+            name="packinglisteditPojo"
+            type="com.moverbol.model.PackingListEditPojo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/divider_grey"
+        android:onClick="openEditItemActivity">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_packinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp">
+
+                <TextView
+                    android:id="@+id/textView111"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/item_no"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView125"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="51"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView111"
+                    app:layout_constraintStart_toEndOf="@+id/textView111"
+                    app:layout_constraintTop_toTopOf="@+id/textView111" />
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="0dp"
+                    android:layout_height="90dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textView125"
+                    app:layout_constraintStart_toStartOf="@+id/textView111"
+                    app:layout_constraintTop_toBottomOf="@+id/textView111"
+                    app:srcCompat="@drawable/drawable_rectangle_green" />
+
+                <TextView
+                    android:id="@+id/textView128"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/packingedit_cr_ref_left"
+                    android:layout_marginStart="@dimen/packingedit_cr_ref_left"
+                    android:text="@string/cr_ref"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView12"
+                    app:layout_constraintTop_toTopOf="@+id/imageView12" />
+
+                <TextView
+                    android:id="@+id/textView129"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/b_w"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView128"
+                    app:layout_constraintStart_toEndOf="@+id/textView128"
+                    app:layout_constraintTop_toTopOf="@+id/textView128" />
+
+                <TextView
+                    android:id="@+id/textView130"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Sofa,3 Seat"
+                    app:layout_constraintStart_toStartOf="@+id/textView128"
+                    app:layout_constraintTop_toBottomOf="@+id/textView128" />
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/textView128"
+                    app:layout_constraintTop_toBottomOf="@+id/textView130"
+                    app:srcCompat="@drawable/test" />
+
+                <TextView
+                    android:id="@+id/textView131"
+                    style="@style/HomeTextLightGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/shipper_check_dest"
+                    android:textSize="@dimen/textsize_14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+                    app:layout_constraintStart_toEndOf="@+id/imageView13"
+                    app:layout_constraintTop_toTopOf="@+id/imageView13" />
+
+                <TextView
+                    android:id="@+id/textView132"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="@dimen/packingedit_condtion_left"
+                    android:layout_marginStart="@dimen/packingedit_condtion_left"
+                    android:text="@string/condition_at_origin"
+                    android:textColor="@color/home_light_grey"
+                    android:textSize="@dimen/textsize_14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView129"
+                    app:layout_constraintStart_toEndOf="@+id/textView129"
+                    app:layout_constraintTop_toTopOf="@+id/textView129"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView133"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Left,Top"
+                    app:layout_constraintStart_toStartOf="@+id/textView132"
+                    app:layout_constraintTop_toBottomOf="@+id/textView132" />
+
+                <TextView
+                    android:id="@+id/textView134"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/exceptions_if_any_at_destination"
+                    android:textColor="@color/home_light_grey"
+                    android:textSize="@dimen/textsize_14sp"
+                    app:layout_constraintStart_toStartOf="@+id/textView132"
+                    app:layout_constraintTop_toBottomOf="@+id/textView133" />
+
+                <TextView
+                    android:id="@+id/textView135"
+                    style="@style/JobSummaryTextBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Left,Top"
+                   app:layout_constraintTop_toBottomOf="@+id/textView134"
+                    app:layout_constraintStart_toStartOf="@+id/textView132"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_mode_edit"
+                    android:layout_marginRight="16dp" />
+
+                <ImageView
+                    android:id="@+id/imageView16"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:foregroundGravity="bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/doller"
+                    android:layout_marginRight="16dp" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/view_packing"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/divider_grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_packinglist" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

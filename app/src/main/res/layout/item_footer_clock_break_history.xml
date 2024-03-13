@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="totalCharges"
+            type="String" />
+
+        <variable
+            name="isConsolidationJob"
+            type="boolean" />
+
+        <variable
+            name="isShowCharges"
+            type="int" />
+
+        <import type="com.moverbol.util.MoversPreferences" />
+
+        <import type="com.moverbol.util.Util" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_16sdp">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_head_total_charges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/current_charges"
+            android:textAllCaps="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintEnd_toStartOf="@id/txt_total_hours"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_total_hours"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/textsize_20sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toStartOf="@id/txt_value_total_charges"
+            app:layout_constraintStart_toEndOf="@id/txt_head_total_charges"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.23"
+            tools:text="1.60" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_value_total_charges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="end"
+            android:text="@{MoversPreferences.getInstance(context).getCurrencySymbol()+totalCharges}"
+            android:textAllCaps="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_total_hours"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.12"
+            tools:text="$1500.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_head_total_rounded"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/total_rounded"
+            android:textAllCaps="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintEnd_toStartOf="@id/txt_total_rate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_head_total_charges" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_total_rate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:textAllCaps="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_head_total_rounded"
+            app:layout_constraintEnd_toStartOf="@id/txt_total_rounded_hours"
+            app:layout_constraintStart_toEndOf="@id/txt_head_total_rounded"
+            app:layout_constraintTop_toTopOf="@id/txt_head_total_rounded"
+            app:layout_constraintWidth_percent="0.22"
+            tools:text="$150.00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_total_rounded_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/textsize_20sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/txt_total_rate"
+            app:layout_constraintEnd_toEndOf="@+id/txt_total_hours"
+            app:layout_constraintStart_toEndOf="@+id/txt_head_total_charges"
+            app:layout_constraintTop_toTopOf="@id/txt_total_rate"
+            app:layout_constraintWidth_percent="0.34"
+            tools:text="1.60" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_total_rounded_charges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="end"
+            android:textAllCaps="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/textsize_20sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_total_rounded_hours"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/txt_total_rounded_hours"
+            app:layout_constraintTop_toTopOf="@id/txt_total_rounded_hours"
+            app:layout_constraintWidth_percent="0.12"
+            tools:text="$1500.0" />
+
+        <androidx.constraintlayout.widget.Group
+            visibleGone="@{isConsolidationJob}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="txt_head_total_rounded,txt_total_rate,txt_total_rounded_hours,txt_total_rounded_charges" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

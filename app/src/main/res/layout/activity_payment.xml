@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="PaymentBinding">
+
+        <variable
+            name="totalCharges"
+            type="double" />
+
+        <variable
+            name="additionalDiscount"
+            type="double" />
+
+        <variable
+            name="subtotalOne"
+            type="double" />
+
+        <variable
+            name="tip"
+            type="double" />
+
+        <variable
+            name="subTotalTwo"
+            type="double" />
+
+        <variable
+            name="deposit"
+            type="double" />
+
+        <variable
+            name="balanceDue"
+            type="double" />
+
+        <variable
+            name="amountToPay"
+            type="double" />
+
+        <variable
+            name="currencySymbol"
+            type="String" />
+
+        <variable
+            name="tipText"
+            type="String" />
+
+        <variable
+            name="paidAmount"
+            type="double" />
+
+        <variable
+            name="convenienceFee"
+            type="double" />
+
+        <variable
+            name="totalConvenienceFee"
+            type="double" />
+
+
+        <variable
+            name="totalConvenienceFeeString"
+            type="String" />
+
+        <variable
+            name="grandTotal"
+            type="double" />
+
+        <variable
+            name="convenienceFeeString"
+            type="String" />
+
+        <variable
+            name="isConvenienceFeePercentage"
+            type="boolean" />
+
+        <variable
+            name="totalCardAmountToPay"
+            type="double" />
+
+        <variable
+            name="convenienceFeeNeeded"
+            type="boolean" />
+
+
+        <variable
+            name="tipsFlag"
+            type="int" />
+
+        <variable
+            name="isLabelBalanceExcess"
+            type="boolean" />
+
+        <variable
+            name="amountDue"
+            type="String" />
+
+        <variable
+            name="paymentCarryForward"
+            type="int" />
+
+        <import type="android.view.View" />
+
+        <import type="com.moverbol.util.Util" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/layout_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_total_charges"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp">
+
+                    <TextView
+                        android:id="@+id/txt_total_charges"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/total_charges"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/txt_total_charges_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(totalCharges) + ""}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_total_charges"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_total_charges"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_total_charges"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_total_charges"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_review_discount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp"
+                    android:visibility="@{(additionalDiscount &gt; 0) ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                        android:id="@+id/txt_review_discount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/additional_discount"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/txt_review_discount_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(additionalDiscount) + ""}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_review_discount"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_review_discount"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_review_discount"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_review_discount"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color"
+                    android:visibility="@{(additionalDiscount &gt; 0) ? View.VISIBLE : View.GONE}" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_subtotal_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp"
+                    android:visibility="@{(additionalDiscount &gt; 0) ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                        android:id="@+id/txt_subtotal_one"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{((deposit &gt; 0) || (paidAmount &gt; 0) ) ? @string/subtotal_one : @string/subtotal}"
+                        android:textColor="@color/home_light_grey"
+                        android:textSize="@dimen/textsize_22sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/subtotal_one" />
+
+                    <!--android:text="@{(tip &gt; 0 ) &amp; ((deposit &gt; 0) || (paidAmount &gt; 0) ) ? @string/subtotal_one : @string/subtotal}"-->
+
+
+                    <TextView
+                        android:id="@+id/txt_subtotal_one_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(subtotalOne) + ""}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_subtotal_one"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_subtotal_one"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_subtotal_one"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_subtotal_one"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color"
+                    android:visibility="@{(additionalDiscount &gt; 0) ? View.VISIBLE : View.GONE}" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_tip"
+                    visibleGone="@{tipsFlag == 1}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp">
+
+                    <TextView
+                        android:id="@+id/txt_tip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tip"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_tip_edit"
+                        style="@style/HomeTextLightGrey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:background="@color/colorPrimaryDark"
+                        android:paddingLeft="@dimen/_3sdp"
+                        android:paddingRight="@dimen/_3sdp"
+                        android:text='@{ @string/edit }'
+                        android:textColor="@color/colorAccent"
+                        android:visibility="@{(paidAmount &gt; 0) ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_tip"
+                        app:layout_constraintStart_toEndOf="@+id/txt_tip"
+                        app:layout_constraintTop_toTopOf="@+id/txt_tip"
+                        tools:text="@string/edit" />
+
+                    <TextView
+                        android:id="@+id/txt_tip_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text='@{tipText}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_tip"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_tip"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_tip"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_tip"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color"
+                    android:visibility="@{(tip &gt; 0) ? View.VISIBLE : View.GONE}" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_subtotal_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp"
+                    android:visibility="@{((deposit &gt; 0) || (paidAmount &gt; 0) ) ? View.VISIBLE : View.GONE}">
+                    <!--android:visibility="@{(tip &gt; 0 ) &amp; ((deposit &gt; 0) || (paidAmount &gt; 0) ) ? View.VISIBLE : View.GONE}"-->
+
+                    <TextView
+                        android:id="@+id/txt_subtotal_two"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{(additionalDiscount &gt; 0) ? @string/subtotal_two : @string/subtotal}"
+                        android:textColor="@color/home_light_grey"
+                        android:textSize="@dimen/textsize_22sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/subtotal_two" />
+
+
+                    <TextView
+                        android:id="@+id/txt_subtotal_two_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(subTotalTwo) + ""}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_subtotal_two"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_subtotal_two"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_subtotal_two"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_subtotal_two"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color"
+                    android:visibility="@{((deposit &gt; 0) || (paidAmount &gt; 0) )? View.VISIBLE : View.GONE}" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_deposit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp">
+
+                    <TextView
+                        android:id="@+id/txt_deposit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/deposit_collected"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/txt_deposit_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text='@{"("+currencySymbol + Util.getGeneralFormattedDecimalString(deposit) + ")"}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_deposit"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_deposit"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_deposit"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_deposit"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_grand_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp">
+                    <!--android:visibility="@{(tip &gt; 0 ) &amp; ((deposit &gt; 0) || (paidAmount &gt; 0) ) ? View.VISIBLE : View.GONE}"-->
+
+                    <TextView
+                        android:id="@+id/txt_grand_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/grand_total"
+                        android:textColor="@color/home_light_grey"
+                        android:textSize="@dimen/textsize_22sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/grand_total" />
+
+
+                    <TextView
+                        android:id="@+id/txt_grand_total_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(grandTotal) + ""}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_grand_total"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_grand_total"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_grand_total"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_grand_total"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_total_card_convenience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp"
+                    android:visibility="@{(totalConvenienceFee &gt; 0) ? View.VISIBLE : View.GONE}">
+                    <!--android:visibility="@{(tip &gt; 0 ) &amp; ((deposit &gt; 0) || (paidAmount &gt; 0) ) ? View.VISIBLE : View.GONE}"-->
+
+                    <TextView
+                        android:id="@+id/txt_total_card_convenience"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/convenience_fee"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/convenience_fee" />
+
+
+                    <TextView
+                        android:id="@+id/txt_total_card_convenience_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text='@{totalConvenienceFeeString}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_total_card_convenience"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_total_card_convenience"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_total_card_convenience"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_total_card_convenience"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color"
+                    android:visibility="@{(totalConvenienceFee &gt; 0) ? View.VISIBLE : View.GONE}" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_paid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp"
+                    android:visibility="@{(paidAmount &gt; 0) ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                        android:id="@+id/txt_paid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/paid"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/txt_paid_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text='@{"("+currencySymbol + Util.getGeneralFormattedDecimalString(paidAmount) + ")"}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_paid"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_paid"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_paid"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_paid"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color"
+                    android:visibility="@{(paidAmount &gt; 0) ? View.VISIBLE : View.GONE}" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_16sdp">
+
+                    <TextView
+                        android:id="@+id/txt_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/balance_due"
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_total_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(balanceDue)}'
+                        android:textColor="@color/home_text_black"
+                        android:textSize="@dimen/textsize_24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/img_total"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/movecharges_value" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_total"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:tint="@color/colorPrimary"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txt_total"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/txt_total"
+                        app:srcCompat="@drawable/ic_chevron_right" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/view_color" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_balance_amount_excess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/textsize_18sp"
+                    android:visibility="@{isLabelBalanceExcess ? View.VISIBLE : View.GONE}" />
+
+
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
+                <TextView
+                    android:id="@+id/txt_choose_payment_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/complete_payment"
+                    android:textColor="@color/home_text_black"
+                    android:textSize="@dimen/textsize_18sp" />
+
+                <!--android:text="@string/choose_your_payment_method"-->
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cash_cardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    app:cardUseCompatPadding="true">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_16sdp">
+
+                        <TextView
+                            android:id="@+id/txt_head_amount_due_from_prior_wo"
+                            style="@style/HomeTextLightGrey"
+                            visibleGone="@{paymentCarryForward == 1}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:text='@{ @string/amount_due_from_prior_wo + " (" + currencySymbol + ")" }'
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="@string/amount_due_from_prior_wo" />
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/img_expand"
+                            visibleGone="@{paymentCarryForward == 1}"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_head_amount_due_from_prior_wo"
+                            app:layout_constraintStart_toEndOf="@id/txt_head_amount_due_from_prior_wo"
+                            app:layout_constraintTop_toTopOf="@id/txt_head_amount_due_from_prior_wo"
+                            app:srcCompat="@drawable/ic_expand" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txt_amount_due_from_prior_wo"
+                            visibleGone="@{paymentCarryForward == 1}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:inputType="numberDecimal"
+                            android:text='@{ Util.getGeneralFormattedDecimalString(amountDue)}'
+                            android:textColor="@color/text_black"
+                            android:textSize="@dimen/textsize_18sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_head_amount_due_from_prior_wo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_head_amount_due_from_prior_wo"
+                            tools:text="365.00" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rcv_carry_forward"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:orientation="vertical"
+                            android:visibility="gone"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="@id/txt_amount_due_from_prior_wo"
+                            app:layout_constraintStart_toStartOf="@id/txt_head_amount_due_from_prior_wo"
+                            app:layout_constraintTop_toBottomOf="@id/txt_head_amount_due_from_prior_wo"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/item_carry_forward_details" />
+
+                        <TextView
+                            android:id="@+id/txt_card_no"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:text='@{ @string/amount_to_pay + " (" + currencySymbol + ")" }'
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/rcv_carry_forward"
+                            tools:text="@string/amount_to_pay" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edtxt_amount_to_pay_card"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:text='@{ Util.removeFormatAmount(Util.getGeneralFormattedDecimalString(amountToPay))}'
+                            android:theme="@style/EditextTheme"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_card_no"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_card_no"
+                            tools:text="365.00" />
+
+                        <TextView
+                            android:id="@+id/txt_payment_method"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:text="@string/payment_method"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_card_no"
+                            tools:text="@string/payment_method" />
+
+                        <Spinner
+                            android:id="@+id/spin_payment_method"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/spinner_strings_demo_payment_methods"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_payment_method"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_payment_method" />
+
+                        <TextView
+                            android:id="@+id/txt_card_convenience_fee"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:text='@{ @string/convenience_fee }'
+                            android:visibility="@{convenienceFeeNeeded ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_payment_method"
+                            tools:text="@string/convenience_fee" />
+
+                        <EditText
+                            android:id="@+id/edtxt_card_convenience_fee_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:inputType="numberDecimal"
+                            android:text='@{convenienceFeeString}'
+                            android:theme="@style/EditextTheme"
+                            android:visibility="@{convenienceFeeNeeded ? View.VISIBLE : View.GONE}"
+                            app:backgroundTint="@color/colorAccent"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_card_convenience_fee"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_card_convenience_fee"
+                            tools:text='9 "%"' />
+
+                        <TextView
+                            android:id="@+id/txt_edit"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:background="@color/colorPrimaryDark"
+                            android:paddingLeft="@dimen/_3sdp"
+                            android:paddingRight="@dimen/_3sdp"
+                            android:text='@{ @string/edit }'
+                            android:textColor="@color/colorAccent"
+                            android:visibility="@{convenienceFeeNeeded ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_card_convenience_fee"
+                            app:layout_constraintStart_toEndOf="@+id/txt_card_convenience_fee"
+                            app:layout_constraintTop_toTopOf="@+id/txt_card_convenience_fee"
+                            tools:text="@string/edit" />
+
+                        <!--android:visibility="@{(paidAmount &gt; 0) ? View.GONE : View.VISIBLE}"-->
+
+
+                        <TextView
+                            android:id="@+id/txt_total_amount_tp_pay"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_marginBottom="@dimen/_16sdp"
+                            android:text='@{ @string/total }'
+                            android:visibility="@{convenienceFeeNeeded ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_card_convenience_fee"
+                            tools:text="@string/total" />
+
+                        <EditText
+                            android:id="@+id/edtxt_total_amount_tp_pay_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:text='@{currencySymbol + Util.getGeneralFormattedDecimalString(totalCardAmountToPay) + ""}'
+                            android:theme="@style/EditextTheme"
+                            android:visibility="@{convenienceFeeNeeded ? View.VISIBLE : View.GONE}"
+                            app:backgroundTint="@color/colorAccent"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_total_amount_tp_pay"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/txt_total_amount_tp_pay"
+                            tools:text="350.00" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <Button
+                    android:id="@+id/btn_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="onPayNowClicked"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/pay_now"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+
+                <Button
+                    android:id="@+id/btn_complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:enabled="true"
+                    android:onClick="onPayNowClicked"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/complete"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+
+                <Button
+                    android:id="@+id/btn_carry_forward"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:enabled="true"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/carry_forward"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/textsize_20sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>
+

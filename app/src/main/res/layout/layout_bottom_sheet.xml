@@ -1,0 +1,232 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="LocationBinding">
+
+        <variable
+            name="addItemActivity"
+            type="com.moverbol.views.activities.storageinventory.AddItemActivity" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/bottom_sheet1"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp">
+
+                <TextView
+                    android:id="@+id/txt_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/bottomsheet_first_button"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/location_symbols"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/textsize_20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginLeft="@dimen/bottomsheet_first_button" />
+
+                <CheckBox
+                    android:id="@+id/btn_arm"
+                    style="@style/BottomSheetButton"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/arm"
+                    app:layout_constraintStart_toStartOf="@id/txt_location"
+                    app:layout_constraintTop_toBottomOf="@id/txt_location" />
+
+                <CheckBox
+
+                    android:id="@+id/button5"
+                    style="@style/BottomSheetButton"
+                    android:layout_marginStart="@dimen/bottomsheet_second_button"
+                    android:text="@string/bottom"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_arm"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/btn_arm"
+                    android:layout_marginLeft="@dimen/bottomsheet_second_button" />
+
+                <CheckBox
+                    android:id="@+id/button6"
+                    style="@style/BottomSheetButton"
+                    android:layout_marginStart="@dimen/bottomsheet_third_button"
+                    android:layout_marginLeft="@dimen/bottomsheet_third_button"
+                    android:text="@string/corner"
+                    app:layout_constraintBottom_toBottomOf="@+id/button5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/button5" />
+
+                <CheckBox
+                    android:id="@+id/button7"
+                    style="@style/BottomSheetButton"
+                    android:layout_marginStart="@dimen/bottomsheet_fourth_button"
+                    android:text="@string/front"
+                    app:layout_constraintBottom_toBottomOf="@+id/button6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/button6"
+                    android:layout_marginLeft="@dimen/bottomsheet_fourth_button" />
+
+                <CheckBox
+                    android:id="@+id/button8"
+                    style="@style/BottomSheetButton"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/rear"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_arm"
+                    app:layout_constraintStart_toStartOf="@+id/btn_arm"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_arm" />
+
+                <CheckBox
+                    android:id="@+id/button9"
+                    style="@style/BottomSheetButton"
+                    android:text="@string/right"
+                    app:layout_constraintBottom_toBottomOf="@+id/button8"
+                    app:layout_constraintEnd_toEndOf="@+id/button5"
+                    app:layout_constraintStart_toStartOf="@+id/button5"
+                    app:layout_constraintTop_toTopOf="@+id/button8" />
+
+                <CheckBox
+                    android:id="@+id/button10"
+                    style="@style/BottomSheetButton"
+                    android:text="@string/side"
+                    app:layout_constraintBottom_toBottomOf="@+id/button9"
+                    app:layout_constraintEnd_toEndOf="@+id/button6"
+                    app:layout_constraintStart_toStartOf="@+id/button6"
+                    app:layout_constraintTop_toTopOf="@+id/button9" />
+
+                <CheckBox
+                    android:id="@+id/button11"
+                    style="@style/BottomSheetButton"
+                    android:text="@string/top"
+                    app:layout_constraintBottom_toBottomOf="@+id/button10"
+                    app:layout_constraintEnd_toEndOf="@+id/button7"
+                    app:layout_constraintStart_toStartOf="@+id/button7"
+                    app:layout_constraintTop_toTopOf="@+id/button10" />
+
+                <CheckBox
+                    android:id="@+id/btn_veener"
+                    style="@style/BottomSheetButton"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/veener"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_arm"
+                    app:layout_constraintStart_toStartOf="@id/btn_arm"
+                    app:layout_constraintTop_toBottomOf="@id/button8" />
+
+                <CheckBox
+                    android:id="@+id/btn_edge"
+                    style="@style/BottomSheetButton"
+                    android:text="@string/edge"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_veener"
+                    app:layout_constraintEnd_toEndOf="@+id/button5"
+                    app:layout_constraintStart_toStartOf="@+id/button5"
+                    app:layout_constraintTop_toTopOf="@id/btn_veener" />
+
+                <CheckBox
+                    android:id="@+id/btn_center"
+                    style="@style/BottomSheetButton"
+                    android:text="@string/center"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_veener"
+                    app:layout_constraintEnd_toEndOf="@+id/button6"
+                    app:layout_constraintStart_toStartOf="@+id/button6"
+                    app:layout_constraintTop_toTopOf="@id/btn_veener" />
+
+                <CheckBox
+                    android:id="@+id/btn_inside"
+                    style="@style/BottomSheetButton"
+                    android:text="@string/inside"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_veener"
+                    app:layout_constraintEnd_toEndOf="@+id/button11"
+                    app:layout_constraintStart_toStartOf="@+id/button11"
+                    app:layout_constraintTop_toTopOf="@id/btn_veener" />
+
+                <CheckBox
+                    android:id="@+id/btn_seat"
+                    style="@style/BottomSheetButton"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/seat"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_arm"
+                    app:layout_constraintStart_toStartOf="@id/btn_arm"
+                    app:layout_constraintTop_toBottomOf="@id/btn_veener" />
+
+                <CheckBox
+                    android:id="@+id/btn_drawer"
+                    style="@style/BottomSheetButton"
+                    android:text="@string/drawer"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_seat"
+                    app:layout_constraintEnd_toEndOf="@+id/button5"
+                    app:layout_constraintStart_toStartOf="@+id/button5"
+                    app:layout_constraintTop_toTopOf="@id/btn_seat" />
+
+                <CheckBox
+                    android:id="@+id/btn_door"
+                    style="@style/BottomSheetButton"
+                    android:text="@string/door"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_seat"
+                    app:layout_constraintEnd_toEndOf="@+id/button6"
+                    app:layout_constraintStart_toStartOf="@+id/button6"
+                    app:layout_constraintTop_toTopOf="@id/btn_seat" />
+
+                <CheckBox
+                    android:id="@+id/btn_shelf"
+                    style="@style/BottomSheetButton"
+                    android:text="@string/shelf"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_seat"
+                    app:layout_constraintEnd_toEndOf="@+id/button11"
+                    app:layout_constraintStart_toStartOf="@+id/button11"
+                    app:layout_constraintTop_toTopOf="@id/btn_seat" />
+
+                <CheckBox
+                    android:id="@+id/hardware"
+                    style="@style/BottomSheetButton"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/hardware"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_arm"
+                    app:layout_constraintStart_toStartOf="@id/btn_arm"
+                    app:layout_constraintTop_toBottomOf="@id/btn_seat" />
+
+                <TextView
+                    android:id="@+id/tv_done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:onClick="@{addItemActivity::onSelectingLocationSymbol}"
+                    android:text="@string/done"
+                    android:textColor="@color/selector_text"
+                    android:textSize="@dimen/textsize_20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_cancel"
+                    android:layout_marginRight="32dp" />
+
+                <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:onClick="@{addItemActivity::cancelBottomSheet}"
+                    android:text="@string/cancel"
+                    android:textColor="@color/selector_textview_sheet"
+                    android:textSize="@dimen/textsize_20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </ScrollView>
+</layout>

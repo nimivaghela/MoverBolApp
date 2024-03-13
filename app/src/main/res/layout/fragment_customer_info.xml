@@ -1,0 +1,1196 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CustomerInfoBinding">
+
+        <variable
+            name="customerInfoFragment"
+            type="com.moverbol.views.fragments.jobsummary.CustomerInfoFragment" />
+
+        <variable
+            name="customerInfo"
+            type="com.moverbol.model.CustomerInfoPojo" />
+
+        <variable
+            name="pickupAdress"
+            type="com.moverbol.model.AdressPojo" />
+
+        <variable
+            name="deliveryAddress"
+            type="com.moverbol.model.AdressPojo" />
+
+        <variable
+            name="pickUpExtraStopsCount"
+            type="Integer" />
+
+        <variable
+            name="deliveryExtraStopsCount"
+            type="Integer" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <import type="com.moverbol.util.Util" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--<android.support.v4.widget.SwipeRefreshLayoutZ
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">-->
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--<android.support.v4.widget.SwipeRefreshLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">-->
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+                        <TextView
+                            android:id="@+id/tv_customer_info"
+                            style="@style/CustomerInfoHeading"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginHorizontal="@dimen/_50sdp"
+                            android:text="@string/customer_info"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <View
+                            android:id="@+id/view3"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/divider_grey"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_customer_info" />
+
+                        <!--<LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view3">
+
+                        </LinearLayout>-->
+
+                        <TextView
+                            android:id="@+id/txt_customer_name_indicator"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_50sdp"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:text="@string/customer_name"
+                            app:layout_constraintEnd_toStartOf="@id/txt_customer_id_indicator"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/view3" />
+
+                        <TextView
+                            android:id="@+id/txt_customer_name"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:text="@{customerInfo.displayCustomerName()}"
+                            app:layout_constraintEnd_toEndOf="@id/txt_customer_name_indicator"
+                            app:layout_constraintStart_toStartOf="@+id/txt_customer_name_indicator"
+                            app:layout_constraintTop_toBottomOf="@id/txt_customer_name_indicator"
+                            tools:text="Aadarsh Dattamo sdfjksdlf skjdfslsdklfjsldfksldfslsdklfslsdlfklsl" />
+
+                        <TextView
+                            android:id="@+id/txt_customer_id_indicator"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/customer_id"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_customer_name_indicator"
+                            app:layout_constraintEnd_toStartOf="@id/txt_job_id_indicator"
+                            app:layout_constraintStart_toEndOf="@id/txt_customer_name_indicator"
+                            app:layout_constraintTop_toTopOf="@id/txt_customer_name_indicator" />
+
+
+                        <TextView
+                            android:id="@+id/txt_job_id_indicator"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/job_id"
+
+                            app:layout_constraintBottom_toBottomOf="@id/txt_customer_id_indicator"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/txt_customer_id_indicator"
+                            app:layout_constraintTop_toTopOf="@id/txt_customer_id_indicator" />
+
+                        <TextView
+                            android:id="@+id/txt_customer_id"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@{customerInfo.customerId}"
+                            app:layout_constraintEnd_toEndOf="@id/txt_customer_id_indicator"
+                            app:layout_constraintStart_toStartOf="@id/txt_customer_id_indicator"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_customer_id_indicator"
+                            tools:text="RLE2861" />
+
+                        <TextView
+                            android:id="@+id/txt_customer_email"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@{customerInfo.jobId}"
+                            app:layout_constraintEnd_toEndOf="@id/txt_job_id_indicator"
+                            app:layout_constraintStart_toStartOf="@+id/txt_job_id_indicator"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_job_id_indicator"
+                            tools:text="SJ2373" />
+
+                        <TextView
+                            android:id="@+id/textView46"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/email_address"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_job_id_indicator"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/txt_customer_name_indicator"
+                            app:layout_constraintTop_toTopOf="@+id/txt_job_id_indicator" />
+
+                        <TextView
+                            android:id="@+id/txt_job_id"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{customerInfo.emailId}"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_customer_email"
+                            app:layout_constraintStart_toStartOf="@+id/textView46"
+                            app:layout_constraintTop_toTopOf="@+id/txt_customer_email"
+                            app:layout_constraintVertical_bias="1.0"
+                            tools:text="adarsh@netensity.com" />
+
+                        <TextView
+                            android:id="@+id/txt_head_job_activity"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_50sdp"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/job_activity"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txt_customer_name" />
+
+                        <TextView
+                            android:id="@+id/txt_job_activity"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@{customerInfo.jobActivityName}"
+                            app:layout_constraintStart_toStartOf="@+id/txt_head_job_activity"
+                            app:layout_constraintTop_toBottomOf="@id/txt_head_job_activity"
+                            tools:text="Box Delivery" />
+
+
+                        <TextView
+                            android:id="@+id/textView48"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="24dp"
+                            android:text="@string/phone"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_job_activity" />
+
+                        <TextView
+                            android:id="@+id/txt_customer_phone1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/drawable_rectangle_border_green"
+                            android:drawableStart="@drawable/icons8_phone_50"
+                            android:drawablePadding="@dimen/textsize_10sp"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@{Util.getFormatedPhoneNumber(customerInfo.phone1)}"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/textsize_16sp"
+                            android:visibility="@{TextUtils.isEmpty(customerInfo.phone1) ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintVertical_bias="1.0"
+                            tools:ignore="MissingConstraints"
+                            tools:text="09876543210" />
+                        <!--android:drawableLeft="@drawable/ic_call"/>-->
+
+
+                        <TextView
+                            android:id="@+id/txt_customer_phone2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_30sdp"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/drawable_rectangle_border_green"
+                            android:drawableStart="@drawable/icons8_phone_50"
+                            android:drawablePadding="@dimen/textsize_10sp"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@{Util.getFormatedPhoneNumber(customerInfo.phone2)}"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/textsize_16sp"
+                            android:visibility="@{TextUtils.isEmpty(customerInfo.phone2) ? View.INVISIBLE : View.VISIBLE}"
+                            tools:ignore="MissingConstraints"
+                            tools:text="09876543211" />
+
+                        <TextView
+                            android:id="@+id/txt_customer_phone3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_30sdp"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/drawable_rectangle_border_green"
+                            android:drawableStart="@drawable/icons8_phone_50"
+                            android:drawablePadding="@dimen/textsize_10sp"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@{Util.getFormatedPhoneNumber(customerInfo.phone3)}"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/textsize_16sp"
+                            android:visibility="@{TextUtils.isEmpty(customerInfo.phone3) ? View.INVISIBLE : View.VISIBLE}"
+                            tools:ignore="MissingConstraints"
+                            tools:text="09876543211" />
+
+                        <androidx.constraintlayout.helper.widget.Flow
+                            android:id="@+id/layout_phone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16sdp"
+                            android:layout_marginEnd="@dimen/_24sdp"
+                            android:layout_marginBottom="@dimen/_16sdp"
+                            app:constraint_referenced_ids="txt_customer_phone1,txt_customer_phone2,txt_customer_phone3"
+                            app:flow_horizontalBias="0.0"
+                            app:flow_horizontalGap="@dimen/_24sdp"
+                            app:flow_horizontalStyle="packed"
+                            app:flow_verticalGap="@dimen/_24sdp"
+                            app:flow_wrapMode="aligned"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/textView48"
+                            app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
+
+                        <!--android:drawableLeft="@drawable/ic_call"-->
+
+
+                        <!--style="@style/HomeTextBlack"-->
+                        <!-- <TextView
+                            android:id="@+id/tv_customer_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/customer_id" />-->
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_40sdp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:layout_editor_absoluteX="0dp"
+                        tools:layout_editor_absoluteY="0dp">
+
+
+                        <TextView
+                            android:id="@+id/tv_pick_address"
+                            style="@style/CustomerInfoHeading"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/pickup_address"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/textView52"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <View
+                            android:id="@+id/view_address"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/divider_grey"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_pick_address" />
+
+                        <TextView
+                            android:id="@+id/textView52"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/address"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view_address" />
+
+                        <TextView
+                            android:id="@+id/txt_pickup_address"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{pickupAdress.fullAddressString}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/textView52"
+                            app:layout_constraintTop_toBottomOf="@id/textView52"
+                            tools:text="456 Demo Dr, Suite B, Fremont, California (CA) United States. 94555 (CA) United States. 94555" />
+
+                        <!--android:text='@{pickupAdress.smallAddress + ", " + pickupAdress.city + ", " + pickupAdress.state + ", " + pickupAdress.country + ", " + pickupAdress.zipcode}'-->
+
+                        <TextView
+                            android:id="@+id/tc_location_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="32dp"
+                            android:text="@string/location_info"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/textsize_18sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_pickup_address" />
+
+
+                        <TextView
+                            android:id="@+id/txt_head_stairs"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/stairs"
+                            app:layout_constraintEnd_toStartOf="@+id/txt_head_flights"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tc_location_info" />
+
+
+                        <TextView
+                            android:id="@+id/txt_head_flights"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/flights"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_head_stairs"
+                            app:layout_constraintEnd_toStartOf="@id/tv_lbl_location"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toEndOf="@+id/txt_head_stairs"
+                            app:layout_constraintTop_toTopOf="@+id/txt_head_stairs" />
+
+                        <TextView
+                            android:id="@+id/tv_lbl_location"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_50sdp"
+                            android:text="@string/location_type"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_head_flights"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/txt_head_flights"
+                            app:layout_constraintTop_toTopOf="@id/txt_head_flights"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <TextView
+                            android:id="@+id/txt_stairs"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{pickupAdress.locationInfo.stairsCarry}"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_head_stairs"
+                            app:layout_constraintStart_toStartOf="@id/txt_head_stairs"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_head_stairs"
+                            tools:text="Yes" />
+
+                        <TextView
+                            android:id="@+id/txt_flights"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{pickupAdress.locationInfo.flightsOfStairs}"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_head_flights"
+                            app:layout_constraintStart_toStartOf="@id/txt_head_flights"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_head_flights"
+                            tools:text="Yes" />
+
+                        <TextView
+                            android:id="@+id/txt_pickup_location_type"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{pickupAdress.locationInfo.locationType}"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_lbl_location"
+                            app:layout_constraintStart_toStartOf="@id/tv_lbl_location"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_lbl_location"
+                            tools:text="1st Floor No Stairs" />
+
+                        <TextView
+                            android:id="@+id/txt_head_long_carry"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/long_carry"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_stairs"
+                            app:layout_constraintStart_toStartOf="@+id/txt_stairs"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_stairs"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                        <TextView
+                            android:id="@+id/txt_head_distance_long"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/distance"
+                            visibleInvisible="@{pickupAdress.locationInfo.longCarry.equalsIgnoreCase(`yes`)}"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_head_long_carry"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_flights"
+                            app:layout_constraintStart_toStartOf="@+id/txt_flights"
+                            app:layout_constraintTop_toTopOf="@+id/txt_head_long_carry"
+                            app:layout_constraintVertical_bias="1.0" />
+
+
+                        <TextView
+                            android:id="@+id/tv_gate_code_pick"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gate_code"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_head_long_carry"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_pickup_location_type"
+                            app:layout_constraintStart_toStartOf="@+id/txt_pickup_location_type"
+                            app:layout_constraintTop_toTopOf="@+id/txt_head_distance_long"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                        <TextView
+                            android:id="@+id/txt_long_carry"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{pickupAdress.locationInfo.longCarry}"
+                            app:layout_constraintEnd_toEndOf="@id/txt_head_long_carry"
+                            app:layout_constraintStart_toStartOf="@+id/txt_head_long_carry"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_head_long_carry"
+                            tools:text="Yes" />
+
+                        <TextView
+                            android:id="@+id/txt_distance_long"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            visibleInvisible="@{pickupAdress.locationInfo.longCarry.equalsIgnoreCase(`yes`)}"
+                            android:text="@{pickupAdress.locationInfo.longCarryDistance}"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_long_carry"
+                            app:layout_constraintEnd_toEndOf="@id/txt_head_distance_long"
+                            app:layout_constraintStart_toStartOf="@+id/txt_head_distance_long"
+                            app:layout_constraintTop_toTopOf="@id/txt_long_carry"
+                            tools:text="Yes" />
+
+
+                        <TextView
+                            android:id="@+id/txt_pickup_gate_code"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@{pickupAdress.locationInfo.gateCode}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_distance_long"
+                            app:layout_constraintEnd_toEndOf="@id/tv_gate_code_pick"
+                            app:layout_constraintStart_toStartOf="@+id/tv_gate_code_pick"
+                            app:layout_constraintTop_toTopOf="@+id/txt_distance_long"
+                            tools:text="123" />
+
+                        <TextView
+                            android:id="@+id/tv_elevator_pick"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/elevator"
+                            app:layout_constraintEnd_toEndOf="@id/txt_long_carry"
+                            app:layout_constraintStart_toStartOf="@id/txt_long_carry"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_long_carry" />
+
+
+                        <TextView
+                            android:id="@+id/txt_head_distance_elevator"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/distance"
+                            visibleInvisible="@{pickupAdress.locationInfo.isElevatorAvailable.equalsIgnoreCase(`yes`)}"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_elevator_pick"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_distance_long"
+                            app:layout_constraintStart_toStartOf="@+id/txt_distance_long"
+                            app:layout_constraintTop_toTopOf="@+id/tv_elevator_pick"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                        <TextView
+                            android:id="@+id/tv_parking_pick"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/parking_move_day"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_head_distance_elevator"
+                            app:layout_constraintEnd_toEndOf="@id/txt_pickup_gate_code"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/txt_pickup_gate_code"
+                            app:layout_constraintTop_toTopOf="@+id/txt_head_distance_elevator" />
+
+
+                        <TextView
+                            android:id="@+id/txt_pickup_elevator_avilable"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{pickupAdress.locationInfo.isElevatorAvailable}"
+                            app:layout_constraintEnd_toEndOf="@id/tv_elevator_pick"
+                            app:layout_constraintStart_toStartOf="@id/tv_elevator_pick"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_elevator_pick"
+                            tools:text="@string/yes" />
+
+                        <TextView
+                            android:id="@+id/txt_distance_elevator"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            visibleInvisible="@{pickupAdress.locationInfo.isElevatorAvailable.equalsIgnoreCase(`yes`)}"
+                            android:text="@{pickupAdress.locationInfo.elevetorDisatnce}"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_pickup_elevator_avilable"
+                            app:layout_constraintEnd_toEndOf="@id/txt_head_distance_elevator"
+                            app:layout_constraintStart_toStartOf="@+id/txt_head_distance_elevator"
+                            app:layout_constraintTop_toTopOf="@id/txt_pickup_elevator_avilable"
+                            tools:text="Yes" />
+
+
+                        <TextView
+                            android:id="@+id/txt_pickup_parking_avilable"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@{pickupAdress.locationInfo.isParkingOnMoveDayAvilable}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_distance_elevator"
+                            app:layout_constraintEnd_toEndOf="@id/tv_parking_pick"
+                            app:layout_constraintStart_toStartOf="@+id/tv_parking_pick"
+                            app:layout_constraintTop_toTopOf="@+id/txt_distance_elevator"
+                            app:layout_constraintVertical_bias="1.0"
+                            tools:text="@string/yes" />
+
+
+                        <TextView
+                            android:id="@+id/tv_person_name_pick"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/person_name"
+                            app:layout_constraintEnd_toEndOf="@id/txt_pickup_elevator_avilable"
+                            app:layout_constraintStart_toStartOf="@id/txt_pickup_elevator_avilable"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_pickup_elevator_avilable" />
+
+                        <TextView
+                            android:id="@+id/txt_pickup_contact_person_name"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@{pickupAdress.locationInfo.contactName}"
+                            app:layout_constraintEnd_toEndOf="@id/tv_person_name_pick"
+                            app:layout_constraintStart_toStartOf="@id/tv_person_name_pick"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_person_name_pick"
+                            tools:text="Jeff Smith" />
+
+                        <TextView
+                            android:id="@+id/tv_contact_pick"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/contact"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_person_name_pick"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_pickup_parking_avilable"
+                            app:layout_constraintStart_toStartOf="@+id/txt_pickup_parking_avilable"
+                            app:layout_constraintTop_toTopOf="@+id/tv_person_name_pick"
+                            app:layout_constraintVertical_bias="1.0" />
+
+
+
+                        <TextView
+                            android:id="@+id/txt_pickup_contact_phone"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_call"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:text="@{Util.getFormatedPhoneNumber(pickupAdress.locationInfo.organisationPhoneNumber)}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_pickup_contact_person_name"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_contact_pick"
+                            app:layout_constraintStart_toStartOf="@id/tv_contact_pick"
+                            app:layout_constraintTop_toTopOf="@+id/txt_pickup_contact_person_name"
+                            tools:text="444-444-4444" />
+
+
+                        <TextView
+                            android:id="@+id/tv_notes_pick"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/notes"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_pickup_contact_person_name" />
+
+                        <TextView
+                            android:id="@+id/txt_pickup_notes"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_50sdp"
+                            android:layout_marginEnd="@dimen/_50sdp"
+                            android:layout_marginTop="8dp"
+                            android:text="@{pickupAdress.locationInfo.organisationNotes}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_notes_pick"
+                            tools:text="Pickup Note ABC Pickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABC" />
+
+
+                        <View
+                            android:id="@+id/view_location"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:background="@color/divider_grey"
+                            android:visibility="@{pickUpExtraStopsCount == 0 ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_pickup_notes" />
+
+                        <TextView
+                            android:id="@+id/textView55"
+                            style="@style/CustomerInfoHeading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="9dp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:onClick="@{customerInfoFragment::openPickUpExtraStop}"
+                            android:text="@string/pickup_extra_stops"
+                            android:visibility="@{pickUpExtraStopsCount == 0 ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view_location" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="@dimen/_40sdp"
+                            android:visibility="@{pickUpExtraStopsCount == 0 ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView55"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/textView55"
+                            app:layout_constraintVertical_bias="1.0"
+                            app:srcCompat="@drawable/ic_chevron_right" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_40sdp">
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_delivery_address"
+                            style="@style/CustomerInfoHeading"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="@string/delivery_address"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/tv_address_new"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <View
+                            android:id="@+id/view_delivery"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/divider_grey"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_delivery_address" />
+
+
+                        <TextView
+                            android:id="@+id/tv_address_new"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/address"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view_delivery" />
+
+                        <TextView
+                            android:id="@+id/txt_delivery_address"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{deliveryAddress.fullAddressString}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/tv_address_new"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_address_new"
+                            tools:text="456 Demo Dr, Suite B, Fremont, California (CA) \nUnited States. 94555" />
+
+                        <!--android:text='@{deliveryAddress.smallAddress + ", " + deliveryAddress.city + ", " + deliveryAddress.state + ", " + deliveryAddress.country + ", " + deliveryAddress.zipcode}'-->
+
+                        <TextView
+                            android:id="@+id/tv_delivery_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="32dp"
+                            android:text="@string/location_info"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/textsize_18sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_delivery_address" />
+
+
+                        <TextView
+                            android:id="@+id/txt_head_stairs_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/stairs"
+                            app:layout_constraintEnd_toStartOf="@+id/txt_head_flights_delivery"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_delivery_location" />
+
+
+                        <TextView
+                            android:id="@+id/txt_head_flights_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/flights"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_head_stairs_delivery"
+                            app:layout_constraintEnd_toStartOf="@id/tv_lbl_location_delivery"
+                            app:layout_constraintHorizontal_chainStyle="spread"
+                            app:layout_constraintStart_toEndOf="@+id/txt_head_stairs_delivery"
+                            app:layout_constraintTop_toTopOf="@+id/txt_head_stairs_delivery" />
+
+                        <TextView
+                            android:id="@+id/tv_lbl_location_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_50sdp"
+                            android:text="@string/location_type"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_head_flights_delivery"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/txt_head_flights_delivery"
+                            app:layout_constraintTop_toTopOf="@id/txt_head_flights_delivery"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <TextView
+                            android:id="@+id/txt_stairs_delivery"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{deliveryAddress.locationInfo.stairsCarry}"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_head_stairs_delivery"
+                            app:layout_constraintStart_toStartOf="@id/txt_head_stairs_delivery"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_head_stairs_delivery"
+                            tools:text="Yes" />
+
+                        <TextView
+                            android:id="@+id/txt_flights_delivery"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{deliveryAddress.locationInfo.flightsOfStairs}"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_head_flights_delivery"
+                            app:layout_constraintStart_toStartOf="@id/txt_head_flights_delivery"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_head_flights_delivery"
+                            tools:text="Yes" />
+
+                        <TextView
+                            android:id="@+id/txt_delivery_location_type"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{deliveryAddress.locationInfo.locationType}"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_lbl_location_delivery"
+                            app:layout_constraintStart_toStartOf="@id/tv_lbl_location_delivery"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_lbl_location_delivery"
+                            tools:text="1st Floor No Stairs" />
+
+                        <TextView
+                            android:id="@+id/txt_head_long_carry_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/long_carry"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_stairs_delivery"
+                            app:layout_constraintStart_toStartOf="@+id/txt_stairs_delivery"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_stairs_delivery"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                        <TextView
+                            android:id="@+id/txt_head_distance_long_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/distance"
+                            visibleInvisible="@{deliveryAddress.locationInfo.longCarry.equalsIgnoreCase(`yes`)}"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_head_long_carry_delivery"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_flights_delivery"
+                            app:layout_constraintStart_toStartOf="@+id/txt_flights_delivery"
+                            app:layout_constraintTop_toTopOf="@+id/txt_head_long_carry_delivery"
+                            app:layout_constraintVertical_bias="1.0" />
+
+
+                        <TextView
+                            android:id="@+id/tv_gate_code_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/gate_code"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_head_long_carry_delivery"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_delivery_location_type"
+                            app:layout_constraintStart_toStartOf="@+id/txt_delivery_location_type"
+                            app:layout_constraintTop_toTopOf="@+id/txt_head_distance_long_delivery"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                        <TextView
+                            android:id="@+id/txt_long_carry_delivery"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{deliveryAddress.locationInfo.longCarry}"
+                            app:layout_constraintEnd_toEndOf="@id/txt_head_long_carry_delivery"
+                            app:layout_constraintStart_toStartOf="@+id/txt_head_long_carry_delivery"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_head_long_carry_delivery"
+                            tools:text="Yes" />
+
+                        <TextView
+                            android:id="@+id/txt_distance_long_delivery"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            visibleInvisible="@{deliveryAddress.locationInfo.longCarry.equalsIgnoreCase(`yes`)}"
+                            android:text="@{deliveryAddress.locationInfo.longCarryDistance}"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_long_carry_delivery"
+                            app:layout_constraintEnd_toEndOf="@id/txt_head_distance_long_delivery"
+                            app:layout_constraintStart_toStartOf="@+id/txt_head_distance_long_delivery"
+                            app:layout_constraintTop_toTopOf="@id/txt_long_carry_delivery"
+                            tools:text="Yes" />
+
+
+                        <TextView
+                            android:id="@+id/txt_delivery_gate_code"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@{deliveryAddress.locationInfo.gateCode}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_distance_long_delivery"
+                            app:layout_constraintEnd_toEndOf="@id/tv_gate_code_delivery"
+                            app:layout_constraintStart_toStartOf="@+id/tv_gate_code_delivery"
+                            app:layout_constraintTop_toTopOf="@+id/txt_distance_long_delivery"
+                            tools:text="123" />
+
+                        <TextView
+                            android:id="@+id/tv_elevator_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/elevator"
+                            app:layout_constraintEnd_toEndOf="@id/txt_long_carry_delivery"
+                            app:layout_constraintStart_toStartOf="@id/txt_long_carry_delivery"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_long_carry_delivery" />
+
+
+                        <TextView
+                            android:id="@+id/txt_head_distance_elevator_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/distance"
+                            visibleInvisible="@{deliveryAddress.locationInfo.isElevatorAvailable.equalsIgnoreCase(`yes`)}"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_elevator_delivery"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_distance_long_delivery"
+                            app:layout_constraintStart_toStartOf="@+id/txt_distance_long_delivery"
+                            app:layout_constraintTop_toTopOf="@+id/tv_elevator_delivery"
+                            app:layout_constraintVertical_bias="1.0" />
+
+                        <TextView
+                            android:id="@+id/tv_parking_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/parking_move_day"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_head_distance_elevator_delivery"
+                            app:layout_constraintEnd_toEndOf="@id/txt_delivery_gate_code"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/txt_delivery_gate_code"
+                            app:layout_constraintTop_toTopOf="@+id/txt_head_distance_elevator_delivery" />
+
+
+                        <TextView
+                            android:id="@+id/txt_delivery_elevator_avilable"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@{deliveryAddress.locationInfo.isElevatorAvailable}"
+                            app:layout_constraintEnd_toEndOf="@id/tv_elevator_delivery"
+                            app:layout_constraintStart_toStartOf="@id/tv_elevator_delivery"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_elevator_delivery"
+                            tools:text="@string/yes" />
+
+                        <TextView
+                            android:id="@+id/txt_distance_elevator_delivery"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            visibleInvisible="@{deliveryAddress.locationInfo.isElevatorAvailable.equalsIgnoreCase(`yes`)}"
+                            android:text="@{deliveryAddress.locationInfo.elevetorDisatnce}"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_delivery_elevator_avilable"
+                            app:layout_constraintEnd_toEndOf="@id/txt_head_distance_elevator_delivery"
+                            app:layout_constraintStart_toStartOf="@+id/txt_head_distance_elevator_delivery"
+                            app:layout_constraintTop_toTopOf="@id/txt_delivery_elevator_avilable"
+                            tools:text="Yes" />
+
+
+                        <TextView
+                            android:id="@+id/txt_delivery_parking_avilable"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@{deliveryAddress.locationInfo.isParkingOnMoveDayAvilable}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_distance_elevator_delivery"
+                            app:layout_constraintEnd_toEndOf="@id/tv_parking_delivery"
+                            app:layout_constraintStart_toStartOf="@+id/tv_parking_delivery"
+                            app:layout_constraintTop_toTopOf="@+id/txt_distance_elevator_delivery"
+                            app:layout_constraintVertical_bias="1.0"
+                            tools:text="@string/yes" />
+
+
+                        <TextView
+                            android:id="@+id/tv_person_name_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_24sdp"
+                            android:text="@string/person_name"
+                            app:layout_constraintEnd_toEndOf="@id/txt_delivery_elevator_avilable"
+                            app:layout_constraintStart_toStartOf="@id/txt_delivery_elevator_avilable"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_delivery_elevator_avilable" />
+
+                        <TextView
+                            android:id="@+id/txt_delivery_contact_person_name"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:text="@{deliveryAddress.locationInfo.contactName}"
+                            app:layout_constraintEnd_toEndOf="@id/tv_person_name_delivery"
+                            app:layout_constraintStart_toStartOf="@id/tv_person_name_delivery"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_person_name_delivery"
+                            tools:text="Jeff Smith" />
+
+                        <TextView
+                            android:id="@+id/tv_contact_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/contact"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_person_name_delivery"
+                            app:layout_constraintEnd_toEndOf="@+id/txt_delivery_parking_avilable"
+                            app:layout_constraintStart_toStartOf="@+id/txt_delivery_parking_avilable"
+                            app:layout_constraintTop_toTopOf="@+id/tv_person_name_delivery"
+                            app:layout_constraintVertical_bias="1.0" />
+
+
+
+                        <TextView
+                            android:id="@+id/txt_delivery_contact_phone"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_call"
+                            android:drawablePadding="@dimen/_8sdp"
+                            android:text="@{Util.getFormatedPhoneNumber(deliveryAddress.locationInfo.organisationPhoneNumber)}"
+                            app:layout_constraintBottom_toBottomOf="@+id/txt_delivery_contact_person_name"
+                            app:layout_constraintEnd_toEndOf="@+id/tv_contact_delivery"
+                            app:layout_constraintStart_toStartOf="@id/tv_contact_delivery"
+                            app:layout_constraintTop_toTopOf="@+id/txt_delivery_contact_person_name"
+                            tools:text="444-444-4444" />
+
+
+                        <TextView
+                            android:id="@+id/tv_notes_delivery"
+                            style="@style/HomeTextLightGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/notes"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_delivery_contact_person_name" />
+
+                        <TextView
+                            android:id="@+id/txt_delivery_notes"
+                            style="@style/JobSummaryTextBlack"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_50sdp"
+                            android:layout_marginEnd="@dimen/_50sdp"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:text="@{deliveryAddress.locationInfo.organisationNotes}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_notes_delivery"
+                            tools:text="Pickup Note ABC Pickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABCPickup Note ABC" />
+
+
+                        <View
+                            android:id="@+id/view_notes"
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/divider_grey"
+                            android:visibility="@{deliveryExtraStopsCount == 0 ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_delivery_notes" />
+
+
+                        <TextView
+                            android:id="@+id/tv_delivery"
+                            style="@style/CustomerInfoHeading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="@dimen/_24sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:onClick="@{customerInfoFragment::openPickUpExtraStop}"
+                            android:text="@string/delivery_extra_stops"
+                            android:visibility="@{deliveryExtraStopsCount == 0 ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@+id/tv_notes_delivery"
+                            app:layout_constraintTop_toBottomOf="@+id/view_notes" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_delivery_right"
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="@dimen/_40sdp"
+                            android:visibility="@{deliveryExtraStopsCount == 0 ? View.GONE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_delivery"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_delivery"
+                            app:layout_constraintVertical_bias="1.0"
+                            app:srcCompat="@drawable/ic_chevron_right" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+        <!--</android.support.v4.widget.SwipeRefreshLayoutZ>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
